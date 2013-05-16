@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="83968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="89088">
       <assemblyIdentity name="PVPGN 管理器" version="0.0.0.3" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>p77Cd0wu+gzErlE9n8NkHLrg0ww=</dsig:DigestValue>
+        <dsig:DigestValue>3ug3B1OlV3Uv9+ozfvBOtnmo9vw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,13 +75,13 @@
       <dsig:DigestValue>tiSm8CHpHD1PMr8/kUY0gzmd4N8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PVPGN 管理器.exe.config" size="476">
+  <file name="PvPGN管理器说明.txt" size="838">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>k3PiVQTKusUg46xPS/YwryvQw4c=</dsig:DigestValue>
+      <dsig:DigestValue>Dvcy0rFk584hFQGZk7wSStFQCT4=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
