@@ -63,7 +63,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.Click
 
         If Not conn Is Nothing Then conn.Close()
 
@@ -73,8 +73,8 @@ Public Class Form1
         Try
             conn = New MySqlConnection(connStr)
             conn.Open()
-            Button1.Text = "已连接"
-            Button1.Enabled = False
+            Button_con_to_sql.Text = "已连接"
+            Button_con_to_sql.Enabled = False
             'GetDatabases()
             'Catch ex As MySqlException
             '
@@ -91,78 +91,31 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
-        Dim setadminstr As String
-        setadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='ture' WHERE (`username`='{0}') LIMIT 1", TextBox5.Text)
-        Dim setadmin As New MySqlCommand(setadminstr, conn)
-        selectpvpgn.ExecuteNonQuery()
-        setadmin.ExecuteNonQuery()
-    End Sub
 
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
-        Dim unsetadminstr As String
-        unsetadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='false' WHERE (`username`='{0}') LIMIT 1", TextBox5.Text)
-        Dim unsetadmin As New MySqlCommand(unsetadminstr, conn)
-        selectpvpgn.ExecuteNonQuery()
-        unsetadmin.ExecuteNonQuery()
-    End Sub
 
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+
+
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_del_user.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim deluserstr As String
-        deluserstr = String.Format("DELETE FROM `pvpgn_bnet` WHERE (`username`='{0}') LIMIT 1", TextBox5.Text)
+        deluserstr = String.Format("DELETE FROM `pvpgn_bnet` WHERE (`username`='{0}') LIMIT 1", username.Text)
         Dim deluser As New MySqlCommand(deluserstr, conn)
         selectpvpgn.ExecuteNonQuery()
         deluser.ExecuteNonQuery()
     End Sub
 
-    Private Sub TextBox5_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox5.TextChanged
-        If TextBox5.Text = "" Then
-            Button3.Enabled = False
-            Button4.Enabled = False
-            Button5.Enabled = False
-        ElseIf TextBox5.Text <> "" And Button1.Enabled = False Then
-            Button3.Enabled = True
-            Button4.Enabled = True
-            Button5.Enabled = True
+   
 
+    Private Sub Button1_EnabledChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.EnabledChanged
+        If Button_con_to_sql.Enabled = False Then
+            Button_path_bnetd_sql.Enabled = True
+            Button_create_pvpgn_sql.Enabled = True
+            Button_del_pvpgn_sql.Enabled = True
+            Button_bak_pvpgn_sql.Enabled = True
+            Button_res_pvpgn_sql.Enabled = True
         End If
     End Sub
 
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `flags_initial`  int(11) NULL AFTER `acct_ctime`;", conn)
-        pathbnet.ExecuteNonQuery()
-    End Sub
-
-    Private Sub Button1_EnabledChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.EnabledChanged
-        If Button1.Enabled = False Then
-            Button6.Enabled = True
-            Button22.Enabled = True
-            Button33.Enabled = True
-            Button34.Enabled = True
-            Button35.Enabled = True
-        End If
-    End Sub
-    Private Sub TextBox6_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox6.TextChanged
-        If Button3.Enabled = True And TextBox6.Text <> "" Then
-            Button7.Enabled = True
-        End If
-    End Sub
-
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
-        Dim setflagsstr As String
-        If TextBox6.Text = "NULL" Then
-            setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`=NULL WHERE (`username`='{0}') LIMIT 1", TextBox5.Text)
-        Else
-            setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1", TextBox6.Text, TextBox5.Text)
-        End If
-        Dim setflags As New MySqlCommand(setflagsstr, conn)
-        selectpvpgn.ExecuteNonQuery()
-        setflags.ExecuteNonQuery()
-    End Sub
 
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         System.Diagnostics.Process.Start("mailto://yjfyy@163.com")
@@ -193,22 +146,6 @@ Public Class Form1
         End If
     End Sub
 
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
- 
-
     Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim sspvpgn As New ServiceController("pvpgn")
         sspvpgn.Refresh()
@@ -237,8 +174,8 @@ Public Class Form1
         MessageBox.Show("已全部重启")
     End Sub
 
-   
- 
+
+
 
     Private Sub Button27_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
         Shell("explorer.exe .\conf\", AppWinStyle.MaximizedFocus)
@@ -246,11 +183,11 @@ Public Class Form1
 
     Private Sub Button24_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'Shell(".\d2gs\d2gs.reg", vbHide)
-        
+
     End Sub
 
     Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        
+
     End Sub
 
 
@@ -340,51 +277,19 @@ Public Class Form1
         'Dim maxgames As Integer
         'maxgames = CInt(TextBox10.Text)
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
+        Dim gs_telnet_password_hash As String
+        Shell("cmd /c bnhash.exe " & TextBox_gs_telnet_password.Text & " >temp.txt", AppWinStyle.Hide)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox8.Text)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox9.text)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox10.Text, Microsoft.Win32.RegistryValueKind.DWord)
+        MsgBox("GS Telnet 密码修改后需重启D2GS才能生效")
+        gs_telnet_password_hash = My.Computer.FileSystem.ReadAllText("temp.txt")
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
         MsgBox("设置成功")
+        My.Computer.FileSystem.DeleteFile("temp.txt")
     End Sub
 
-    Private Sub Button33_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button33.Click
-        Dim deletepvpgnstr As String
-        deletepvpgnstr = String.Format("drop database pvpgn")
-        Dim deletepvpgn As New MySqlCommand(deletepvpgnstr, conn)
-        Try
-            deletepvpgn.ExecuteNonQuery()
-        Catch ex As MySql.Data.MySqlClient.MySqlException
-            Select Case ex.Number
-                Case 1007
-                    MessageBox.Show("请勿重复初始化数据库！")
-                    Exit Sub
-            End Select
-            MessageBox.Show(ex.Number)
-            MessageBox.Show(ex.Message)
-        End Try
-        MsgBox("数据库以清除！")
-    End Sub
-
-    Private Sub Button22_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button22.Click
-        Dim createpvpgnstr As String
-        createpvpgnstr = String.Format("create database pvpgn")
-        Dim createpvpgn As New MySqlCommand(createpvpgnstr, conn)
-        Try
-            createpvpgn.ExecuteNonQuery()
-        Catch ex As MySql.Data.MySqlClient.MySqlException
-            Select Case ex.Number
-                Case 1007
-                    MessageBox.Show("请勿重复初始化数据库！")
-                    Exit Sub
-            End Select
-            'MessageBox.Show(ex.Number)
-            'essageBox.Show(ex.Message)
-        End Try
-        MsgBox("数据库初始化成功！")
-    End Sub
-
-
-
-    Private Sub Button34_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button34.Click
+    Private Sub Button34_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
         Dim bakdatestr As String
         bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
         Try
@@ -395,7 +300,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button35.Click
+    Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
         Try
             Shell("cmd /c mysql.exe --user=" + TextBox2.Text + " --password=" + TextBox3.Text + " < .\sqlbak\" + TextBox11.Text, AppWinStyle.Hide)
             MessageBox.Show("还数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -417,7 +322,7 @@ Public Class Form1
 
     Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button38.Click
         Dim ssd2cs As New ServiceController("d2cs109")
-        If ssd2cs.Status.Equals(ServiceControllerStatus.Running)Then
+        If ssd2cs.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止D2CS服务后重试")
         Else
             Shell("d2csConsole.exe -s uninstall", vbHide)
@@ -683,4 +588,100 @@ Public Class Form1
     End Sub
 
 
+    Private Sub Button_set_to_admin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_to_admin.Click
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim setadminstr As String
+        Dim setcommandgroupsstr As String
+        setadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='ture' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='255' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        Dim setadmin As New MySqlCommand(setadminstr, conn)
+        Dim setcommandgroups As New MySqlCommand(setcommandgroupsstr, conn)
+        selectpvpgn.ExecuteNonQuery()
+        setadmin.ExecuteNonQuery()
+        setcommandgroups.ExecuteNonQuery()
+    End Sub
+
+    Private Sub Button_unset_to_admin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_to_admin.Click
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim unsetadminstr As String
+        Dim setcommandgroupsstr As String
+        unsetadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='false' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        Dim unsetadmin As New MySqlCommand(unsetadminstr, conn)
+        Dim setcommandgroups As New MySqlCommand(setcommandgroupsstr, conn)
+        selectpvpgn.ExecuteNonQuery()
+        unsetadmin.ExecuteNonQuery()
+        setcommandgroups.ExecuteNonQuery()
+    End Sub
+
+    Private Sub Button_path_bnetdsql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_path_bnetd_sql.Click
+        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `flags_initial`  int(11) NULL AFTER `acct_ctime`;", conn)
+        pathbnet.ExecuteNonQuery()
+        MsgBox("数据库已修正，可以修改用户频道形象了")
+    End Sub
+
+    Private Sub Button_create_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_create_pvpgn_sql.Click
+        Dim createpvpgnstr As String
+        createpvpgnstr = String.Format("create database pvpgn")
+        Dim createpvpgn As New MySqlCommand(createpvpgnstr, conn)
+        Try
+            createpvpgn.ExecuteNonQuery()
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 1007
+                    MessageBox.Show("请勿重复初始化数据库！")
+                    Exit Sub
+            End Select
+            'MessageBox.Show(ex.Number)
+            'essageBox.Show(ex.Message)
+        End Try
+        MsgBox("数据库初始化成功！")
+    End Sub
+
+    Private Sub Button_del_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_del_pvpgn_sql.Click
+        Dim deletepvpgnstr As String
+        deletepvpgnstr = String.Format("drop database pvpgn")
+        Dim deletepvpgn As New MySqlCommand(deletepvpgnstr, conn)
+        Try
+            deletepvpgn.ExecuteNonQuery()
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            MessageBox.Show(ex.Number)
+            MessageBox.Show(ex.Message)
+            Exit Sub
+        End Try
+        MsgBox("数据库已清除！")
+    End Sub
+
+
+    Private Sub username_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles username.TextChanged
+        If username.Text = "" Then
+            Button_set_to_admin.Enabled = False
+            Button_unset_to_admin.Enabled = False
+            Button_del_user.Enabled = False
+        ElseIf username.Text <> "" And Button_con_to_sql.Enabled = False Then
+            Button_set_to_admin.Enabled = True
+            Button_unset_to_admin.Enabled = True
+            Button_del_user.Enabled = True
+
+        End If
+    End Sub
+
+    Private Sub TextBox_flags_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox_flags.TextChanged
+        If Button_set_to_admin.Enabled = True And TextBox_flags.Text <> "" Then
+            Button_set_flags.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button_set_flags_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_flags.Click
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim setflagsstr As String
+        If TextBox_flags.Text = "NULL" Then
+            setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`=NULL WHERE (`username`='{0}') LIMIT 1", username.Text)
+        Else
+            setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1", TextBox_flags.Text, username.Text)
+        End If
+        Dim setflags As New MySqlCommand(setflagsstr, conn)
+        selectpvpgn.ExecuteNonQuery()
+        setflags.ExecuteNonQuery()
+    End Sub
 End Class
