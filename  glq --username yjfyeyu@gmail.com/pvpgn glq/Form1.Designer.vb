@@ -58,6 +58,9 @@ Partial Class Form1
         Me.Button26 = New System.Windows.Forms.Button()
         Me.Button24 = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TextBox_MaxGameLife = New System.Windows.Forms.TextBox()
         Me.TextBox_gs_telnet_password = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button32 = New System.Windows.Forms.Button()
@@ -142,7 +145,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(95, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.8 build 5"
+        Me.Label8.Text = "Ver 0.9 build 6"
         '
         'Label9
         '
@@ -474,6 +477,9 @@ Partial Class Form1
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.Label13)
+        Me.TabPage6.Controls.Add(Me.Label12)
+        Me.TabPage6.Controls.Add(Me.TextBox_MaxGameLife)
         Me.TabPage6.Controls.Add(Me.TextBox_gs_telnet_password)
         Me.TabPage6.Controls.Add(Me.Label6)
         Me.TabPage6.Controls.Add(Me.Button32)
@@ -490,6 +496,32 @@ Partial Class Form1
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "配置D2GS"
         Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(207, 36)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(83, 12)
+        Me.Label13.TabIndex = 11
+        Me.Label13.Text = "秒（0为无限）"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(6, 36)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(89, 12)
+        Me.Label12.TabIndex = 10
+        Me.Label12.Text = "最常游戏时间："
+        '
+        'TextBox_MaxGameLife
+        '
+        Me.TextBox_MaxGameLife.Location = New System.Drawing.Point(101, 33)
+        Me.TextBox_MaxGameLife.Name = "TextBox_MaxGameLife"
+        Me.TextBox_MaxGameLife.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_MaxGameLife.TabIndex = 9
+        Me.TextBox_MaxGameLife.Text = "0"
         '
         'TextBox_gs_telnet_password
         '
@@ -520,15 +552,15 @@ Partial Class Form1
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(327, 33)
+        Me.Label23.Location = New System.Drawing.Point(349, 9)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(65, 12)
+        Me.Label23.Size = New System.Drawing.Size(77, 12)
         Me.Label23.TabIndex = 5
-        Me.Label23.Text = "最大游戏数"
+        Me.Label23.Text = "最大游戏数："
         '
         'TextBox10
         '
-        Me.TextBox10.Location = New System.Drawing.Point(397, 30)
+        Me.TextBox10.Location = New System.Drawing.Point(432, 6)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(29, 21)
         Me.TextBox10.TabIndex = 4
@@ -536,7 +568,7 @@ Partial Class Form1
         '
         'TextBox9
         '
-        Me.TextBox9.Location = New System.Drawing.Point(224, 30)
+        Me.TextBox9.Location = New System.Drawing.Point(242, 6)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(97, 21)
         Me.TextBox9.TabIndex = 2
@@ -544,7 +576,7 @@ Partial Class Form1
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(69, 30)
+        Me.TextBox8.Location = New System.Drawing.Point(65, 6)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(97, 21)
         Me.TextBox8.TabIndex = 0
@@ -553,20 +585,20 @@ Partial Class Form1
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(174, 33)
+        Me.Label22.Location = New System.Drawing.Point(177, 9)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(47, 12)
+        Me.Label22.Size = New System.Drawing.Size(59, 12)
         Me.Label22.TabIndex = 3
-        Me.Label22.Text = "D2DBSIP"
+        Me.Label22.Text = "D2DBSIP："
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(22, 33)
+        Me.Label21.Location = New System.Drawing.Point(6, 9)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(41, 12)
+        Me.Label21.Size = New System.Drawing.Size(53, 12)
         Me.Label21.TabIndex = 1
-        Me.Label21.Text = "D2CSIP"
+        Me.Label21.Text = "D2CSIP："
         '
         'TabPage4
         '
@@ -1297,5 +1329,8 @@ Partial Class Form1
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents TextBox_gs_telnet_password As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents TextBox_MaxGameLife As System.Windows.Forms.TextBox
 
 End Class
