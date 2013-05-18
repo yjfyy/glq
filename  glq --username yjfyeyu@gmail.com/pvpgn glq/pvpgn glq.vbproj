@@ -299,7 +299,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="logo01.ico" />
-    <Content Include="MySql.Data.dll" />
     <Content Include="mysql.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
