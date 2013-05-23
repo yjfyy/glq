@@ -668,9 +668,9 @@ Partial Class Form1
         Me.Label14.AutoSize = True
         Me.Label14.Location = New System.Drawing.Point(38, 24)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(167, 12)
+        Me.Label14.Size = New System.Drawing.Size(395, 12)
         Me.Label14.TabIndex = 6
-        Me.Label14.Text = "请确认此工具在PvPGN目录下。"
+        Me.Label14.Text = "请确认此工具在PvPGN目录下。推荐安装后，先配置conf，再重启计算机。"
         '
         'Button23
         '
@@ -823,7 +823,7 @@ Partial Class Form1
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(241, 21)
+        Me.Label29.Location = New System.Drawing.Point(238, 21)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(59, 12)
         Me.Label29.TabIndex = 21
@@ -832,7 +832,7 @@ Partial Class Form1
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(136, 21)
+        Me.Label28.Location = New System.Drawing.Point(142, 21)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(53, 12)
         Me.Label28.TabIndex = 20
@@ -864,7 +864,7 @@ Partial Class Form1
         Me.CheckBox_d2dbs.AutoSize = True
         Me.CheckBox_d2dbs.Checked = True
         Me.CheckBox_d2dbs.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox_d2dbs.Location = New System.Drawing.Point(246, 46)
+        Me.CheckBox_d2dbs.Location = New System.Drawing.Point(243, 46)
         Me.CheckBox_d2dbs.Name = "CheckBox_d2dbs"
         Me.CheckBox_d2dbs.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_d2dbs.TabIndex = 17
@@ -876,7 +876,7 @@ Partial Class Form1
         Me.CheckBox_d2cs.AutoSize = True
         Me.CheckBox_d2cs.Checked = True
         Me.CheckBox_d2cs.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox_d2cs.Location = New System.Drawing.Point(138, 46)
+        Me.CheckBox_d2cs.Location = New System.Drawing.Point(144, 46)
         Me.CheckBox_d2cs.Name = "CheckBox_d2cs"
         Me.CheckBox_d2cs.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_d2cs.TabIndex = 16
@@ -960,7 +960,7 @@ Partial Class Form1
         '
         'Button_stop_d2dbs
         '
-        Me.Button_stop_d2dbs.Location = New System.Drawing.Point(233, 117)
+        Me.Button_stop_d2dbs.Location = New System.Drawing.Point(230, 117)
         Me.Button_stop_d2dbs.Name = "Button_stop_d2dbs"
         Me.Button_stop_d2dbs.Size = New System.Drawing.Size(75, 23)
         Me.Button_stop_d2dbs.TabIndex = 7
@@ -969,7 +969,7 @@ Partial Class Form1
         '
         'Button_stop_d2cs
         '
-        Me.Button_stop_d2cs.Location = New System.Drawing.Point(125, 117)
+        Me.Button_stop_d2cs.Location = New System.Drawing.Point(131, 117)
         Me.Button_stop_d2cs.Name = "Button_stop_d2cs"
         Me.Button_stop_d2cs.Size = New System.Drawing.Size(75, 23)
         Me.Button_stop_d2cs.TabIndex = 6
@@ -1005,7 +1005,7 @@ Partial Class Form1
         '
         'Button_restart_d2dbs
         '
-        Me.Button_restart_d2dbs.Location = New System.Drawing.Point(233, 78)
+        Me.Button_restart_d2dbs.Location = New System.Drawing.Point(230, 78)
         Me.Button_restart_d2dbs.Name = "Button_restart_d2dbs"
         Me.Button_restart_d2dbs.Size = New System.Drawing.Size(75, 23)
         Me.Button_restart_d2dbs.TabIndex = 2
@@ -1015,7 +1015,7 @@ Partial Class Form1
         '
         'Button_restart_d2cs
         '
-        Me.Button_restart_d2cs.Location = New System.Drawing.Point(125, 78)
+        Me.Button_restart_d2cs.Location = New System.Drawing.Point(131, 78)
         Me.Button_restart_d2cs.Name = "Button_restart_d2cs"
         Me.Button_restart_d2cs.Size = New System.Drawing.Size(75, 23)
         Me.Button_restart_d2cs.TabIndex = 1
@@ -1024,7 +1024,7 @@ Partial Class Form1
         '
         'Button_restart_pvpgn
         '
-        Me.Button_restart_pvpgn.Location = New System.Drawing.Point(32, 78)
+        Me.Button_restart_pvpgn.Location = New System.Drawing.Point(32, 79)
         Me.Button_restart_pvpgn.Name = "Button_restart_pvpgn"
         Me.Button_restart_pvpgn.Size = New System.Drawing.Size(75, 23)
         Me.Button_restart_pvpgn.TabIndex = 0
@@ -1180,12 +1180,12 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage8)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage7)
-        Me.TabControl1.Controls.Add(Me.TabPage8)
         Me.TabControl1.Location = New System.Drawing.Point(12, 130)
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
