@@ -144,9 +144,9 @@ Partial Class Form1
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(439, 351)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(95, 12)
+        Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.9 build 8"
+        Me.Label8.Text = "Ver 0.10 build 10"
         '
         'Label9
         '
