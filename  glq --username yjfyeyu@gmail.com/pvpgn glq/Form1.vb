@@ -313,6 +313,7 @@ Public Class Form1
     Private Sub Button36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button36.Click
         Shell("d2csConsole.exe -s install", vbHide)
         'MessageBox.Show(i)
+        MsgBox("D2CS已安装")
     End Sub
 
     Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button37.Click
@@ -453,46 +454,54 @@ Public Class Form1
     Private Sub Button_restart_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_pvpgn.Click
         stop_pvpgn_server()
         run_pvpgn_server()
-        MessageBox.Show("重启指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("重启指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_restart_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_d2cs.Click
         stop_d2cs_server()
         run_d2cs_server()
-        MessageBox.Show("重启指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("重启指令执行完毕。")
+        shuaxin()
     End Sub
 
 
     Private Sub Button_restart_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_d2dbs.Click
         stop_d2dbs_server()
         run_d2dbs_server()
-        MessageBox.Show("重启指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("重启指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_restart_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_d2gs.Click
         stop_d2gs_server()
         run_d2gs_server()
-        MessageBox.Show("重启指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("重启指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_stop_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_pvpgn.Click
         stop_pvpgn_server()
-        MessageBox.Show("停止指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("停止指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_stop_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_d2cs.Click
         stop_d2cs_server()
-        MessageBox.Show("停止指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("停止指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_stop_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_d2dbs.Click
         stop_d2dbs_server()
-        MessageBox.Show("停止指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("停止指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_stop_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_d2gs.Click
         stop_d2gs_server()
-        MessageBox.Show("停止指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("停止指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_stop_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_select.Click
@@ -512,7 +521,8 @@ Public Class Form1
             stop_d2gs_server()
         End If
 
-        MsgBox("停止指令执行完毕,请点击刷新查看服务状态。")
+        MsgBox("停止指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_restart_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_select.Click
@@ -535,57 +545,12 @@ Public Class Form1
             stop_d2gs_server()
             run_d2gs_server()
         End If
-        MessageBox.Show("重启指令执行完毕,请点击刷新查看服务状态。")
+        MessageBox.Show("重启指令执行完毕。")
+        shuaxin()
     End Sub
 
     Private Sub Button_refurbish_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_refurbish.Click
-        Dim sspvpgn As New ServiceController("pvpgn")
-        Dim ssd2cs As New ServiceController("d2cs109")
-        Dim ssd2dbs As New ServiceController("d2dbs109")
-        Dim ssd2gs As New ServiceController("d2gs")
-        Try
-            Select Case sspvpgn.Status
-                Case ServiceControllerStatus.Running
-                    Label15.Text = "正在运行"
-                Case ServiceControllerStatus.Stopped
-                    Label15.Text = "已停止"
-            End Select
-        Catch ex As Exception
-
-        End Try
-
-        Try
-            Select Case ssd2cs.Status
-                Case ServiceControllerStatus.Running
-                    Label16.Text = "正在运行"
-                Case ServiceControllerStatus.Stopped
-                    Label16.Text = "已停止"
-            End Select
-        Catch ex As Exception
-
-        End Try
-
-        Try
-            Select Case ssd2dbs.Status
-                Case ServiceControllerStatus.Running
-                    Label17.Text = "正在运行"
-                Case ServiceControllerStatus.Stopped
-                    Label17.Text = "已停止"
-            End Select
-        Catch ex As Exception
-
-        End Try
-
-        Try
-            Select Case ssd2gs.Status
-                Case ServiceControllerStatus.Running
-                    Label18.Text = "正在运行"
-                Case ServiceControllerStatus.Stopped
-                    Label18.Text = "已停止"
-            End Select
-        Catch ex As Exception
-
-        End Try
+        shuaxin()
     End Sub
 
 
@@ -685,4 +650,54 @@ Public Class Form1
         selectpvpgn.ExecuteNonQuery()
         setflags.ExecuteNonQuery()
     End Sub
+    Private Sub shuaxin()
+        Dim sspvpgn As New ServiceController("pvpgn")
+        Dim ssd2cs As New ServiceController("d2cs109")
+        Dim ssd2dbs As New ServiceController("d2dbs109")
+        Dim ssd2gs As New ServiceController("d2gs")
+        Try
+            Select Case sspvpgn.Status
+                Case ServiceControllerStatus.Running
+                    Label15.Text = "正在运行"
+                Case ServiceControllerStatus.Stopped
+                    Label15.Text = "已停止"
+            End Select
+        Catch ex As Exception
+
+        End Try
+
+        Try
+            Select Case ssd2cs.Status
+                Case ServiceControllerStatus.Running
+                    Label16.Text = "正在运行"
+                Case ServiceControllerStatus.Stopped
+                    Label16.Text = "已停止"
+            End Select
+        Catch ex As Exception
+
+        End Try
+
+        Try
+            Select Case ssd2dbs.Status
+                Case ServiceControllerStatus.Running
+                    Label17.Text = "正在运行"
+                Case ServiceControllerStatus.Stopped
+                    Label17.Text = "已停止"
+            End Select
+        Catch ex As Exception
+
+        End Try
+
+        Try
+            Select Case ssd2gs.Status
+                Case ServiceControllerStatus.Running
+                    Label18.Text = "正在运行"
+                Case ServiceControllerStatus.Stopped
+                    Label18.Text = "已停止"
+            End Select
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class
