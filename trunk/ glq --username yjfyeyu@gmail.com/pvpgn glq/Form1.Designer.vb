@@ -22,18 +22,17 @@ Partial Class Form1
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button_con_to_sql = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox_sql_server = New System.Windows.Forms.TextBox()
+        Me.TextBox_sql_root = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox_sql_password = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox_database_name = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
@@ -113,10 +112,10 @@ Partial Class Form1
         Me.Button_restart_d2cs = New System.Windows.Forms.Button()
         Me.Button_restart_pvpgn = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button_unset_lockk = New System.Windows.Forms.Button()
+        Me.Button_set_lockk = New System.Windows.Forms.Button()
+        Me.Button_unset_to_op = New System.Windows.Forms.Button()
+        Me.Button_set_to_op = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox_flags = New System.Windows.Forms.TextBox()
@@ -127,7 +126,14 @@ Partial Class Form1
         Me.Button_set_to_admin = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_system_x64 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_system_x86 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_d2_110 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
+        Me.Button_set_mute = New System.Windows.Forms.Button()
+        Me.Button_unset_mute = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -137,21 +143,23 @@ Partial Class Form1
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(439, 351)
+        Me.Label8.Location = New System.Drawing.Point(430, 425)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.10 build 10"
+        Me.Label8.Text = "Ver 0.12 build 12"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(54, 351)
+        Me.Label9.Location = New System.Drawing.Point(45, 425)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(23, 12)
         Me.Label9.TabIndex = 23
@@ -166,21 +174,21 @@ Partial Class Form1
         Me.Button_con_to_sql.Text = "连接"
         Me.Button_con_to_sql.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'TextBox_sql_server
         '
-        Me.TextBox1.Location = New System.Drawing.Point(122, 28)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "127.0.0.1"
+        Me.TextBox_sql_server.Location = New System.Drawing.Point(122, 28)
+        Me.TextBox_sql_server.Name = "TextBox_sql_server"
+        Me.TextBox_sql_server.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_sql_server.TabIndex = 1
+        Me.TextBox_sql_server.Text = "127.0.0.1"
         '
-        'TextBox2
+        'TextBox_sql_root
         '
-        Me.TextBox2.Location = New System.Drawing.Point(311, 28)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(48, 21)
-        Me.TextBox2.TabIndex = 3
-        Me.TextBox2.Text = "root"
+        Me.TextBox_sql_root.Location = New System.Drawing.Point(311, 28)
+        Me.TextBox_sql_root.Name = "TextBox_sql_root"
+        Me.TextBox_sql_root.Size = New System.Drawing.Size(48, 21)
+        Me.TextBox_sql_root.TabIndex = 3
+        Me.TextBox_sql_root.Text = "root"
         '
         'Label1
         '
@@ -191,13 +199,13 @@ Partial Class Form1
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "服务器："
         '
-        'TextBox3
+        'TextBox_sql_password
         '
-        Me.TextBox3.Location = New System.Drawing.Point(436, 28)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBox3.Size = New System.Drawing.Size(75, 21)
-        Me.TextBox3.TabIndex = 5
+        Me.TextBox_sql_password.Location = New System.Drawing.Point(436, 28)
+        Me.TextBox_sql_password.Name = "TextBox_sql_password"
+        Me.TextBox_sql_password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBox_sql_password.Size = New System.Drawing.Size(75, 21)
+        Me.TextBox_sql_password.TabIndex = 5
         '
         'Label2
         '
@@ -217,13 +225,13 @@ Partial Class Form1
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "密码："
         '
-        'TextBox4
+        'TextBox_database_name
         '
-        Me.TextBox4.Location = New System.Drawing.Point(216, 67)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox4.TabIndex = 9
-        Me.TextBox4.Text = "pvpgn"
+        Me.TextBox_database_name.Location = New System.Drawing.Point(216, 67)
+        Me.TextBox_database_name.Name = "TextBox_database_name"
+        Me.TextBox_database_name.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_database_name.TabIndex = 9
+        Me.TextBox_database_name.Text = "pvpgn"
         '
         'Label4
         '
@@ -237,13 +245,13 @@ Partial Class Form1
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
+        Me.GroupBox1.Controls.Add(Me.TextBox_database_name)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
+        Me.GroupBox1.Controls.Add(Me.TextBox_sql_password)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.TextBox_sql_root)
+        Me.GroupBox1.Controls.Add(Me.TextBox_sql_server)
         Me.GroupBox1.Controls.Add(Me.Button_con_to_sql)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
@@ -255,7 +263,7 @@ Partial Class Form1
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(266, 351)
+        Me.LinkLabel1.Location = New System.Drawing.Point(257, 425)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(107, 12)
         Me.LinkLabel1.TabIndex = 27
@@ -265,7 +273,7 @@ Partial Class Form1
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(83, 351)
+        Me.LinkLabel2.Location = New System.Drawing.Point(74, 425)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(155, 12)
         Me.LinkLabel2.TabIndex = 28
@@ -447,7 +455,7 @@ Partial Class Form1
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(172, 21)
         Me.TextBox7.TabIndex = 12
-        Me.TextBox7.Text = "D:\Games\Diablo II"
+        Me.TextBox7.Text = "D:\Diablo II"
         '
         'Label19
         '
@@ -1033,10 +1041,12 @@ Partial Class Form1
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.Button6)
-        Me.TabPage1.Controls.Add(Me.Button4)
-        Me.TabPage1.Controls.Add(Me.Button3)
-        Me.TabPage1.Controls.Add(Me.Button2)
+        Me.TabPage1.Controls.Add(Me.Button_unset_mute)
+        Me.TabPage1.Controls.Add(Me.Button_set_mute)
+        Me.TabPage1.Controls.Add(Me.Button_unset_lockk)
+        Me.TabPage1.Controls.Add(Me.Button_set_lockk)
+        Me.TabPage1.Controls.Add(Me.Button_unset_to_op)
+        Me.TabPage1.Controls.Add(Me.Button_set_to_op)
         Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.TextBox_flags)
@@ -1054,45 +1064,45 @@ Partial Class Form1
         Me.TabPage1.Text = "用户管理"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button6
+        'Button_unset_lockk
         '
-        Me.Button6.Enabled = False
-        Me.Button6.Location = New System.Drawing.Point(250, 53)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(75, 23)
-        Me.Button6.TabIndex = 42
-        Me.Button6.Text = "解锁"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button_unset_lockk.Enabled = False
+        Me.Button_unset_lockk.Location = New System.Drawing.Point(250, 53)
+        Me.Button_unset_lockk.Name = "Button_unset_lockk"
+        Me.Button_unset_lockk.Size = New System.Drawing.Size(75, 23)
+        Me.Button_unset_lockk.TabIndex = 42
+        Me.Button_unset_lockk.Text = "解锁"
+        Me.Button_unset_lockk.UseVisualStyleBackColor = True
         '
-        'Button4
+        'Button_set_lockk
         '
-        Me.Button4.Enabled = False
-        Me.Button4.Location = New System.Drawing.Point(169, 53)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 41
-        Me.Button4.Text = "锁定"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.Button_set_lockk.Enabled = False
+        Me.Button_set_lockk.Location = New System.Drawing.Point(169, 53)
+        Me.Button_set_lockk.Name = "Button_set_lockk"
+        Me.Button_set_lockk.Size = New System.Drawing.Size(75, 23)
+        Me.Button_set_lockk.TabIndex = 41
+        Me.Button_set_lockk.Text = "锁定"
+        Me.Button_set_lockk.UseVisualStyleBackColor = True
         '
-        'Button3
+        'Button_unset_to_op
         '
-        Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(412, 24)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 40
-        Me.Button3.Text = "取消OP"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button_unset_to_op.Enabled = False
+        Me.Button_unset_to_op.Location = New System.Drawing.Point(412, 24)
+        Me.Button_unset_to_op.Name = "Button_unset_to_op"
+        Me.Button_unset_to_op.Size = New System.Drawing.Size(75, 23)
+        Me.Button_unset_to_op.TabIndex = 40
+        Me.Button_unset_to_op.Text = "取消OP"
+        Me.Button_unset_to_op.UseVisualStyleBackColor = True
         '
-        'Button2
+        'Button_set_to_op
         '
-        Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(331, 24)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 39
-        Me.Button2.Text = "设为OP"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button_set_to_op.Enabled = False
+        Me.Button_set_to_op.Location = New System.Drawing.Point(331, 24)
+        Me.Button_set_to_op.Name = "Button_set_to_op"
+        Me.Button_set_to_op.Size = New System.Drawing.Size(75, 23)
+        Me.Button_set_to_op.TabIndex = 39
+        Me.Button_set_to_op.Text = "设为OP"
+        Me.Button_set_to_op.UseVisualStyleBackColor = True
         '
         'Label10
         '
@@ -1140,7 +1150,7 @@ Partial Class Form1
         'Button_del_user
         '
         Me.Button_del_user.Enabled = False
-        Me.Button_del_user.Location = New System.Drawing.Point(331, 53)
+        Me.Button_del_user.Location = New System.Drawing.Point(169, 82)
         Me.Button_del_user.Name = "Button_del_user"
         Me.Button_del_user.Size = New System.Drawing.Size(75, 23)
         Me.Button_del_user.TabIndex = 32
@@ -1186,12 +1196,99 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage7)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 130)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 204)
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(559, 218)
         Me.TabControl1.TabIndex = 29
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.RadioButton_system_x64)
+        Me.GroupBox2.Controls.Add(Me.RadioButton_system_x86)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 130)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(182, 68)
+        Me.GroupBox2.TabIndex = 30
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "服务器系统"
+        '
+        'RadioButton_system_x64
+        '
+        Me.RadioButton_system_x64.AutoSize = True
+        Me.RadioButton_system_x64.Checked = True
+        Me.RadioButton_system_x64.Location = New System.Drawing.Point(25, 46)
+        Me.RadioButton_system_x64.Name = "RadioButton_system_x64"
+        Me.RadioButton_system_x64.Size = New System.Drawing.Size(47, 16)
+        Me.RadioButton_system_x64.TabIndex = 32
+        Me.RadioButton_system_x64.TabStop = True
+        Me.RadioButton_system_x64.Text = "64位"
+        Me.RadioButton_system_x64.UseVisualStyleBackColor = True
+        '
+        'RadioButton_system_x86
+        '
+        Me.RadioButton_system_x86.AutoSize = True
+        Me.RadioButton_system_x86.Location = New System.Drawing.Point(25, 20)
+        Me.RadioButton_system_x86.Name = "RadioButton_system_x86"
+        Me.RadioButton_system_x86.Size = New System.Drawing.Size(47, 16)
+        Me.RadioButton_system_x86.TabIndex = 31
+        Me.RadioButton_system_x86.Text = "32位"
+        Me.RadioButton_system_x86.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.RadioButton_d2_110)
+        Me.GroupBox3.Controls.Add(Me.RadioButton_d2_109)
+        Me.GroupBox3.Enabled = False
+        Me.GroupBox3.Location = New System.Drawing.Point(387, 130)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(184, 68)
+        Me.GroupBox3.TabIndex = 31
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "暗黑版本"
+        '
+        'RadioButton_d2_110
+        '
+        Me.RadioButton_d2_110.AutoSize = True
+        Me.RadioButton_d2_110.Location = New System.Drawing.Point(41, 46)
+        Me.RadioButton_d2_110.Name = "RadioButton_d2_110"
+        Me.RadioButton_d2_110.Size = New System.Drawing.Size(77, 16)
+        Me.RadioButton_d2_110.TabIndex = 1
+        Me.RadioButton_d2_110.Text = "1.10-1.13"
+        Me.RadioButton_d2_110.UseVisualStyleBackColor = True
+        '
+        'RadioButton_d2_109
+        '
+        Me.RadioButton_d2_109.AutoSize = True
+        Me.RadioButton_d2_109.Checked = True
+        Me.RadioButton_d2_109.Location = New System.Drawing.Point(41, 21)
+        Me.RadioButton_d2_109.Name = "RadioButton_d2_109"
+        Me.RadioButton_d2_109.Size = New System.Drawing.Size(47, 16)
+        Me.RadioButton_d2_109.TabIndex = 0
+        Me.RadioButton_d2_109.TabStop = True
+        Me.RadioButton_d2_109.Text = "1.09"
+        Me.RadioButton_d2_109.UseVisualStyleBackColor = True
+        '
+        'Button_set_mute
+        '
+        Me.Button_set_mute.Enabled = False
+        Me.Button_set_mute.Location = New System.Drawing.Point(331, 53)
+        Me.Button_set_mute.Name = "Button_set_mute"
+        Me.Button_set_mute.Size = New System.Drawing.Size(75, 23)
+        Me.Button_set_mute.TabIndex = 43
+        Me.Button_set_mute.Text = "禁言"
+        Me.Button_set_mute.UseVisualStyleBackColor = True
+        '
+        'Button_unset_mute
+        '
+        Me.Button_unset_mute.Enabled = False
+        Me.Button_unset_mute.Location = New System.Drawing.Point(412, 53)
+        Me.Button_unset_mute.Name = "Button_unset_mute"
+        Me.Button_unset_mute.Size = New System.Drawing.Size(75, 23)
+        Me.Button_unset_mute.TabIndex = 44
+        Me.Button_unset_mute.Text = "取消禁言"
+        Me.Button_unset_mute.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1199,7 +1296,9 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(583, 371)
+        Me.ClientSize = New System.Drawing.Size(583, 446)
+        Me.Controls.Add(Me.GroupBox3)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.GroupBox1)
@@ -1226,6 +1325,10 @@ Partial Class Form1
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1233,13 +1336,13 @@ Partial Class Form1
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Button_con_to_sql As System.Windows.Forms.Button
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_sql_server As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_sql_root As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_sql_password As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_database_name As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
@@ -1324,15 +1427,22 @@ Partial Class Form1
     Friend WithEvents Button_bak_pvpgn_sql As System.Windows.Forms.Button
     Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
-    Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Button_unset_lockk As System.Windows.Forms.Button
+    Friend WithEvents Button_set_lockk As System.Windows.Forms.Button
+    Friend WithEvents Button_unset_to_op As System.Windows.Forms.Button
+    Friend WithEvents Button_set_to_op As System.Windows.Forms.Button
     Friend WithEvents TextBox_gs_telnet_password As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents TextBox_MaxGameLife As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents RadioButton_system_x64 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton_system_x86 As System.Windows.Forms.RadioButton
+    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
+    Friend WithEvents RadioButton_d2_110 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton_d2_109 As System.Windows.Forms.RadioButton
+    Friend WithEvents Button_unset_mute As System.Windows.Forms.Button
+    Friend WithEvents Button_set_mute As System.Windows.Forms.Button
 
 End Class
