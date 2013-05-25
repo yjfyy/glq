@@ -35,6 +35,7 @@ Partial Class Form1
         Me.TextBox_database_name = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button_close_sql = New System.Windows.Forms.Button()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
@@ -42,7 +43,7 @@ Partial Class Form1
         Me.Button_path_bnetd_sql = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.TextBox_sqlbak_name = New System.Windows.Forms.TextBox()
         Me.Button_res_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Button_bak_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Button_del_pvpgn_sql = New System.Windows.Forms.Button()
@@ -50,10 +51,11 @@ Partial Class Form1
         Me.Button_create_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Button31 = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.TextBox_d2_path = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Button26 = New System.Windows.Forms.Button()
         Me.Button24 = New System.Windows.Forms.Button()
@@ -112,15 +114,15 @@ Partial Class Form1
         Me.Button_restart_d2cs = New System.Windows.Forms.Button()
         Me.Button_restart_pvpgn = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBox_0x20 = New System.Windows.Forms.CheckBox()
+        Me.ComboBox_flags = New System.Windows.Forms.ComboBox()
         Me.Button_unset_mute = New System.Windows.Forms.Button()
         Me.Button_set_mute = New System.Windows.Forms.Button()
         Me.Button_unset_lockk = New System.Windows.Forms.Button()
         Me.Button_set_lockk = New System.Windows.Forms.Button()
         Me.Button_unset_to_op = New System.Windows.Forms.Button()
         Me.Button_set_to_op = New System.Windows.Forms.Button()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox_flags = New System.Windows.Forms.TextBox()
         Me.username = New System.Windows.Forms.TextBox()
         Me.Button_set_flags = New System.Windows.Forms.Button()
         Me.Button_del_user = New System.Windows.Forms.Button()
@@ -134,6 +136,9 @@ Partial Class Form1
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_d2_110 = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -150,7 +155,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(430, 425)
+        Me.Label8.Location = New System.Drawing.Point(430, 414)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
@@ -159,7 +164,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(45, 425)
+        Me.Label9.Location = New System.Drawing.Point(45, 414)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(23, 12)
         Me.Label9.TabIndex = 23
@@ -167,7 +172,7 @@ Partial Class Form1
         '
         'Button_con_to_sql
         '
-        Me.Button_con_to_sql.Location = New System.Drawing.Point(392, 65)
+        Me.Button_con_to_sql.Location = New System.Drawing.Point(349, 65)
         Me.Button_con_to_sql.Name = "Button_con_to_sql"
         Me.Button_con_to_sql.Size = New System.Drawing.Size(75, 23)
         Me.Button_con_to_sql.TabIndex = 0
@@ -244,6 +249,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Button_close_sql)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.TextBox_database_name)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -260,10 +266,20 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "数据库信息"
         '
+        'Button_close_sql
+        '
+        Me.Button_close_sql.Enabled = False
+        Me.Button_close_sql.Location = New System.Drawing.Point(450, 65)
+        Me.Button_close_sql.Name = "Button_close_sql"
+        Me.Button_close_sql.Size = New System.Drawing.Size(75, 23)
+        Me.Button_close_sql.TabIndex = 11
+        Me.Button_close_sql.Text = "断开"
+        Me.Button_close_sql.UseVisualStyleBackColor = True
+        '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(257, 425)
+        Me.LinkLabel1.Location = New System.Drawing.Point(257, 414)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(107, 12)
         Me.LinkLabel1.TabIndex = 27
@@ -273,7 +289,7 @@ Partial Class Form1
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(74, 425)
+        Me.LinkLabel2.Location = New System.Drawing.Point(74, 414)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(155, 12)
         Me.LinkLabel2.TabIndex = 28
@@ -292,10 +308,11 @@ Partial Class Form1
         '
         'TabPage7
         '
+        Me.TabPage7.Controls.Add(Me.Button2)
         Me.TabPage7.Controls.Add(Me.Button_path_bnetd_sql)
         Me.TabPage7.Controls.Add(Me.Label26)
         Me.TabPage7.Controls.Add(Me.Label25)
-        Me.TabPage7.Controls.Add(Me.TextBox11)
+        Me.TabPage7.Controls.Add(Me.TextBox_sqlbak_name)
         Me.TabPage7.Controls.Add(Me.Button_res_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Button_bak_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Button_del_pvpgn_sql)
@@ -313,7 +330,7 @@ Partial Class Form1
         'Button_path_bnetd_sql
         '
         Me.Button_path_bnetd_sql.Enabled = False
-        Me.Button_path_bnetd_sql.Location = New System.Drawing.Point(246, 75)
+        Me.Button_path_bnetd_sql.Location = New System.Drawing.Point(246, 76)
         Me.Button_path_bnetd_sql.Name = "Button_path_bnetd_sql"
         Me.Button_path_bnetd_sql.Size = New System.Drawing.Size(75, 23)
         Me.Button_path_bnetd_sql.TabIndex = 35
@@ -328,24 +345,23 @@ Partial Class Form1
         Me.Label26.Size = New System.Drawing.Size(419, 60)
         Me.Label26.TabIndex = 14
         Me.Label26.Text = "1、备份还原数据库需要先连接数据库。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2、点备份数据库，会在sqlbak目录下生成当前时间点的备份文件。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   例如""pvpgnbak2013-05-16_2" & _
-            "1.01.sql""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "3、还原数据库时，在""备份文件名称：""处输入备份文件名称，" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   例如""pvpgnbak2013-05-16_21.01.sql""用输入" & _
-            "路径，再点还原数据库即可。"
+            "1.01.sql""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "3、还原数据库时，在""备份文件名称：""处输入备份文件名称路径或浏览选择，" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   再点还原数据库即可。"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(230, 171)
+        Me.Label25.Location = New System.Drawing.Point(118, 171)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(89, 12)
         Me.Label25.TabIndex = 13
         Me.Label25.Text = "备份文件名称："
         '
-        'TextBox11
+        'TextBox_sqlbak_name
         '
-        Me.TextBox11.Location = New System.Drawing.Point(325, 165)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(135, 21)
-        Me.TextBox11.TabIndex = 12
+        Me.TextBox_sqlbak_name.Location = New System.Drawing.Point(213, 168)
+        Me.TextBox_sqlbak_name.Name = "TextBox_sqlbak_name"
+        Me.TextBox_sqlbak_name.Size = New System.Drawing.Size(135, 21)
+        Me.TextBox_sqlbak_name.TabIndex = 12
         '
         'Button_res_pvpgn_sql
         '
@@ -388,7 +404,7 @@ Partial Class Form1
         'Button_create_pvpgn_sql
         '
         Me.Button_create_pvpgn_sql.Enabled = False
-        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(79, 75)
+        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(79, 76)
         Me.Button_create_pvpgn_sql.Name = "Button_create_pvpgn_sql"
         Me.Button_create_pvpgn_sql.Size = New System.Drawing.Size(91, 23)
         Me.Button_create_pvpgn_sql.TabIndex = 4
@@ -408,10 +424,11 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Button1)
         Me.TabPage5.Controls.Add(Me.ProgressBar1)
         Me.TabPage5.Controls.Add(Me.Button31)
         Me.TabPage5.Controls.Add(Me.Label20)
-        Me.TabPage5.Controls.Add(Me.TextBox7)
+        Me.TabPage5.Controls.Add(Me.TextBox_d2_path)
         Me.TabPage5.Controls.Add(Me.Label19)
         Me.TabPage5.Controls.Add(Me.Button26)
         Me.TabPage5.Controls.Add(Me.Button24)
@@ -423,17 +440,27 @@ Partial Class Form1
         Me.TabPage5.Text = "安装D2GS"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(371, 28)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "浏览"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'ProgressBar1
         '
         Me.ProgressBar1.Location = New System.Drawing.Point(178, 71)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(172, 17)
+        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.ProgressBar1.TabIndex = 15
         Me.ProgressBar1.Visible = False
         '
         'Button31
         '
-        Me.Button31.Location = New System.Drawing.Point(385, 42)
+        Me.Button31.Location = New System.Drawing.Point(371, 65)
         Me.Button31.Name = "Button31"
         Me.Button31.Size = New System.Drawing.Size(91, 23)
         Me.Button31.TabIndex = 14
@@ -443,24 +470,24 @@ Partial Class Form1
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(83, 47)
+        Me.Label20.Location = New System.Drawing.Point(83, 33)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(89, 12)
         Me.Label20.TabIndex = 13
         Me.Label20.Text = "暗黑游戏目录："
         '
-        'TextBox7
+        'TextBox_d2_path
         '
-        Me.TextBox7.Location = New System.Drawing.Point(178, 44)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(172, 21)
-        Me.TextBox7.TabIndex = 12
-        Me.TextBox7.Text = "D:\Diablo II"
+        Me.TextBox_d2_path.Location = New System.Drawing.Point(178, 30)
+        Me.TextBox_d2_path.Name = "TextBox_d2_path"
+        Me.TextBox_d2_path.Size = New System.Drawing.Size(172, 21)
+        Me.TextBox_d2_path.TabIndex = 12
+        Me.TextBox_d2_path.Text = "D:\Diablo II"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(83, 100)
+        Me.Label19.Location = New System.Drawing.Point(83, 114)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(149, 12)
         Me.Label19.TabIndex = 11
@@ -468,7 +495,7 @@ Partial Class Form1
         '
         'Button26
         '
-        Me.Button26.Location = New System.Drawing.Point(304, 122)
+        Me.Button26.Location = New System.Drawing.Point(304, 136)
         Me.Button26.Name = "Button26"
         Me.Button26.Size = New System.Drawing.Size(75, 23)
         Me.Button26.TabIndex = 10
@@ -477,7 +504,7 @@ Partial Class Form1
         '
         'Button24
         '
-        Me.Button24.Location = New System.Drawing.Point(157, 122)
+        Me.Button24.Location = New System.Drawing.Point(157, 136)
         Me.Button24.Name = "Button24"
         Me.Button24.Size = New System.Drawing.Size(75, 23)
         Me.Button24.TabIndex = 9
@@ -534,7 +561,7 @@ Partial Class Form1
         '
         'TextBox_gs_telnet_password
         '
-        Me.TextBox_gs_telnet_password.Location = New System.Drawing.Point(129, 90)
+        Me.TextBox_gs_telnet_password.Location = New System.Drawing.Point(113, 90)
         Me.TextBox_gs_telnet_password.Name = "TextBox_gs_telnet_password"
         Me.TextBox_gs_telnet_password.Size = New System.Drawing.Size(97, 21)
         Me.TextBox_gs_telnet_password.TabIndex = 8
@@ -543,7 +570,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(22, 93)
+        Me.Label6.Location = New System.Drawing.Point(6, 93)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(101, 12)
         Me.Label6.TabIndex = 7
@@ -1041,15 +1068,15 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBox_0x20)
+        Me.TabPage1.Controls.Add(Me.ComboBox_flags)
         Me.TabPage1.Controls.Add(Me.Button_unset_mute)
         Me.TabPage1.Controls.Add(Me.Button_set_mute)
         Me.TabPage1.Controls.Add(Me.Button_unset_lockk)
         Me.TabPage1.Controls.Add(Me.Button_set_lockk)
         Me.TabPage1.Controls.Add(Me.Button_unset_to_op)
         Me.TabPage1.Controls.Add(Me.Button_set_to_op)
-        Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.TextBox_flags)
         Me.TabPage1.Controls.Add(Me.username)
         Me.TabPage1.Controls.Add(Me.Button_set_flags)
         Me.TabPage1.Controls.Add(Me.Button_del_user)
@@ -1063,6 +1090,26 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "用户管理"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'CheckBox_0x20
+        '
+        Me.CheckBox_0x20.AutoSize = True
+        Me.CheckBox_0x20.Location = New System.Drawing.Point(225, 167)
+        Me.CheckBox_0x20.Name = "CheckBox_0x20"
+        Me.CheckBox_0x20.Size = New System.Drawing.Size(78, 16)
+        Me.CheckBox_0x20.TabIndex = 46
+        Me.CheckBox_0x20.Text = "0x20 特效"
+        Me.CheckBox_0x20.UseVisualStyleBackColor = True
+        '
+        'ComboBox_flags
+        '
+        Me.ComboBox_flags.FormattingEnabled = True
+        Me.ComboBox_flags.Items.AddRange(New Object() {"0x0 职业形象", "0x1 暴雪官员", "0x2 频道管理员", "0x4 公告员", "0x8 战网管理员"})
+        Me.ComboBox_flags.Location = New System.Drawing.Point(98, 165)
+        Me.ComboBox_flags.Name = "ComboBox_flags"
+        Me.ComboBox_flags.Size = New System.Drawing.Size(121, 20)
+        Me.ComboBox_flags.TabIndex = 45
+        Me.ComboBox_flags.Text = "0x0 职业形象"
         '
         'Button_unset_mute
         '
@@ -1124,16 +1171,6 @@ Partial Class Form1
         Me.Button_set_to_op.Text = "设为OP"
         Me.Button_set_to_op.UseVisualStyleBackColor = True
         '
-        'Label10
-        '
-        Me.Label10.AutoEllipsis = True
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(186, 168)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(233, 12)
-        Me.Label10.TabIndex = 38
-        Me.Label10.Text = "（请输入十进制数字，要删除请输入NULL）"
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -1142,13 +1179,6 @@ Partial Class Form1
         Me.Label7.Size = New System.Drawing.Size(65, 12)
         Me.Label7.TabIndex = 37
         Me.Label7.Text = "形象代码："
-        '
-        'TextBox_flags
-        '
-        Me.TextBox_flags.Location = New System.Drawing.Point(98, 165)
-        Me.TextBox_flags.Name = "TextBox_flags"
-        Me.TextBox_flags.Size = New System.Drawing.Size(82, 21)
-        Me.TextBox_flags.TabIndex = 36
         '
         'username
         '
@@ -1160,7 +1190,7 @@ Partial Class Form1
         'Button_set_flags
         '
         Me.Button_set_flags.Enabled = False
-        Me.Button_set_flags.Location = New System.Drawing.Point(432, 163)
+        Me.Button_set_flags.Location = New System.Drawing.Point(331, 163)
         Me.Button_set_flags.Name = "Button_set_flags"
         Me.Button_set_flags.Size = New System.Drawing.Size(75, 23)
         Me.Button_set_flags.TabIndex = 35
@@ -1216,7 +1246,7 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage7)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 204)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 189)
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -1229,7 +1259,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.RadioButton_system_x86)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 130)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(182, 68)
+        Me.GroupBox2.Size = New System.Drawing.Size(248, 42)
         Me.GroupBox2.TabIndex = 30
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "服务器系统"
@@ -1238,7 +1268,7 @@ Partial Class Form1
         '
         Me.RadioButton_system_x64.AutoSize = True
         Me.RadioButton_system_x64.Checked = True
-        Me.RadioButton_system_x64.Location = New System.Drawing.Point(25, 46)
+        Me.RadioButton_system_x64.Location = New System.Drawing.Point(147, 20)
         Me.RadioButton_system_x64.Name = "RadioButton_system_x64"
         Me.RadioButton_system_x64.Size = New System.Drawing.Size(47, 16)
         Me.RadioButton_system_x64.TabIndex = 32
@@ -1249,7 +1279,7 @@ Partial Class Form1
         'RadioButton_system_x86
         '
         Me.RadioButton_system_x86.AutoSize = True
-        Me.RadioButton_system_x86.Location = New System.Drawing.Point(25, 20)
+        Me.RadioButton_system_x86.Location = New System.Drawing.Point(35, 20)
         Me.RadioButton_system_x86.Name = "RadioButton_system_x86"
         Me.RadioButton_system_x86.Size = New System.Drawing.Size(47, 16)
         Me.RadioButton_system_x86.TabIndex = 31
@@ -1261,9 +1291,9 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.RadioButton_d2_110)
         Me.GroupBox3.Controls.Add(Me.RadioButton_d2_109)
         Me.GroupBox3.Enabled = False
-        Me.GroupBox3.Location = New System.Drawing.Point(387, 130)
+        Me.GroupBox3.Location = New System.Drawing.Point(275, 130)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(184, 68)
+        Me.GroupBox3.Size = New System.Drawing.Size(296, 42)
         Me.GroupBox3.TabIndex = 31
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "暗黑版本"
@@ -1271,7 +1301,7 @@ Partial Class Form1
         'RadioButton_d2_110
         '
         Me.RadioButton_d2_110.AutoSize = True
-        Me.RadioButton_d2_110.Location = New System.Drawing.Point(41, 46)
+        Me.RadioButton_d2_110.Location = New System.Drawing.Point(173, 20)
         Me.RadioButton_d2_110.Name = "RadioButton_d2_110"
         Me.RadioButton_d2_110.Size = New System.Drawing.Size(77, 16)
         Me.RadioButton_d2_110.TabIndex = 1
@@ -1282,7 +1312,7 @@ Partial Class Form1
         '
         Me.RadioButton_d2_109.AutoSize = True
         Me.RadioButton_d2_109.Checked = True
-        Me.RadioButton_d2_109.Location = New System.Drawing.Point(41, 21)
+        Me.RadioButton_d2_109.Location = New System.Drawing.Point(72, 20)
         Me.RadioButton_d2_109.Name = "RadioButton_d2_109"
         Me.RadioButton_d2_109.Size = New System.Drawing.Size(47, 16)
         Me.RadioButton_d2_109.TabIndex = 0
@@ -1290,13 +1320,31 @@ Partial Class Form1
         Me.RadioButton_d2_109.Text = "1.09"
         Me.RadioButton_d2_109.UseVisualStyleBackColor = True
         '
+        'FolderBrowserDialog1
+        '
+        Me.FolderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer
+        Me.FolderBrowserDialog1.ShowNewFolderButton = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(371, 166)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 36
+        Me.Button2.Text = "浏览"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.Filter = "数据库文件|*.sql"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(583, 446)
+        Me.ClientSize = New System.Drawing.Size(583, 431)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.LinkLabel2)
@@ -1355,7 +1403,7 @@ Partial Class Form1
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents Button31 As System.Windows.Forms.Button
     Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_d2_path As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Button26 As System.Windows.Forms.Button
     Friend WithEvents Button24 As System.Windows.Forms.Button
@@ -1405,9 +1453,7 @@ Partial Class Form1
     Friend WithEvents Button_restart_d2cs As System.Windows.Forms.Button
     Friend WithEvents Button_restart_pvpgn As System.Windows.Forms.Button
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents TextBox_flags As System.Windows.Forms.TextBox
     Friend WithEvents username As System.Windows.Forms.TextBox
     Friend WithEvents Button_set_flags As System.Windows.Forms.Button
     Friend WithEvents Button_del_user As System.Windows.Forms.Button
@@ -1422,7 +1468,7 @@ Partial Class Form1
     Friend WithEvents Button_path_bnetd_sql As System.Windows.Forms.Button
     Friend WithEvents Label26 As System.Windows.Forms.Label
     Friend WithEvents Label25 As System.Windows.Forms.Label
-    Friend WithEvents TextBox11 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_sqlbak_name As System.Windows.Forms.TextBox
     Friend WithEvents Button_res_pvpgn_sql As System.Windows.Forms.Button
     Friend WithEvents Button_bak_pvpgn_sql As System.Windows.Forms.Button
     Friend WithEvents Label24 As System.Windows.Forms.Label
@@ -1444,5 +1490,12 @@ Partial Class Form1
     Friend WithEvents RadioButton_d2_109 As System.Windows.Forms.RadioButton
     Friend WithEvents Button_unset_mute As System.Windows.Forms.Button
     Friend WithEvents Button_set_mute As System.Windows.Forms.Button
+    Friend WithEvents ComboBox_flags As System.Windows.Forms.ComboBox
+    Friend WithEvents CheckBox_0x20 As System.Windows.Forms.CheckBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents Button_close_sql As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
 
 End Class
