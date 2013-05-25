@@ -112,6 +112,8 @@ Partial Class Form1
         Me.Button_restart_d2cs = New System.Windows.Forms.Button()
         Me.Button_restart_pvpgn = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Button_unset_mute = New System.Windows.Forms.Button()
+        Me.Button_set_mute = New System.Windows.Forms.Button()
         Me.Button_unset_lockk = New System.Windows.Forms.Button()
         Me.Button_set_lockk = New System.Windows.Forms.Button()
         Me.Button_unset_to_op = New System.Windows.Forms.Button()
@@ -132,8 +134,6 @@ Partial Class Form1
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_d2_110 = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
-        Me.Button_set_mute = New System.Windows.Forms.Button()
-        Me.Button_unset_mute = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -154,7 +154,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.12 build 12"
+        Me.Label8.Text = "Ver 0.12 build 13"
         '
         'Label9
         '
@@ -1064,6 +1064,26 @@ Partial Class Form1
         Me.TabPage1.Text = "用户管理"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Button_unset_mute
+        '
+        Me.Button_unset_mute.Enabled = False
+        Me.Button_unset_mute.Location = New System.Drawing.Point(412, 53)
+        Me.Button_unset_mute.Name = "Button_unset_mute"
+        Me.Button_unset_mute.Size = New System.Drawing.Size(75, 23)
+        Me.Button_unset_mute.TabIndex = 44
+        Me.Button_unset_mute.Text = "取消禁言"
+        Me.Button_unset_mute.UseVisualStyleBackColor = True
+        '
+        'Button_set_mute
+        '
+        Me.Button_set_mute.Enabled = False
+        Me.Button_set_mute.Location = New System.Drawing.Point(331, 53)
+        Me.Button_set_mute.Name = "Button_set_mute"
+        Me.Button_set_mute.Size = New System.Drawing.Size(75, 23)
+        Me.Button_set_mute.TabIndex = 43
+        Me.Button_set_mute.Text = "禁言"
+        Me.Button_set_mute.UseVisualStyleBackColor = True
+        '
         'Button_unset_lockk
         '
         Me.Button_unset_lockk.Enabled = False
@@ -1269,26 +1289,6 @@ Partial Class Form1
         Me.RadioButton_d2_109.TabStop = True
         Me.RadioButton_d2_109.Text = "1.09"
         Me.RadioButton_d2_109.UseVisualStyleBackColor = True
-        '
-        'Button_set_mute
-        '
-        Me.Button_set_mute.Enabled = False
-        Me.Button_set_mute.Location = New System.Drawing.Point(331, 53)
-        Me.Button_set_mute.Name = "Button_set_mute"
-        Me.Button_set_mute.Size = New System.Drawing.Size(75, 23)
-        Me.Button_set_mute.TabIndex = 43
-        Me.Button_set_mute.Text = "禁言"
-        Me.Button_set_mute.UseVisualStyleBackColor = True
-        '
-        'Button_unset_mute
-        '
-        Me.Button_unset_mute.Enabled = False
-        Me.Button_unset_mute.Location = New System.Drawing.Point(412, 53)
-        Me.Button_unset_mute.Name = "Button_unset_mute"
-        Me.Button_unset_mute.Size = New System.Drawing.Size(75, 23)
-        Me.Button_unset_mute.TabIndex = 44
-        Me.Button_unset_mute.Text = "取消禁言"
-        Me.Button_unset_mute.UseVisualStyleBackColor = True
         '
         'Form1
         '
