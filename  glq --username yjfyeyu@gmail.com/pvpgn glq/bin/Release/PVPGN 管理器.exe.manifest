@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="105472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="112640">
       <assemblyIdentity name="PVPGN 管理器" version="0.0.0.3" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>p7dSXhWmUggv+YZVEPFLp2gVJ0I=</dsig:DigestValue>
+        <dsig:DigestValue>grHyDiyO/IlCWP8MtXGzpYhJw5Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -84,7 +84,7 @@
       <dsig:DigestValue>tiSm8CHpHD1PMr8/kUY0gzmd4N8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="mysql.exe" size="4344320">
+  <file name="mysql_x64.exe" size="4344320">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
@@ -93,7 +93,16 @@
       <dsig:DigestValue>1+ey6PblzWywEMFkvsjZxfZoMEI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="mysqldump.exe" size="4309504">
+  <file name="mysql_x86.exe" size="4096000">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>TZb1NUY90gNl5M9A5b8OXYtAYC4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="mysqldump_x64.exe" size="4309504">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
@@ -102,13 +111,22 @@
       <dsig:DigestValue>50lpnz1FNXhfhOzMOzQkLU5FFzk=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PvPGN管理器说明.txt" size="1043">
+  <file name="mysqldump_x86.exe" size="4086272">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>qgYcO88tdlCxo4eu7/Ep3JyQTcw=</dsig:DigestValue>
+      <dsig:DigestValue>RqXN8aRatCgqZT10fe1N8XrRrG0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="PvPGN管理器说明.txt" size="1430">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Q+A8x0mJab/pg7E6DbN1le6tHWs=</dsig:DigestValue>
     </hash>
   </file>
   <file name="sqlbak\1.txt" size="0">
