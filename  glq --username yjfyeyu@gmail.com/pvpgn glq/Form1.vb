@@ -65,17 +65,15 @@ Public Class Form1
 
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.Click
-
         If Not conn Is Nothing Then conn.Close()
-
         Dim connStr As String
         connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false", _
     TextBox_sql_server.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
         Try
             conn = New MySqlConnection(connStr)
             conn.Open()
-            Button_con_to_sql.Text = "已连接"
             Button_con_to_sql.Enabled = False
+            showbutton()
             'GetDatabases()
             'Catch ex As MySqlException
             '
@@ -105,19 +103,6 @@ Public Class Form1
         'deluser.ExecuteNonQuery()
 
     End Sub
-
-
-
-    Private Sub Button1_EnabledChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.EnabledChanged
-        If Button_con_to_sql.Enabled = False Then
-            Button_path_bnetd_sql.Enabled = True
-            Button_create_pvpgn_sql.Enabled = True
-            Button_del_pvpgn_sql.Enabled = True
-            Button_bak_pvpgn_sql.Enabled = True
-            Button_res_pvpgn_sql.Enabled = True
-        End If
-    End Sub
-
 
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         System.Diagnostics.Process.Start("mailto://yjfyy@163.com")
@@ -224,9 +209,9 @@ Public Class Form1
         d2gsneedfiles(2) = "d2speech.mpq"
         d2gsneedfiles(3) = "d2sfx.mpq"
         For i = 0 To 3
-            If System.IO.File.Exists(TextBox7.Text + "\" + d2gsneedfiles(i)) Then
+            If System.IO.File.Exists(TextBox_d2_path.Text + "\" + d2gsneedfiles(i)) Then
                 ProgressBar1.Value = ProgressBar1.Value + 20
-                System.IO.File.Copy(TextBox7.Text + "\" + d2gsneedfiles(i), ".\d2gs\" + d2gsneedfiles(i), True)
+                System.IO.File.Copy(TextBox_d2_path.Text + "\" + d2gsneedfiles(i), ".\d2gs\" + d2gsneedfiles(i), True)
             Else : MsgBox(d2gsneedfiles(i) + "没有找到")
             End If
         Next
@@ -317,15 +302,15 @@ Public Class Form1
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
         If RadioButton_system_x86.Checked = True Then
             Try
-                Shell("cmd /c mysql_x86.exe --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < .\sqlbak\" + TextBox11.Text, AppWinStyle.Hide)
-                MessageBox.Show("还数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Shell("cmd /c ..\mysql_x86.exe --host=" + TextBox_sql_server.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
+                MessageBox.Show("还原数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
             End Try
         Else
             Try
-                Shell("cmd /c mysql_x64.exe --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < .\sqlbak\" + TextBox11.Text, AppWinStyle.Hide)
-                MessageBox.Show("还数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Shell("cmd /c mysql_x64.exe --host=" + TextBox_sql_server.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
+                MessageBox.Show("还原数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
             End Try
@@ -652,48 +637,54 @@ Public Class Form1
 
 
     Private Sub username_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles username.TextChanged
-        If username.Text = "" Then
-            Button_set_to_admin.Enabled = False
-            Button_unset_to_admin.Enabled = False
-            Button_set_to_op.Enabled = False
-            Button_unset_to_op.Enabled = False
-            Button_set_lockk.Enabled = False
-            Button_unset_lockk.Enabled = False
-            Button_set_mute.Enabled = False
-            Button_unset_mute.Enabled = False
-            Button_del_user.Enabled = False
-        ElseIf username.Text <> "" And Button_con_to_sql.Enabled = False Then
-            Button_set_to_admin.Enabled = True
-            Button_unset_to_admin.Enabled = True
-            Button_set_to_op.Enabled = True
-            Button_unset_to_op.Enabled = True
-            Button_set_lockk.Enabled = True
-            Button_unset_lockk.Enabled = True
-            Button_set_mute.Enabled = True
-            Button_unset_mute.Enabled = True
-            'Button_del_user.Enabled = True
-
-        End If
+        showbutton()
     End Sub
 
-    Private Sub TextBox_flags_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox_flags.TextChanged
-        If Button_set_to_admin.Enabled = True And TextBox_flags.Text <> "" Then
-            Button_set_flags.Enabled = True
-        End If
-    End Sub
 
     Private Sub Button_set_flags_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_flags.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim setflagsstr As String
-        If TextBox_flags.Text = "NULL" Then
-            setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`=NULL WHERE (`username`='{0}') LIMIT 1", username.Text)
+        If CheckBox_0x20.Checked = False Then
+            Select Case ComboBox_flags.Text
+                Case "0x0 职业形象"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x1 暴雪官员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x2 频道管理员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='2' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x4 公告员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='4' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x8 战网管理员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case Else
+                    MsgBox("请选择正确代码")
+                    Exit Sub
+            End Select
         Else
-            setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1", TextBox_flags.Text, username.Text)
+            Select ComboBox_flags.Text
+                Case "0x0 职业形象"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='32' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x1 暴雪官员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='33' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x2 频道管理员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='34' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x4 公告员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='36' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case "0x8 战网管理员"
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='40' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                Case Else
+                    MsgBox("请选择正确代码")
+                    Exit Sub
+            End Select
         End If
         Dim setflags As New MySqlCommand(setflagsstr, conn)
         selectpvpgn.ExecuteNonQuery()
-        setflags.ExecuteNonQuery()
-        MsgBox("设置成功")
+        Try
+            setflags.ExecuteNonQuery()
+            MsgBox("设置成功")
+        Catch ex As Exception
+            MsgBox("设置失败，请确认已修正数据库、用户名填写正确")
+        End Try
     End Sub
     Private Sub shuaxin()
         Dim sspvpgn As New ServiceController("pvpgn")
@@ -782,7 +773,7 @@ Public Class Form1
         MsgBox("设置成功")
     End Sub
 
-   
+
     Private Sub Button_lockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_lockk.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim set_lockk_str As String
@@ -822,4 +813,80 @@ Public Class Form1
         set_unmute.ExecuteNonQuery()
         MsgBox("设置成功")
     End Sub
+
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        FolderBrowserDialog1.ShowDialog()
+        TextBox_d2_path.Text = FolderBrowserDialog1.SelectedPath
+
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_close_sql.Click
+        conn.Close()
+        Button_con_to_sql.Enabled = True
+        showbutton()
+    End Sub
+    Private Sub showbutton()
+        If username.Text <> "" And Button_con_to_sql.Enabled = False And TextBox_database_name.Text <> "" Then
+            Button_set_to_admin.Enabled = True
+            Button_unset_to_admin.Enabled = True
+            Button_set_to_op.Enabled = True
+            Button_unset_to_op.Enabled = True
+            Button_set_lockk.Enabled = True
+            Button_unset_lockk.Enabled = True
+            Button_set_mute.Enabled = True
+            Button_unset_mute.Enabled = True
+            Button_set_flags.Enabled = True
+            'Button_del_user.Enabled = True
+        Else
+            Button_set_to_admin.Enabled = False
+            Button_unset_to_admin.Enabled = False
+            Button_set_to_op.Enabled = False
+            Button_unset_to_op.Enabled = False
+            Button_set_lockk.Enabled = False
+            Button_unset_lockk.Enabled = False
+            Button_set_mute.Enabled = False
+            Button_unset_mute.Enabled = False
+            Button_del_user.Enabled = False
+            Button_set_flags.Enabled = False
+        End If
+        If Button_con_to_sql.Enabled = False Then
+            Button_close_sql.Enabled = True
+            Button_path_bnetd_sql.Enabled = True
+            Button_del_pvpgn_sql.Enabled = True
+            Button_bak_pvpgn_sql.Enabled = True
+            Button_res_pvpgn_sql.Enabled = True
+            Button_close_sql.Enabled = True
+            TextBox_database_name.ReadOnly = True
+            TextBox_sql_password.ReadOnly = True
+            TextBox_sql_root.ReadOnly = True
+            TextBox_sql_server.ReadOnly = True
+        End If
+        If Button_con_to_sql.Enabled = True Then
+            Button_path_bnetd_sql.Enabled = False
+            Button_del_pvpgn_sql.Enabled = False
+            Button_bak_pvpgn_sql.Enabled = False
+            Button_res_pvpgn_sql.Enabled = False
+            Button_close_sql.Enabled = False
+            TextBox_database_name.ReadOnly = False
+            TextBox_sql_password.ReadOnly = False
+            TextBox_sql_root.ReadOnly = False
+            TextBox_sql_server.ReadOnly = False
+            Button_create_pvpgn_sql.Enabled = False
+
+        End If
+        If Button_con_to_sql.Enabled = False And TextBox_database_name.Text = "" Then
+            Button_create_pvpgn_sql.Enabled = True
+        End If
+
+        If TextBox_database_name.Text = "" Then
+            Button_path_bnetd_sql.Enabled = False
+        End If
+
+    End Sub
+
+    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        OpenFileDialog1.ShowDialog()
+        TextBox_sqlbak_name.Text = OpenFileDialog1.FileName
+    End Sub
+
 End Class
