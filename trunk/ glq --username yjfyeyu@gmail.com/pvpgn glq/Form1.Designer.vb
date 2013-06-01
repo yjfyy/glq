@@ -1299,7 +1299,6 @@ Partial Class Form1
         '
         Me.GroupBox3.Controls.Add(Me.RadioButton_d2_110)
         Me.GroupBox3.Controls.Add(Me.RadioButton_d2_109)
-        Me.GroupBox3.Enabled = False
         Me.GroupBox3.Location = New System.Drawing.Point(275, 130)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(296, 42)
