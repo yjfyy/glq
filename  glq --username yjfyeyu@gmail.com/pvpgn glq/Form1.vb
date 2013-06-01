@@ -15,7 +15,8 @@ Public Class Form1
     Dim data As DataTable
     Dim da As MySqlDataAdapter
     Dim cb As MySqlCommandBuilder
-
+    Dim d2cs_server_string As String
+    Dim d2dbs_server_string As String
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Dim sspvpgn As New ServiceController("pvpgn")
@@ -57,9 +58,10 @@ Public Class Form1
         'End Select
         '     End If
 
-        If DateString > "2013-07-01" Then
+        If DateString > "2013-08-01" Then
             Close()
         End If
+        d2gsver()
         shuaxin()
     End Sub
 
@@ -318,19 +320,19 @@ Public Class Form1
     End Sub
 
     Private Sub Button36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button36.Click
-        Shell("d2csConsole.exe -s install", vbHide)
+        Shell(d2cs_server_string + "Console.exe -s install", vbHide)
         'MessageBox.Show(i)
         MsgBox("D2CS已安装")
     End Sub
 
     Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button37.Click
-        Shell("d2dbsConsole.exe -s install", vbHide)
+        Shell(d2dbs_server_string + "Console.exe -s install", vbHide)
         'MessageBox.Show(i)
         MsgBox("D2DBS已安装")
     End Sub
 
     Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button38.Click
-        Dim ssd2cs As New ServiceController("d2cs109")
+        Dim ssd2cs As New ServiceController(d2cs_server_string)
         If ssd2cs.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止D2CS服务后重试")
         Else
@@ -341,7 +343,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button39_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button39.Click
-        Dim ssd2dbs As New ServiceController("d2dbs109")
+        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
 
         If ssd2dbs.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止D2DBS服务后重试")
@@ -380,7 +382,7 @@ Public Class Form1
     End Sub
 
     Public Sub stop_d2cs_server()
-        Dim ssd2cs As New ServiceController("d2cs109")
+        Dim ssd2cs As New ServiceController(d2cs_server_string)
         Try
             If ssd2cs.Status <> ServiceControllerStatus.Stopped Then
 
@@ -393,7 +395,7 @@ Public Class Form1
     End Sub
 
     Public Sub run_d2cs_server()
-        Dim ssd2cs As New ServiceController("d2cs109")
+        Dim ssd2cs As New ServiceController(d2cs_server_string)
         Try
             ssd2cs.Start()
             ssd2cs.WaitForStatus(ServiceControllerStatus.Running, outtime)
@@ -407,7 +409,7 @@ Public Class Form1
     End Sub
 
     Public Sub stop_d2dbs_server()
-        Dim ssd2dbs As New ServiceController("d2dbs109")
+        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
         Try
             If ssd2dbs.Status <> ServiceControllerStatus.Stopped Then
                 ssd2dbs.Stop()
@@ -419,7 +421,7 @@ Public Class Form1
     End Sub
 
     Public Sub run_d2dbs_server()
-        Dim ssd2dbs As New ServiceController("d2dbs109")
+        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
         Try
             ssd2dbs.Start()
             ssd2dbs.WaitForStatus(ServiceControllerStatus.Running, outtime)
@@ -688,8 +690,8 @@ Public Class Form1
     End Sub
     Private Sub shuaxin()
         Dim sspvpgn As New ServiceController("pvpgn")
-        Dim ssd2cs As New ServiceController("d2cs109")
-        Dim ssd2dbs As New ServiceController("d2dbs109")
+        Dim ssd2cs As New ServiceController(d2cs_server_string)
+        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
         Dim ssd2gs As New ServiceController("d2gs")
         Try
             Select Case sspvpgn.Status
@@ -889,4 +891,21 @@ Public Class Form1
         TextBox_sqlbak_name.Text = OpenFileDialog1.FileName
     End Sub
 
+    Private Sub d2gsver()
+        If RadioButton_d2_109.Checked = True Then
+            d2cs_server_string = "d2cs109"
+            d2dbs_server_string = "d2dbs109"
+        Else
+            d2cs_server_string = "d2cs"
+            d2dbs_server_string = "d2dbs"
+        End If
+    End Sub
+
+    Private Sub RadioButton_d2_110_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_d2_110.CheckedChanged
+        d2gsver()
+    End Sub
+
+    Private Sub Button18_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
+        TabPage3.Enabled = False
+    End Sub
 End Class
