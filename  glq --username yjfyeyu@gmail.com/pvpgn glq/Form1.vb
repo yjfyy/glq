@@ -18,6 +18,70 @@ Public Class Form1
     Dim d2cs_server_string As String
     Dim d2dbs_server_string As String
 
+    Private Sub Form1_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        If reg_config Is Nothing Then
+            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        End If
+        If reg_config IsNot Nothing Then
+            reg_config.SetValue("TextBox_sql_serverip", TextBox_sql_serverip.Text)
+            reg_config.SetValue("TextBox_sql_root", TextBox_sql_root.Text)
+            reg_config.SetValue("TextBox_database_name.Text", TextBox_database_name.Text)
+            If RadioButton_d2_110.Checked = True Then
+                reg_config.SetValue("RadioButton_system_x64", "1")
+            Else
+                reg_config.SetValue("RadioButton_system_x64", "0")
+            End If
+            
+            If RadioButton_d2_110.Checked = True Then
+                reg_config.SetValue("RadioButton_d2_110", "1")
+            Else
+                reg_config.SetValue("RadioButton_d2_110", "0")
+            End If
+
+            reg_config.SetValue("TextBox_acc_username", TextBox_acc_username.Text)
+            reg_config.SetValue("ComboBox_flags", ComboBox_flags.Text)
+
+            If CheckBox_0x20.Checked = True Then
+                reg_config.SetValue("CheckBox_0x20", "1")
+            Else
+                reg_config.SetValue("CheckBox_0x20", "0")
+            End If
+
+            If CheckBox_pvpgn.Checked = True Then
+                reg_config.SetValue("CheckBox_pvpgn", "1")
+            Else
+                reg_config.SetValue("CheckBox_pvpgn", "0")
+            End If
+
+            If CheckBox_d2cs.Checked = True Then
+                reg_config.SetValue("CheckBox_d2cs", "1")
+            Else
+                reg_config.SetValue("CheckBox_d2cs", "0")
+            End If
+
+            If CheckBox_d2dbs.Checked = True Then
+                reg_config.SetValue("CheckBox_d2dbs", "1")
+            Else
+                reg_config.SetValue("CheckBox_d2dbs", "0")
+            End If
+
+            If CheckBox_d2gs.Checked = True Then
+                reg_config.SetValue("CheckBox_d2gs", "1")
+            Else
+                reg_config.SetValue("CheckBox_d2gs", "0")
+            End If
+
+            reg_config.SetValue("TextBox_d2_path", TextBox_d2_path.Text)
+            reg_config.SetValue("TextBox_sqlbak_name", TextBox_sqlbak_name.Text)
+            'regVersion.SetValue("Version", intVersion)
+        End If
+        reg_config.Close()
+    End Sub
+
+
+
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Dim sspvpgn As New ServiceController("pvpgn")
         'Dim ssd2cs As New ServiceController("d2cs")
@@ -61,8 +125,11 @@ Public Class Form1
         If DateString > "2013-08-01" Then
             Close()
         End If
+        load_config()
         d2gsver()
         shuaxin()
+
+
     End Sub
 
 
@@ -70,7 +137,7 @@ Public Class Form1
         If Not conn Is Nothing Then conn.Close()
         Dim connStr As String
         connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false", _
-    TextBox_sql_server.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
+    TextBox_sql_serverip.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
         Try
             conn = New MySqlConnection(connStr)
             conn.Open()
@@ -267,11 +334,11 @@ Public Class Form1
         'maxgames = CInt(TextBox10.Text)
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
         Dim gs_telnet_password_hash As String
-        Shell("cmd /c bnhash.exe " & TextBox_gs_telnet_password.Text & " >temp.txt", AppWinStyle.Hide)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox8.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox9.text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox10.Text, Microsoft.Win32.RegistryValueKind.DWord)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_MaxGameLife.Text)
+        Shell("cmd /c bnhash.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
         MsgBox("GS Telnet 密码修改后需重启D2GS才能生效")
         gs_telnet_password_hash = My.Computer.FileSystem.ReadAllText("temp.txt")
         Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
@@ -284,14 +351,14 @@ Public Class Form1
         bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
         If RadioButton_system_x86.Checked = True Then
             Try
-                Shell("mysqldump_x86.exe --host=" + TextBox_sql_server.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                Shell("mysqldump_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
                 MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
             End Try
         Else
             Try
-                Shell("mysqldump_x64.exe --host=" + TextBox_sql_server.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                Shell("mysqldump_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
                 MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
@@ -304,14 +371,14 @@ Public Class Form1
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
         If RadioButton_system_x86.Checked = True Then
             Try
-                Shell("cmd /c ..\mysql_x86.exe --host=" + TextBox_sql_server.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
+                Shell("cmd /c ..\mysql_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
                 MessageBox.Show("还原数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
             End Try
         Else
             Try
-                Shell("cmd /c mysql_x64.exe --host=" + TextBox_sql_server.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
+                Shell("cmd /c mysql_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
                 MessageBox.Show("还原数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
@@ -568,9 +635,9 @@ Public Class Form1
         Dim setadminstr As String
         Dim setcommandgroupsstr As String
         Dim setflagsstr As String
-        setadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='true' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='255' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        setadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='true' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='255' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim setadmin As New MySqlCommand(setadminstr, conn)
         Dim setcommandgroups As New MySqlCommand(setcommandgroupsstr, conn)
         Dim setflags As New MySqlCommand(setflagsstr, conn)
@@ -586,9 +653,9 @@ Public Class Form1
         Dim unsetadminstr As String
         Dim setcommandgroupsstr As String
         Dim setflagsstr As String
-        unsetadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='false' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='NULL' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        unsetadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='false' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='NULL' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim unsetadmin As New MySqlCommand(unsetadminstr, conn)
         Dim setcommandgroups As New MySqlCommand(setcommandgroupsstr, conn)
         Dim setflags As New MySqlCommand(setflagsstr, conn)
@@ -638,7 +705,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub username_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles username.TextChanged
+    Private Sub username_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox_acc_username.TextChanged
         showbutton()
     End Sub
 
@@ -649,31 +716,31 @@ Public Class Form1
         If CheckBox_0x20.Checked = False Then
             Select Case ComboBox_flags.Text
                 Case "0x0 职业形象"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x1 暴雪官员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x2 频道管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='2' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='2' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x4 公告员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='4' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='4' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x8 战网管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case Else
                     MsgBox("请选择正确代码")
                     Exit Sub
             End Select
         Else
-            Select ComboBox_flags.Text
+            Select Case ComboBox_flags.Text
                 Case "0x0 职业形象"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='32' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='32' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x1 暴雪官员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='33' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='33' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x2 频道管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='34' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='34' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x4 公告员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='36' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='36' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case "0x8 战网管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='40' WHERE (`username`='{0}') LIMIT 1", username.Text)
+                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='40' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
                 Case Else
                     MsgBox("请选择正确代码")
                     Exit Sub
@@ -744,9 +811,9 @@ Public Class Form1
         Dim set_op_str As String
         Dim set_commandgroups_str As String
         Dim set_flags_str As String
-        set_op_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_operator`='true' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        set_commandgroups_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='6' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='2' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        set_op_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_operator`='true' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_commandgroups_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='6' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='2' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_admin As New MySqlCommand(set_op_str, conn)
         Dim set_commandgroups As New MySqlCommand(set_commandgroups_str, conn)
         Dim set_flags As New MySqlCommand(set_flags_str, conn)
@@ -762,9 +829,9 @@ Public Class Form1
         Dim unset_op_str As String
         Dim set_commandgroups_str As String
         Dim set_flags_str As String
-        unset_op_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_operator`='false' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        set_commandgroups_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
-        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='NULL' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        unset_op_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_operator`='false' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_commandgroups_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='NULL' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim unset_op As New MySqlCommand(unset_op_str, conn)
         Dim set_commandgroups As New MySqlCommand(set_commandgroups_str, conn)
         Dim set_flags As New MySqlCommand(set_flags_str, conn)
@@ -779,7 +846,7 @@ Public Class Form1
     Private Sub Button_lockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_lockk.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim set_lockk_str As String
-        set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
         selectpvpgn.ExecuteNonQuery()
         set_lockk.ExecuteNonQuery()
@@ -789,7 +856,7 @@ Public Class Form1
     Private Sub Button_unlockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_lockk.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim set_unlockk_str As String
-        set_unlockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='0' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        set_unlockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_unlockk As New MySqlCommand(set_unlockk_str, conn)
         selectpvpgn.ExecuteNonQuery()
         set_unlockk.ExecuteNonQuery()
@@ -799,7 +866,7 @@ Public Class Form1
     Private Sub Button_mute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_mute.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim set_mute_str As String
-        set_mute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='1' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        set_mute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_mute As New MySqlCommand(set_mute_str, conn)
         selectpvpgn.ExecuteNonQuery()
         set_mute.ExecuteNonQuery()
@@ -809,7 +876,7 @@ Public Class Form1
     Private Sub Button_unmute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_mute.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         Dim set_unmute_str As String
-        set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`username`='{0}') LIMIT 1", username.Text)
+        set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_unmute As New MySqlCommand(set_unmute_str, conn)
         selectpvpgn.ExecuteNonQuery()
         set_unmute.ExecuteNonQuery()
@@ -828,7 +895,7 @@ Public Class Form1
         showbutton()
     End Sub
     Private Sub showbutton()
-        If username.Text <> "" And Button_con_to_sql.Enabled = False And TextBox_database_name.Text <> "" Then
+        If TextBox_acc_username.Text <> "" And Button_con_to_sql.Enabled = False And TextBox_database_name.Text <> "" Then
             Button_set_to_admin.Enabled = True
             Button_unset_to_admin.Enabled = True
             Button_set_to_op.Enabled = True
@@ -861,7 +928,7 @@ Public Class Form1
             TextBox_database_name.ReadOnly = True
             TextBox_sql_password.ReadOnly = True
             TextBox_sql_root.ReadOnly = True
-            TextBox_sql_server.ReadOnly = True
+            TextBox_sql_serverip.ReadOnly = True
         End If
         If Button_con_to_sql.Enabled = True Then
             Button_path_bnetd_sql.Enabled = False
@@ -872,7 +939,7 @@ Public Class Form1
             TextBox_database_name.ReadOnly = False
             TextBox_sql_password.ReadOnly = False
             TextBox_sql_root.ReadOnly = False
-            TextBox_sql_server.ReadOnly = False
+            TextBox_sql_serverip.ReadOnly = False
             Button_create_pvpgn_sql.Enabled = False
 
         End If
@@ -907,5 +974,72 @@ Public Class Form1
 
     Private Sub Button18_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
         TabPage3.Enabled = False
+    End Sub
+
+    Private Sub load_config()
+        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        If reg_config Is Nothing Then
+            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        End If
+        If reg_config IsNot Nothing Then
+            TextBox_sql_serverip.Text = reg_config.GetValue("TextBox_sql_serverip", "127.0.0.1")
+            TextBox_sql_root.Text = reg_config.GetValue("TextBox_sql_root", "root")
+            TextBox_database_name.Text = reg_config.GetValue("TextBox_database_name.Text", "pvpgn")
+            If reg_config.GetValue("RadioButton_system_x64", "1") = "1" Then
+                RadioButton_system_x64.Checked = True
+            Else
+                RadioButton_system_x86.Checked = True
+            End If
+            If reg_config.GetValue("RadioButton_d2_110", "1") = "1" Then
+                RadioButton_d2_110.Checked = True
+            End If
+            TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
+            ComboBox_flags.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
+            If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
+                CheckBox_0x20.Checked = True
+            Else
+                CheckBox_0x20.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_pvpgn", "1") = "1" Then
+                CheckBox_pvpgn.Checked = True
+            Else
+                CheckBox_pvpgn.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_d2cs", "1") = "1" Then
+                CheckBox_d2cs.Checked = True
+            Else
+                CheckBox_d2cs.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_d2dbs", "1") = "1" Then
+                CheckBox_d2dbs.Checked = True
+            Else
+                CheckBox_d2dbs.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_d2gs", "1") = "1" Then
+                CheckBox_d2gs.Checked = True
+            Else
+                CheckBox_d2gs.Checked = False
+            End If
+
+            TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
+            TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
+            'regVersion.SetValue("Version", intVersion)
+        End If
+        reg_config.Close()
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Try
+            Microsoft.Win32.Registry.LocalMachine.DeleteSubKeyTree("SOFTWARE\\PvPGN GLQ")
+            load_config()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 End Class

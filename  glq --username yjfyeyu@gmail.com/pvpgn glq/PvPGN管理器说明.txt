@@ -6,6 +6,9 @@
 
 三：更新日志：
 
+2013.6.4	Ver 0.15
+1、增加保存设置功能（为定时自动执行任务做准备）。
+
 2013.6.1	Ver 0.14
 1、现在可以支持1.10至1.13版的D2GS了。将1.09的d2csConsole.exe及d2dbsConsole.exe改名为d2cs109Console.exe及d2dbs109Console.exe,可同时支持1.09和1.10以上版本。
 

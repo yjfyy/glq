@@ -26,7 +26,7 @@ Partial Class Form1
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button_con_to_sql = New System.Windows.Forms.Button()
-        Me.TextBox_sql_server = New System.Windows.Forms.TextBox()
+        Me.TextBox_sql_serverip = New System.Windows.Forms.TextBox()
         Me.TextBox_sql_root = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox_sql_password = New System.Windows.Forms.TextBox()
@@ -63,14 +63,14 @@ Partial Class Form1
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.TextBox_MaxGameLife = New System.Windows.Forms.TextBox()
-        Me.TextBox_gs_telnet_password = New System.Windows.Forms.TextBox()
+        Me.TextBox_d2gsconfig_MaxGameLife = New System.Windows.Forms.TextBox()
+        Me.TextBox_d2gsconfig_telnet_password = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button32 = New System.Windows.Forms.Button()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.TextBox_d2gsconfig_maxgame = New System.Windows.Forms.TextBox()
+        Me.TextBox_d2gsconfig_d2dbsip = New System.Windows.Forms.TextBox()
+        Me.TextBox_d2gsconfig_d2csip = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -124,7 +124,7 @@ Partial Class Form1
         Me.Button_unset_to_op = New System.Windows.Forms.Button()
         Me.Button_set_to_op = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.username = New System.Windows.Forms.TextBox()
+        Me.TextBox_acc_username = New System.Windows.Forms.TextBox()
         Me.Button_set_flags = New System.Windows.Forms.Button()
         Me.Button_del_user = New System.Windows.Forms.Button()
         Me.Button_unset_to_admin = New System.Windows.Forms.Button()
@@ -139,6 +139,7 @@ Partial Class Form1
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -179,13 +180,13 @@ Partial Class Form1
         Me.Button_con_to_sql.Text = "连接"
         Me.Button_con_to_sql.UseVisualStyleBackColor = True
         '
-        'TextBox_sql_server
+        'TextBox_sql_serverip
         '
-        Me.TextBox_sql_server.Location = New System.Drawing.Point(122, 28)
-        Me.TextBox_sql_server.Name = "TextBox_sql_server"
-        Me.TextBox_sql_server.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_sql_server.TabIndex = 1
-        Me.TextBox_sql_server.Text = "127.0.0.1"
+        Me.TextBox_sql_serverip.Location = New System.Drawing.Point(122, 28)
+        Me.TextBox_sql_serverip.Name = "TextBox_sql_serverip"
+        Me.TextBox_sql_serverip.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_sql_serverip.TabIndex = 1
+        Me.TextBox_sql_serverip.Text = "127.0.0.1"
         '
         'TextBox_sql_root
         '
@@ -257,7 +258,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.TextBox_sql_password)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.TextBox_sql_root)
-        Me.GroupBox1.Controls.Add(Me.TextBox_sql_server)
+        Me.GroupBox1.Controls.Add(Me.TextBox_sql_serverip)
         Me.GroupBox1.Controls.Add(Me.Button_con_to_sql)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
@@ -524,14 +525,14 @@ Partial Class Form1
         '
         Me.TabPage6.Controls.Add(Me.Label13)
         Me.TabPage6.Controls.Add(Me.Label12)
-        Me.TabPage6.Controls.Add(Me.TextBox_MaxGameLife)
-        Me.TabPage6.Controls.Add(Me.TextBox_gs_telnet_password)
+        Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_MaxGameLife)
+        Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_telnet_password)
         Me.TabPage6.Controls.Add(Me.Label6)
         Me.TabPage6.Controls.Add(Me.Button32)
         Me.TabPage6.Controls.Add(Me.Label23)
-        Me.TabPage6.Controls.Add(Me.TextBox10)
-        Me.TabPage6.Controls.Add(Me.TextBox9)
-        Me.TabPage6.Controls.Add(Me.TextBox8)
+        Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_maxgame)
+        Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_d2dbsip)
+        Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_d2csip)
         Me.TabPage6.Controls.Add(Me.Label22)
         Me.TabPage6.Controls.Add(Me.Label21)
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
@@ -560,21 +561,21 @@ Partial Class Form1
         Me.Label12.TabIndex = 10
         Me.Label12.Text = "最常游戏时间："
         '
-        'TextBox_MaxGameLife
+        'TextBox_d2gsconfig_MaxGameLife
         '
-        Me.TextBox_MaxGameLife.Location = New System.Drawing.Point(101, 33)
-        Me.TextBox_MaxGameLife.Name = "TextBox_MaxGameLife"
-        Me.TextBox_MaxGameLife.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_MaxGameLife.TabIndex = 9
-        Me.TextBox_MaxGameLife.Text = "0"
+        Me.TextBox_d2gsconfig_MaxGameLife.Location = New System.Drawing.Point(101, 33)
+        Me.TextBox_d2gsconfig_MaxGameLife.Name = "TextBox_d2gsconfig_MaxGameLife"
+        Me.TextBox_d2gsconfig_MaxGameLife.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_d2gsconfig_MaxGameLife.TabIndex = 9
+        Me.TextBox_d2gsconfig_MaxGameLife.Text = "0"
         '
-        'TextBox_gs_telnet_password
+        'TextBox_d2gsconfig_telnet_password
         '
-        Me.TextBox_gs_telnet_password.Location = New System.Drawing.Point(113, 90)
-        Me.TextBox_gs_telnet_password.Name = "TextBox_gs_telnet_password"
-        Me.TextBox_gs_telnet_password.Size = New System.Drawing.Size(97, 21)
-        Me.TextBox_gs_telnet_password.TabIndex = 8
-        Me.TextBox_gs_telnet_password.Text = "abcd123"
+        Me.TextBox_d2gsconfig_telnet_password.Location = New System.Drawing.Point(113, 90)
+        Me.TextBox_d2gsconfig_telnet_password.Name = "TextBox_d2gsconfig_telnet_password"
+        Me.TextBox_d2gsconfig_telnet_password.Size = New System.Drawing.Size(97, 21)
+        Me.TextBox_d2gsconfig_telnet_password.TabIndex = 8
+        Me.TextBox_d2gsconfig_telnet_password.Text = "abcd123"
         '
         'Label6
         '
@@ -603,29 +604,29 @@ Partial Class Form1
         Me.Label23.TabIndex = 5
         Me.Label23.Text = "最大游戏数："
         '
-        'TextBox10
+        'TextBox_d2gsconfig_maxgame
         '
-        Me.TextBox10.Location = New System.Drawing.Point(432, 6)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(29, 21)
-        Me.TextBox10.TabIndex = 4
-        Me.TextBox10.Text = "100"
+        Me.TextBox_d2gsconfig_maxgame.Location = New System.Drawing.Point(432, 6)
+        Me.TextBox_d2gsconfig_maxgame.Name = "TextBox_d2gsconfig_maxgame"
+        Me.TextBox_d2gsconfig_maxgame.Size = New System.Drawing.Size(29, 21)
+        Me.TextBox_d2gsconfig_maxgame.TabIndex = 4
+        Me.TextBox_d2gsconfig_maxgame.Text = "100"
         '
-        'TextBox9
+        'TextBox_d2gsconfig_d2dbsip
         '
-        Me.TextBox9.Location = New System.Drawing.Point(242, 6)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(97, 21)
-        Me.TextBox9.TabIndex = 2
-        Me.TextBox9.Text = "192.168.1.200"
+        Me.TextBox_d2gsconfig_d2dbsip.Location = New System.Drawing.Point(242, 6)
+        Me.TextBox_d2gsconfig_d2dbsip.Name = "TextBox_d2gsconfig_d2dbsip"
+        Me.TextBox_d2gsconfig_d2dbsip.Size = New System.Drawing.Size(97, 21)
+        Me.TextBox_d2gsconfig_d2dbsip.TabIndex = 2
+        Me.TextBox_d2gsconfig_d2dbsip.Text = "192.168.1.200"
         '
-        'TextBox8
+        'TextBox_d2gsconfig_d2csip
         '
-        Me.TextBox8.Location = New System.Drawing.Point(65, 6)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(97, 21)
-        Me.TextBox8.TabIndex = 0
-        Me.TextBox8.Text = "192.168.1.200"
+        Me.TextBox_d2gsconfig_d2csip.Location = New System.Drawing.Point(65, 6)
+        Me.TextBox_d2gsconfig_d2csip.Name = "TextBox_d2gsconfig_d2csip"
+        Me.TextBox_d2gsconfig_d2csip.Size = New System.Drawing.Size(97, 21)
+        Me.TextBox_d2gsconfig_d2csip.TabIndex = 0
+        Me.TextBox_d2gsconfig_d2csip.Text = "192.168.1.200"
         '
         'Label22
         '
@@ -1086,7 +1087,7 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.Button_unset_to_op)
         Me.TabPage1.Controls.Add(Me.Button_set_to_op)
         Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.username)
+        Me.TabPage1.Controls.Add(Me.TextBox_acc_username)
         Me.TabPage1.Controls.Add(Me.Button_set_flags)
         Me.TabPage1.Controls.Add(Me.Button_del_user)
         Me.TabPage1.Controls.Add(Me.Button_unset_to_admin)
@@ -1189,12 +1190,12 @@ Partial Class Form1
         Me.Label7.TabIndex = 37
         Me.Label7.Text = "形象代码："
         '
-        'username
+        'TextBox_acc_username
         '
-        Me.username.Location = New System.Drawing.Point(81, 26)
-        Me.username.Name = "username"
-        Me.username.Size = New System.Drawing.Size(82, 21)
-        Me.username.TabIndex = 28
+        Me.TextBox_acc_username.Location = New System.Drawing.Point(81, 26)
+        Me.TextBox_acc_username.Name = "TextBox_acc_username"
+        Me.TextBox_acc_username.Size = New System.Drawing.Size(82, 21)
+        Me.TextBox_acc_username.TabIndex = 28
         '
         'Button_set_flags
         '
@@ -1268,7 +1269,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.RadioButton_system_x86)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 130)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(248, 42)
+        Me.GroupBox2.Size = New System.Drawing.Size(217, 42)
         Me.GroupBox2.TabIndex = 30
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "服务器系统"
@@ -1299,9 +1300,9 @@ Partial Class Form1
         '
         Me.GroupBox3.Controls.Add(Me.RadioButton_d2_110)
         Me.GroupBox3.Controls.Add(Me.RadioButton_d2_109)
-        Me.GroupBox3.Location = New System.Drawing.Point(275, 130)
+        Me.GroupBox3.Location = New System.Drawing.Point(347, 130)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(296, 42)
+        Me.GroupBox3.Size = New System.Drawing.Size(224, 42)
         Me.GroupBox3.TabIndex = 31
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "暗黑版本"
@@ -1309,7 +1310,7 @@ Partial Class Form1
         'RadioButton_d2_110
         '
         Me.RadioButton_d2_110.AutoSize = True
-        Me.RadioButton_d2_110.Location = New System.Drawing.Point(173, 20)
+        Me.RadioButton_d2_110.Location = New System.Drawing.Point(141, 20)
         Me.RadioButton_d2_110.Name = "RadioButton_d2_110"
         Me.RadioButton_d2_110.Size = New System.Drawing.Size(77, 16)
         Me.RadioButton_d2_110.TabIndex = 1
@@ -1320,7 +1321,7 @@ Partial Class Form1
         '
         Me.RadioButton_d2_109.AutoSize = True
         Me.RadioButton_d2_109.Checked = True
-        Me.RadioButton_d2_109.Location = New System.Drawing.Point(72, 20)
+        Me.RadioButton_d2_109.Location = New System.Drawing.Point(42, 20)
         Me.RadioButton_d2_109.Name = "RadioButton_d2_109"
         Me.RadioButton_d2_109.Size = New System.Drawing.Size(47, 16)
         Me.RadioButton_d2_109.TabIndex = 0
@@ -1337,6 +1338,15 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.Filter = "数据库文件|*.sql"
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(240, 143)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(97, 23)
+        Me.Button3.TabIndex = 2
+        Me.Button3.Text = "恢复默认设置"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1344,6 +1354,7 @@ Partial Class Form1
         Me.AutoScroll = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(583, 431)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.LinkLabel2)
@@ -1383,7 +1394,7 @@ Partial Class Form1
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Button_con_to_sql As System.Windows.Forms.Button
-    Friend WithEvents TextBox_sql_server As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_sql_serverip As System.Windows.Forms.TextBox
     Friend WithEvents TextBox_sql_root As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox_sql_password As System.Windows.Forms.TextBox
@@ -1409,9 +1420,9 @@ Partial Class Form1
     Friend WithEvents TabPage6 As System.Windows.Forms.TabPage
     Friend WithEvents Button32 As System.Windows.Forms.Button
     Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_d2gsconfig_maxgame As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_d2gsconfig_d2dbsip As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_d2gsconfig_d2csip As System.Windows.Forms.TextBox
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
@@ -1453,7 +1464,7 @@ Partial Class Form1
     Friend WithEvents Button_restart_pvpgn As System.Windows.Forms.Button
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents username As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_acc_username As System.Windows.Forms.TextBox
     Friend WithEvents Button_set_flags As System.Windows.Forms.Button
     Friend WithEvents Button_del_user As System.Windows.Forms.Button
     Friend WithEvents Button_unset_to_admin As System.Windows.Forms.Button
@@ -1476,11 +1487,11 @@ Partial Class Form1
     Friend WithEvents Button_set_lockk As System.Windows.Forms.Button
     Friend WithEvents Button_unset_to_op As System.Windows.Forms.Button
     Friend WithEvents Button_set_to_op As System.Windows.Forms.Button
-    Friend WithEvents TextBox_gs_telnet_password As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_d2gsconfig_telnet_password As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents TextBox_MaxGameLife As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_d2gsconfig_MaxGameLife As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents RadioButton_system_x64 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton_system_x86 As System.Windows.Forms.RadioButton
@@ -1496,5 +1507,6 @@ Partial Class Form1
     Friend WithEvents Button_close_sql As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 
 End Class
