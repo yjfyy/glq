@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>NaiM5xBAm63cummUgEC0/eI3Hys=</dsig:DigestValue>
+        <dsig:DigestValue>2HSlfIGX3VW2ZU280OX2PZuiic0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -120,13 +120,13 @@
       <dsig:DigestValue>RqXN8aRatCgqZT10fe1N8XrRrG0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PvPGN管理器说明.txt" size="1855">
+  <file name="PvPGN管理器说明.txt" size="1927">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>AAUxxNyuySQ+iYH1EiMrIwxI/uU=</dsig:DigestValue>
+      <dsig:DigestValue>Gm+YAk4Nh677GSTs4ZHw2avJmvc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="sqlbak\1.txt" size="0">
