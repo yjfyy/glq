@@ -73,8 +73,25 @@ Public Class Form1
                 reg_config.SetValue("CheckBox_d2gs", "0")
             End If
 
+            If CheckBox_timer_backup.Checked = True Then
+                reg_config.SetValue("CheckBox_timer_backup", "1")
+            Else
+                reg_config.SetValue("CheckBox_timer_backup", "0")
+            End If
+
+            If CheckBox_timer_re_pvpgn.Checked = True Then
+                reg_config.SetValue("CheckBox_timer_re_pvpgn", "1")
+            Else
+                reg_config.SetValue("CheckBox_timer_re_pvpgn", "0")
+            End If
+
             reg_config.SetValue("TextBox_d2_path", TextBox_d2_path.Text)
             reg_config.SetValue("TextBox_sqlbak_name", TextBox_sqlbak_name.Text)
+            reg_config.SetValue("ComboBox_backup_h", ComboBox_backup_h.Text)
+            reg_config.SetValue("ComboBox_backup_m", ComboBox_backup_m.Text)
+            reg_config.SetValue("ComboBox_re_pvpgn", ComboBox_re_pvpgn_houre.Text)
+            reg_config.SetValue("ComboBox_re_pvpgn.Text", ComboBox_re_pvpgn_m.Text)
+
             'regVersion.SetValue("Version", intVersion)
         End If
         reg_config.Close()
@@ -1006,8 +1023,26 @@ Public Class Form1
                 CheckBox_d2gs.Checked = False
             End If
 
+            If reg_config.GetValue("CheckBox_timer_backup", "0") = "1" Then
+                CheckBox_timer_backup.Checked = True
+            Else
+                CheckBox_timer_backup.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_timer_re_pvpgn", "0") = "1" Then
+                CheckBox_timer_re_pvpgn.Checked = True
+            Else
+                CheckBox_timer_re_pvpgn.Checked = False
+            End If
+
             TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
             TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
+            ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "0")
+            ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "0")
+            ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "0")
+            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "0")
+
+
             'regVersion.SetValue("Version", intVersion)
         End If
         reg_config.Close()
@@ -1026,18 +1061,10 @@ Public Class Form1
 
 
 
-    Private Sub ComboBox_backup_hours_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox_backup_h.TextChanged
-        If ComboBox_backup_h.Text > "23" Or ComboBox_backup_h.Text < "0" And ComboBox_backup_h.Text <> "" Then
-            ComboBox_backup_h.Text = "0"
-        End If
-    End Sub
+   
 
 
-    Private Sub ComboBox_backup_m_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox_backup_m.SizeChanged
-        If ComboBox_backup_m.Text > "59" Or ComboBox_backup_m.Text < "0" And ComboBox_backup_m.Text <> "" Then
-            ComboBox_backup_m.Text = "0"
-        End If
-    End Sub
+    
 
     Private Sub Button_bak_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
         Dim bakdatestr As String
@@ -1059,4 +1086,52 @@ Public Class Form1
 
         End If
     End Sub
+
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+        Dim time_hm As String
+        time_hm = Now.Hour.ToString + Now.Minute.ToString
+        If CheckBox_timer_backup.Checked = True And ComboBox_backup_h.Text + ComboBox_backup_m.Text = time_hm Then
+
+            Dim bakdatestr As String
+            bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
+            If RadioButton_system_x86.Checked = True Then
+                Try
+                    Shell("mysqldump_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                Catch ex As Exception
+                End Try
+            Else
+                Try
+                    Shell("mysqldump_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                Catch ex As Exception
+                End Try
+
+            End If
+        End If
+
+
+        If CheckBox_timer_re_pvpgn.Checked = True And ComboBox_re_pvpgn_houre.Text + ComboBox_re_pvpgn_m.Text = time_hm Then
+            If CheckBox_pvpgn.Checked = True Then
+                stop_pvpgn_server()
+                run_pvpgn_server()
+            End If
+
+            If CheckBox_d2cs.Checked = True Then
+                stop_d2cs_server()
+                run_d2cs_server()
+            End If
+
+            If CheckBox_d2dbs.Checked = True Then
+                stop_d2dbs_server()
+                run_d2dbs_server()
+            End If
+
+            If CheckBox_d2gs.Checked = True Then
+                stop_d2gs_server()
+                run_d2gs_server()
+            End If
+            shuaxin()
+        End If
+    End Sub
+
+   
 End Class
