@@ -346,27 +346,7 @@ Public Class Form1
         My.Computer.FileSystem.DeleteFile("temp.txt")
     End Sub
 
-    Private Sub Button34_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
-        Dim bakdatestr As String
-        bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
-        If RadioButton_system_x86.Checked = True Then
-            Try
-                Shell("mysqldump_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
-                MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-        Else
-            Try
-                Shell("mysqldump_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
-                MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-
-        End If
-
-    End Sub
+    
 
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
         If RadioButton_system_x86.Checked = True Then
@@ -1041,5 +1021,42 @@ Public Class Form1
 
         End Try
 
+    End Sub
+
+
+
+
+    Private Sub ComboBox_backup_hours_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox_backup_h.TextChanged
+        If ComboBox_backup_h.Text > "23" Or ComboBox_backup_h.Text < "0" And ComboBox_backup_h.Text <> "" Then
+            ComboBox_backup_h.Text = "0"
+        End If
+    End Sub
+
+
+    Private Sub ComboBox_backup_m_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox_backup_m.SizeChanged
+        If ComboBox_backup_m.Text > "59" Or ComboBox_backup_m.Text < "0" And ComboBox_backup_m.Text <> "" Then
+            ComboBox_backup_m.Text = "0"
+        End If
+    End Sub
+
+    Private Sub Button_bak_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
+        Dim bakdatestr As String
+        bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
+        If RadioButton_system_x86.Checked = True Then
+            Try
+                Shell("mysqldump_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Else
+            Try
+                Shell("mysqldump_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+
+        End If
     End Sub
 End Class

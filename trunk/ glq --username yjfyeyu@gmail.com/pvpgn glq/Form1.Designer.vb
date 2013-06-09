@@ -22,6 +22,7 @@ Partial Class Form1
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -39,6 +40,12 @@ Partial Class Form1
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.CheckBox_backup = New System.Windows.Forms.CheckBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.ComboBox_backup_m = New System.Windows.Forms.ComboBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.ComboBox_backup_h = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button_path_bnetd_sql = New System.Windows.Forms.Button()
@@ -140,7 +147,11 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.PvpgnDataSet = New WindowsApplication1.pvpgnDataSet()
+        Me.PvpgnDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox1.SuspendLayout()
+        Me.TabPage8.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.TabPage6.SuspendLayout()
@@ -151,6 +162,8 @@ Partial Class Form1
         Me.TabControl1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.PvpgnDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PvpgnDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label8
@@ -299,6 +312,12 @@ Partial Class Form1
         '
         'TabPage8
         '
+        Me.TabPage8.Controls.Add(Me.CheckBox_backup)
+        Me.TabPage8.Controls.Add(Me.Label32)
+        Me.TabPage8.Controls.Add(Me.ComboBox_backup_m)
+        Me.TabPage8.Controls.Add(Me.Label31)
+        Me.TabPage8.Controls.Add(Me.ComboBox_backup_h)
+        Me.TabPage8.Controls.Add(Me.Label10)
         Me.TabPage8.Location = New System.Drawing.Point(4, 22)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
@@ -306,6 +325,65 @@ Partial Class Form1
         Me.TabPage8.TabIndex = 7
         Me.TabPage8.Text = "定时任务"
         Me.TabPage8.UseVisualStyleBackColor = True
+        '
+        'CheckBox_backup
+        '
+        Me.CheckBox_backup.AutoSize = True
+        Me.CheckBox_backup.Location = New System.Drawing.Point(60, 17)
+        Me.CheckBox_backup.Name = "CheckBox_backup"
+        Me.CheckBox_backup.Size = New System.Drawing.Size(48, 16)
+        Me.CheckBox_backup.TabIndex = 6
+        Me.CheckBox_backup.Text = "启用"
+        Me.CheckBox_backup.UseVisualStyleBackColor = True
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(260, 19)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(113, 12)
+        Me.Label32.TabIndex = 5
+        Me.Label32.Text = "分，自动备份数据库"
+        '
+        'ComboBox_backup_m
+        '
+        Me.ComboBox_backup_m.FormattingEnabled = True
+        Me.ComboBox_backup_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        Me.ComboBox_backup_m.Location = New System.Drawing.Point(216, 15)
+        Me.ComboBox_backup_m.MaxLength = 2
+        Me.ComboBox_backup_m.Name = "ComboBox_backup_m"
+        Me.ComboBox_backup_m.Size = New System.Drawing.Size(38, 20)
+        Me.ComboBox_backup_m.TabIndex = 4
+        Me.ComboBox_backup_m.Text = "00"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(193, 19)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(17, 12)
+        Me.Label31.TabIndex = 3
+        Me.Label31.Text = "时"
+        '
+        'ComboBox_backup_h
+        '
+        Me.ComboBox_backup_h.FormattingEnabled = True
+        Me.ComboBox_backup_h.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.ComboBox_backup_h.Location = New System.Drawing.Point(149, 15)
+        Me.ComboBox_backup_h.MaxLength = 2
+        Me.ComboBox_backup_h.Name = "ComboBox_backup_h"
+        Me.ComboBox_backup_h.Size = New System.Drawing.Size(38, 20)
+        Me.ComboBox_backup_h.TabIndex = 2
+        Me.ComboBox_backup_h.Text = "23"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(114, 19)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(29, 12)
+        Me.Label10.TabIndex = 0
+        Me.Label10.Text = "每日"
         '
         'TabPage7
         '
@@ -1347,6 +1425,21 @@ Partial Class Form1
         Me.Button3.Text = "恢复默认设置"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
+        '
+        'PvpgnDataSet
+        '
+        Me.PvpgnDataSet.DataSetName = "pvpgnDataSet"
+        Me.PvpgnDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'PvpgnDataSetBindingSource
+        '
+        Me.PvpgnDataSetBindingSource.DataSource = Me.PvpgnDataSet
+        Me.PvpgnDataSetBindingSource.Position = 0
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1369,6 +1462,8 @@ Partial Class Form1
         Me.Text = "PVPGN 管理器"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.TabPage8.ResumeLayout(False)
+        Me.TabPage8.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
@@ -1387,6 +1482,8 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.PvpgnDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PvpgnDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1508,5 +1605,14 @@ Partial Class Form1
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents ComboBox_backup_h As System.Windows.Forms.ComboBox
+    Friend WithEvents PvpgnDataSet As WindowsApplication1.pvpgnDataSet
+    Friend WithEvents PvpgnDataSetBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents ComboBox_backup_m As System.Windows.Forms.ComboBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents CheckBox_backup As System.Windows.Forms.CheckBox
+    Friend WithEvents Label32 As System.Windows.Forms.Label
 
 End Class
