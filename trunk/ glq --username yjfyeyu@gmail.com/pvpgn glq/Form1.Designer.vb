@@ -40,6 +40,7 @@ Partial Class Form1
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.Label39 = New System.Windows.Forms.Label()
         Me.Label_timer_zhuangtai = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.ComboBox_re_pvpgn_m = New System.Windows.Forms.ComboBox()
@@ -164,7 +165,6 @@ Partial Class Form1
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.PvpgnDataSet = New WindowsApplication1.pvpgnDataSet()
         Me.PvpgnDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Label39 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.TabPage7.SuspendLayout()
@@ -188,7 +188,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.16 build 26"
+        Me.Label8.Text = "Ver 0.17 build 29"
         '
         'Label9
         '
@@ -356,6 +356,15 @@ Partial Class Form1
         Me.TabPage8.Text = "定时任务"
         Me.TabPage8.UseVisualStyleBackColor = True
         '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(4, 177)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(41, 12)
+        Me.Label39.TabIndex = 33
+        Me.Label39.Text = "状态："
+        '
         'Label_timer_zhuangtai
         '
         Me.Label_timer_zhuangtai.AutoSize = True
@@ -363,12 +372,12 @@ Partial Class Form1
         Me.Label_timer_zhuangtai.Name = "Label_timer_zhuangtai"
         Me.Label_timer_zhuangtai.Size = New System.Drawing.Size(29, 12)
         Me.Label_timer_zhuangtai.TabIndex = 32
-        Me.Label_timer_zhuangtai.Text = "状态"
+        Me.Label_timer_zhuangtai.Text = "未知"
         '
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(206, 75)
+        Me.Label36.Location = New System.Drawing.Point(213, 82)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(161, 12)
         Me.Label36.TabIndex = 19
@@ -378,7 +387,7 @@ Partial Class Form1
         '
         Me.ComboBox_re_pvpgn_m.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(162, 71)
+        Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(169, 78)
         Me.ComboBox_re_pvpgn_m.MaxLength = 2
         Me.ComboBox_re_pvpgn_m.Name = "ComboBox_re_pvpgn_m"
         Me.ComboBox_re_pvpgn_m.Size = New System.Drawing.Size(37, 20)
@@ -387,7 +396,7 @@ Partial Class Form1
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(139, 75)
+        Me.Label37.Location = New System.Drawing.Point(146, 82)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(17, 12)
         Me.Label37.TabIndex = 17
@@ -397,7 +406,7 @@ Partial Class Form1
         '
         Me.ComboBox_re_pvpgn_houre.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(95, 71)
+        Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(102, 78)
         Me.ComboBox_re_pvpgn_houre.MaxLength = 2
         Me.ComboBox_re_pvpgn_houre.Name = "ComboBox_re_pvpgn_houre"
         Me.ComboBox_re_pvpgn_houre.Size = New System.Drawing.Size(37, 20)
@@ -406,7 +415,7 @@ Partial Class Form1
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(60, 75)
+        Me.Label38.Location = New System.Drawing.Point(67, 82)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(29, 12)
         Me.Label38.TabIndex = 15
@@ -415,7 +424,7 @@ Partial Class Form1
         'CheckBox_timer_re_pvpgn
         '
         Me.CheckBox_timer_re_pvpgn.AutoSize = True
-        Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(6, 73)
+        Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(13, 80)
         Me.CheckBox_timer_re_pvpgn.Name = "CheckBox_timer_re_pvpgn"
         Me.CheckBox_timer_re_pvpgn.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_re_pvpgn.TabIndex = 14
@@ -425,7 +434,7 @@ Partial Class Form1
         'CheckBox_re_jisuanji
         '
         Me.CheckBox_re_jisuanji.AutoSize = True
-        Me.CheckBox_re_jisuanji.Location = New System.Drawing.Point(377, 11)
+        Me.CheckBox_re_jisuanji.Location = New System.Drawing.Point(384, 18)
         Me.CheckBox_re_jisuanji.Name = "CheckBox_re_jisuanji"
         Me.CheckBox_re_jisuanji.Size = New System.Drawing.Size(144, 16)
         Me.CheckBox_re_jisuanji.TabIndex = 13
@@ -435,7 +444,7 @@ Partial Class Form1
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(206, 13)
+        Me.Label33.Location = New System.Drawing.Point(213, 20)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(161, 12)
         Me.Label33.TabIndex = 12
@@ -445,7 +454,7 @@ Partial Class Form1
         '
         Me.ComboBox_stop_pvpgn_m.FormattingEnabled = True
         Me.ComboBox_stop_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_stop_pvpgn_m.Location = New System.Drawing.Point(162, 9)
+        Me.ComboBox_stop_pvpgn_m.Location = New System.Drawing.Point(169, 16)
         Me.ComboBox_stop_pvpgn_m.MaxLength = 2
         Me.ComboBox_stop_pvpgn_m.Name = "ComboBox_stop_pvpgn_m"
         Me.ComboBox_stop_pvpgn_m.Size = New System.Drawing.Size(37, 20)
@@ -454,7 +463,7 @@ Partial Class Form1
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(139, 13)
+        Me.Label34.Location = New System.Drawing.Point(146, 20)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(17, 12)
         Me.Label34.TabIndex = 10
@@ -464,7 +473,7 @@ Partial Class Form1
         '
         Me.ComboBox_stop_pvpgn_houre.FormattingEnabled = True
         Me.ComboBox_stop_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_stop_pvpgn_houre.Location = New System.Drawing.Point(95, 9)
+        Me.ComboBox_stop_pvpgn_houre.Location = New System.Drawing.Point(102, 16)
         Me.ComboBox_stop_pvpgn_houre.MaxLength = 2
         Me.ComboBox_stop_pvpgn_houre.Name = "ComboBox_stop_pvpgn_houre"
         Me.ComboBox_stop_pvpgn_houre.Size = New System.Drawing.Size(37, 20)
@@ -473,7 +482,7 @@ Partial Class Form1
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(60, 13)
+        Me.Label35.Location = New System.Drawing.Point(67, 20)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(29, 12)
         Me.Label35.TabIndex = 8
@@ -482,7 +491,7 @@ Partial Class Form1
         'CheckBox_timer_stop_pvpgn
         '
         Me.CheckBox_timer_stop_pvpgn.AutoSize = True
-        Me.CheckBox_timer_stop_pvpgn.Location = New System.Drawing.Point(6, 11)
+        Me.CheckBox_timer_stop_pvpgn.Location = New System.Drawing.Point(13, 18)
         Me.CheckBox_timer_stop_pvpgn.Name = "CheckBox_timer_stop_pvpgn"
         Me.CheckBox_timer_stop_pvpgn.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_stop_pvpgn.TabIndex = 7
@@ -493,7 +502,7 @@ Partial Class Form1
         '
         Me.CheckBox_timer_backup.AutoSize = True
         Me.CheckBox_timer_backup.Enabled = False
-        Me.CheckBox_timer_backup.Location = New System.Drawing.Point(6, 42)
+        Me.CheckBox_timer_backup.Location = New System.Drawing.Point(13, 49)
         Me.CheckBox_timer_backup.Name = "CheckBox_timer_backup"
         Me.CheckBox_timer_backup.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_backup.TabIndex = 6
@@ -503,7 +512,7 @@ Partial Class Form1
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(206, 44)
+        Me.Label32.Location = New System.Drawing.Point(213, 51)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(125, 12)
         Me.Label32.TabIndex = 5
@@ -513,7 +522,7 @@ Partial Class Form1
         '
         Me.ComboBox_backup_m.FormattingEnabled = True
         Me.ComboBox_backup_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_backup_m.Location = New System.Drawing.Point(162, 40)
+        Me.ComboBox_backup_m.Location = New System.Drawing.Point(169, 47)
         Me.ComboBox_backup_m.MaxLength = 2
         Me.ComboBox_backup_m.Name = "ComboBox_backup_m"
         Me.ComboBox_backup_m.Size = New System.Drawing.Size(37, 20)
@@ -522,7 +531,7 @@ Partial Class Form1
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(139, 44)
+        Me.Label31.Location = New System.Drawing.Point(146, 51)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(17, 12)
         Me.Label31.TabIndex = 3
@@ -532,7 +541,7 @@ Partial Class Form1
         '
         Me.ComboBox_backup_h.FormattingEnabled = True
         Me.ComboBox_backup_h.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_backup_h.Location = New System.Drawing.Point(95, 40)
+        Me.ComboBox_backup_h.Location = New System.Drawing.Point(102, 47)
         Me.ComboBox_backup_h.MaxLength = 2
         Me.ComboBox_backup_h.Name = "ComboBox_backup_h"
         Me.ComboBox_backup_h.Size = New System.Drawing.Size(37, 20)
@@ -541,7 +550,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(60, 44)
+        Me.Label10.Location = New System.Drawing.Point(67, 51)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(29, 12)
         Me.Label10.TabIndex = 0
@@ -1601,15 +1610,6 @@ Partial Class Form1
         '
         Me.PvpgnDataSetBindingSource.DataSource = Me.PvpgnDataSet
         Me.PvpgnDataSetBindingSource.Position = 0
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(4, 177)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(41, 12)
-        Me.Label39.TabIndex = 33
-        Me.Label39.Text = "状态："
         '
         'Form1
         '
