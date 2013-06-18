@@ -157,7 +157,7 @@ Public Class Form1
         'End Select
         '     End If
 
-        If DateString > "2013-08-01" Then
+        If DateString > "2013-09-01" Then
             Close()
         End If
         load_config()
@@ -1211,7 +1211,7 @@ Public Class Form1
             shuaxin()
 
             If CheckBox_re_jisuanji.Checked = True Then
-                Shell("shutdown.exe /r /t 3 /c ""PvPGN管理器定时重启"" /f", AppWinStyle.Hide)
+                Shell("shutdown.exe /r /t 30 /c ""PvPGN管理器定时重启"" /f", AppWinStyle.Hide)
             End If
         End If
         '停止服务结束
