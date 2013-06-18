@@ -79,22 +79,40 @@ Public Class Form1
                 reg_config.SetValue("CheckBox_timer_backup", "0")
             End If
 
+            If CheckBox_timer_stop_pvpgn.Checked = True Then
+                reg_config.SetValue("CheckBox_timer_stop_pvpgn", "1")
+            Else
+                reg_config.SetValue("CheckBox_timer_stop_pvpgn", "0")
+            End If
+
             If CheckBox_timer_re_pvpgn.Checked = True Then
                 reg_config.SetValue("CheckBox_timer_re_pvpgn", "1")
             Else
                 reg_config.SetValue("CheckBox_timer_re_pvpgn", "0")
             End If
 
+            If CheckBox_re_jisuanji.Checked = True Then
+                reg_config.SetValue("CheckBox_re_jisuanji", "1")
+            Else
+                reg_config.SetValue("CheckBox_re_jisuanji", "0")
+            End If
+
             reg_config.SetValue("TextBox_d2_path", TextBox_d2_path.Text)
             reg_config.SetValue("TextBox_sqlbak_name", TextBox_sqlbak_name.Text)
             reg_config.SetValue("ComboBox_backup_h", ComboBox_backup_h.Text)
             reg_config.SetValue("ComboBox_backup_m", ComboBox_backup_m.Text)
-            reg_config.SetValue("ComboBox_re_pvpgn", ComboBox_re_pvpgn_houre.Text)
-            reg_config.SetValue("ComboBox_re_pvpgn.Text", ComboBox_re_pvpgn_m.Text)
+            reg_config.SetValue("ComboBox_stop_pvpgn_houre", ComboBox_stop_pvpgn_houre.Text)
+            reg_config.SetValue("ComboBox_stop_pvpgn_m", ComboBox_stop_pvpgn_m.Text)
+            reg_config.SetValue("ComboBox_re_pvpgn_houre", ComboBox_re_pvpgn_houre.Text)
+            reg_config.SetValue("ComboBox_re_pvpgn_m", ComboBox_re_pvpgn_m.Text)
 
             'regVersion.SetValue("Version", intVersion)
         End If
         reg_config.Close()
+    End Sub
+
+    Private Sub Form1_HandleDestroyed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.HandleDestroyed
+
     End Sub
 
 
@@ -159,6 +177,7 @@ Public Class Form1
             conn = New MySqlConnection(connStr)
             conn.Open()
             Button_con_to_sql.Enabled = False
+            '刷新各种按钮状态
             showbutton()
             'GetDatabases()
             'Catch ex As MySqlException
@@ -363,7 +382,7 @@ Public Class Form1
         My.Computer.FileSystem.DeleteFile("temp.txt")
     End Sub
 
-    
+
 
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
         If RadioButton_system_x86.Checked = True Then
@@ -892,6 +911,7 @@ Public Class Form1
         showbutton()
     End Sub
     Private Sub showbutton()
+        '用户管理按钮
         If TextBox_acc_username.Text <> "" And Button_con_to_sql.Enabled = False And TextBox_database_name.Text <> "" Then
             Button_set_to_admin.Enabled = True
             Button_unset_to_admin.Enabled = True
@@ -915,6 +935,9 @@ Public Class Form1
             Button_del_user.Enabled = False
             Button_set_flags.Enabled = False
         End If
+        '用户管理按钮结束
+
+        '数据库联接与否刷新按钮
         If Button_con_to_sql.Enabled = False Then
             Button_close_sql.Enabled = True
             Button_path_bnetd_sql.Enabled = True
@@ -926,7 +949,9 @@ Public Class Form1
             TextBox_sql_password.ReadOnly = True
             TextBox_sql_root.ReadOnly = True
             TextBox_sql_serverip.ReadOnly = True
+            CheckBox_timer_backup.Enabled = True
         End If
+
         If Button_con_to_sql.Enabled = True Then
             Button_path_bnetd_sql.Enabled = False
             Button_del_pvpgn_sql.Enabled = False
@@ -938,6 +963,7 @@ Public Class Form1
             TextBox_sql_root.ReadOnly = False
             TextBox_sql_serverip.ReadOnly = False
             Button_create_pvpgn_sql.Enabled = False
+            CheckBox_timer_backup.Enabled = False
 
         End If
         If Button_con_to_sql.Enabled = False And TextBox_database_name.Text = "" Then
@@ -1029,6 +1055,18 @@ Public Class Form1
                 CheckBox_timer_backup.Checked = False
             End If
 
+            If reg_config.GetValue("CheckBox_timer_stop_pvpgn", "0") = "1" Then
+                CheckBox_timer_stop_pvpgn.Checked = True
+            Else
+                CheckBox_timer_stop_pvpgn.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_re_jisuanji", "0") = "1" Then
+                CheckBox_re_jisuanji.Checked = True
+            Else
+                CheckBox_re_jisuanji.Checked = False
+            End If
+
             If reg_config.GetValue("CheckBox_timer_re_pvpgn", "0") = "1" Then
                 CheckBox_timer_re_pvpgn.Checked = True
             Else
@@ -1037,10 +1075,12 @@ Public Class Form1
 
             TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
             TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
-            ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "0")
-            ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "0")
-            ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "0")
-            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "0")
+            ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "4")
+            ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "5")
+            ComboBox_stop_pvpgn_houre.Text = reg_config.GetValue("ComboBox_stop_pvpgn_houre", "4")
+            ComboBox_stop_pvpgn_m.Text = reg_config.GetValue("ComboBox_stop_pvpgn_m", "0")
+            ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "4")
+            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "10")
 
 
             'regVersion.SetValue("Version", intVersion)
@@ -1061,10 +1101,10 @@ Public Class Form1
 
 
 
-   
 
 
-    
+
+
 
     Private Sub Button_bak_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
         Dim bakdatestr As String
@@ -1090,6 +1130,8 @@ Public Class Form1
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         Dim time_hm As String
         time_hm = Now.Hour.ToString + Now.Minute.ToString
+
+        '备份数据库
         If CheckBox_timer_backup.Checked = True And ComboBox_backup_h.Text + ComboBox_backup_m.Text = time_hm Then
 
             Dim bakdatestr As String
@@ -1097,40 +1139,144 @@ Public Class Form1
             If RadioButton_system_x86.Checked = True Then
                 Try
                     Shell("mysqldump_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "备份成功"
                 Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "备份失败"
                 End Try
             Else
                 Try
                     Shell("mysqldump_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "备份成功"
                 Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "备份失败"
                 End Try
 
             End If
         End If
+        '备份数据库结束
 
-
-        If CheckBox_timer_re_pvpgn.Checked = True And ComboBox_re_pvpgn_houre.Text + ComboBox_re_pvpgn_m.Text = time_hm Then
+        '停止服务
+        If CheckBox_timer_stop_pvpgn.Checked = True And ComboBox_stop_pvpgn_houre.Text + ComboBox_stop_pvpgn_m.Text = time_hm Then
             If CheckBox_pvpgn.Checked = True Then
-                stop_pvpgn_server()
-                run_pvpgn_server()
+                Dim sspvpgn As New ServiceController("pvpgn")
+                Try
+                    If sspvpgn.Status <> ServiceControllerStatus.Stopped Then
+                        sspvpgn.Stop()
+                        sspvpgn.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "备份失败"
+                End Try
             End If
 
             If CheckBox_d2cs.Checked = True Then
-                stop_d2cs_server()
-                run_d2cs_server()
+                Dim ssd2cs As New ServiceController(d2cs_server_string)
+                Try
+                    If ssd2cs.Status <> ServiceControllerStatus.Stopped Then
+                        ssd2cs.Stop()
+                        ssd2cs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
             End If
 
             If CheckBox_d2dbs.Checked = True Then
-                stop_d2dbs_server()
-                run_d2dbs_server()
+                Dim ssd2dbs As New ServiceController(d2dbs_server_string)
+                Try
+                    If ssd2dbs.Status <> ServiceControllerStatus.Stopped Then
+                        ssd2dbs.Stop()
+                        ssd2dbs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
             End If
 
             If CheckBox_d2gs.Checked = True Then
-                stop_d2gs_server()
-                run_d2gs_server()
+                Dim ssd2gs As New ServiceController("d2gs")
+                Try
+                    If ssd2gs.Status <> ServiceControllerStatus.Stopped Then
+                        ssd2gs.Stop()
+                        ssd2gs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
+            End If
+            shuaxin()
+
+            If CheckBox_re_jisuanji.Checked = True Then
+                Shell("shutdown.exe /r /t 3 /c ""PvPGN管理器定时重启"" /f", AppWinStyle.Hide)
+            End If
+        End If
+        '停止服务结束
+
+        '启动服务
+        If CheckBox_timer_re_pvpgn.Checked = True And ComboBox_re_pvpgn_houre.Text + ComboBox_re_pvpgn_m.Text = time_hm Then
+            If CheckBox_pvpgn.Checked = True Then
+                Dim sspvpgn As New ServiceController("pvpgn")
+                Try
+                    sspvpgn.Start()
+                    sspvpgn.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When sspvpgn.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                    Exit Sub
+                End Try
+            End If
+
+            If CheckBox_d2cs.Checked = True Then
+               Dim ssd2cs As New ServiceController(d2cs_server_string)
+                Try
+                    ssd2cs.Start()
+                    ssd2cs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When ssd2cs.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动失败"
+                    Exit Sub
+                End Try
+            End If
+
+            If CheckBox_d2dbs.Checked = True Then
+                Dim ssd2dbs As New ServiceController(d2dbs_server_string)
+                Try
+                    ssd2dbs.Start()
+                    ssd2dbs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When ssd2dbs.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动失败"
+                    Exit Sub
+                End Try
+            End If
+
+            If CheckBox_d2gs.Checked = True Then
+                Dim ssd2gs As New ServiceController("d2gs")
+                Try
+                    ssd2gs.Start()
+                    ssd2gs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When ssd2gs.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动失败"
+                    Exit Sub
+                End Try
             End If
             shuaxin()
         End If
+        '启动服务结束
+
     End Sub
 
    

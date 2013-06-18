@@ -40,12 +40,20 @@ Partial Class Form1
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
-        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label_timer_zhuangtai = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
         Me.ComboBox_re_pvpgn_m = New System.Windows.Forms.ComboBox()
-        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
         Me.ComboBox_re_pvpgn_houre = New System.Windows.Forms.ComboBox()
-        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
         Me.CheckBox_timer_re_pvpgn = New System.Windows.Forms.CheckBox()
+        Me.CheckBox_re_jisuanji = New System.Windows.Forms.CheckBox()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.ComboBox_stop_pvpgn_m = New System.Windows.Forms.ComboBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.ComboBox_stop_pvpgn_houre = New System.Windows.Forms.ComboBox()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.CheckBox_timer_stop_pvpgn = New System.Windows.Forms.CheckBox()
         Me.CheckBox_timer_backup = New System.Windows.Forms.CheckBox()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.ComboBox_backup_m = New System.Windows.Forms.ComboBox()
@@ -156,6 +164,7 @@ Partial Class Form1
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.PvpgnDataSet = New WindowsApplication1.pvpgnDataSet()
         Me.PvpgnDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label39 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.TabPage7.SuspendLayout()
@@ -318,12 +327,21 @@ Partial Class Form1
         '
         'TabPage8
         '
-        Me.TabPage8.Controls.Add(Me.Label33)
+        Me.TabPage8.Controls.Add(Me.Label39)
+        Me.TabPage8.Controls.Add(Me.Label_timer_zhuangtai)
+        Me.TabPage8.Controls.Add(Me.Label36)
         Me.TabPage8.Controls.Add(Me.ComboBox_re_pvpgn_m)
-        Me.TabPage8.Controls.Add(Me.Label34)
+        Me.TabPage8.Controls.Add(Me.Label37)
         Me.TabPage8.Controls.Add(Me.ComboBox_re_pvpgn_houre)
-        Me.TabPage8.Controls.Add(Me.Label35)
+        Me.TabPage8.Controls.Add(Me.Label38)
         Me.TabPage8.Controls.Add(Me.CheckBox_timer_re_pvpgn)
+        Me.TabPage8.Controls.Add(Me.CheckBox_re_jisuanji)
+        Me.TabPage8.Controls.Add(Me.Label33)
+        Me.TabPage8.Controls.Add(Me.ComboBox_stop_pvpgn_m)
+        Me.TabPage8.Controls.Add(Me.Label34)
+        Me.TabPage8.Controls.Add(Me.ComboBox_stop_pvpgn_houre)
+        Me.TabPage8.Controls.Add(Me.Label35)
+        Me.TabPage8.Controls.Add(Me.CheckBox_timer_stop_pvpgn)
         Me.TabPage8.Controls.Add(Me.CheckBox_timer_backup)
         Me.TabPage8.Controls.Add(Me.Label32)
         Me.TabPage8.Controls.Add(Me.ComboBox_backup_m)
@@ -338,67 +356,144 @@ Partial Class Form1
         Me.TabPage8.Text = "定时任务"
         Me.TabPage8.UseVisualStyleBackColor = True
         '
-        'Label33
+        'Label_timer_zhuangtai
         '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(260, 55)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(161, 12)
-        Me.Label33.TabIndex = 12
-        Me.Label33.Text = "分，自动重起选定站网服务。"
+        Me.Label_timer_zhuangtai.AutoSize = True
+        Me.Label_timer_zhuangtai.Location = New System.Drawing.Point(51, 177)
+        Me.Label_timer_zhuangtai.Name = "Label_timer_zhuangtai"
+        Me.Label_timer_zhuangtai.Size = New System.Drawing.Size(29, 12)
+        Me.Label_timer_zhuangtai.TabIndex = 32
+        Me.Label_timer_zhuangtai.Text = "状态"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(206, 75)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(161, 12)
+        Me.Label36.TabIndex = 19
+        Me.Label36.Text = "分，自动启动选定战网服务。"
         '
         'ComboBox_re_pvpgn_m
         '
         Me.ComboBox_re_pvpgn_m.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(216, 51)
+        Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(162, 71)
         Me.ComboBox_re_pvpgn_m.MaxLength = 2
         Me.ComboBox_re_pvpgn_m.Name = "ComboBox_re_pvpgn_m"
-        Me.ComboBox_re_pvpgn_m.Size = New System.Drawing.Size(38, 20)
-        Me.ComboBox_re_pvpgn_m.TabIndex = 11
+        Me.ComboBox_re_pvpgn_m.Size = New System.Drawing.Size(37, 20)
+        Me.ComboBox_re_pvpgn_m.TabIndex = 18
         '
-        'Label34
+        'Label37
         '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(193, 55)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(17, 12)
-        Me.Label34.TabIndex = 10
-        Me.Label34.Text = "时"
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(139, 75)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(17, 12)
+        Me.Label37.TabIndex = 17
+        Me.Label37.Text = "时"
         '
         'ComboBox_re_pvpgn_houre
         '
         Me.ComboBox_re_pvpgn_houre.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(149, 51)
+        Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(95, 71)
         Me.ComboBox_re_pvpgn_houre.MaxLength = 2
         Me.ComboBox_re_pvpgn_houre.Name = "ComboBox_re_pvpgn_houre"
-        Me.ComboBox_re_pvpgn_houre.Size = New System.Drawing.Size(38, 20)
-        Me.ComboBox_re_pvpgn_houre.TabIndex = 9
+        Me.ComboBox_re_pvpgn_houre.Size = New System.Drawing.Size(37, 20)
+        Me.ComboBox_re_pvpgn_houre.TabIndex = 16
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(60, 75)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(29, 12)
+        Me.Label38.TabIndex = 15
+        Me.Label38.Text = "每日"
+        '
+        'CheckBox_timer_re_pvpgn
+        '
+        Me.CheckBox_timer_re_pvpgn.AutoSize = True
+        Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(6, 73)
+        Me.CheckBox_timer_re_pvpgn.Name = "CheckBox_timer_re_pvpgn"
+        Me.CheckBox_timer_re_pvpgn.Size = New System.Drawing.Size(48, 16)
+        Me.CheckBox_timer_re_pvpgn.TabIndex = 14
+        Me.CheckBox_timer_re_pvpgn.Text = "启用"
+        Me.CheckBox_timer_re_pvpgn.UseVisualStyleBackColor = True
+        '
+        'CheckBox_re_jisuanji
+        '
+        Me.CheckBox_re_jisuanji.AutoSize = True
+        Me.CheckBox_re_jisuanji.Location = New System.Drawing.Point(377, 11)
+        Me.CheckBox_re_jisuanji.Name = "CheckBox_re_jisuanji"
+        Me.CheckBox_re_jisuanji.Size = New System.Drawing.Size(144, 16)
+        Me.CheckBox_re_jisuanji.TabIndex = 13
+        Me.CheckBox_re_jisuanji.Text = "停止服务后重启计算机"
+        Me.CheckBox_re_jisuanji.UseVisualStyleBackColor = True
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(206, 13)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(161, 12)
+        Me.Label33.TabIndex = 12
+        Me.Label33.Text = "分，自动停止选定战网服务。"
+        '
+        'ComboBox_stop_pvpgn_m
+        '
+        Me.ComboBox_stop_pvpgn_m.FormattingEnabled = True
+        Me.ComboBox_stop_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        Me.ComboBox_stop_pvpgn_m.Location = New System.Drawing.Point(162, 9)
+        Me.ComboBox_stop_pvpgn_m.MaxLength = 2
+        Me.ComboBox_stop_pvpgn_m.Name = "ComboBox_stop_pvpgn_m"
+        Me.ComboBox_stop_pvpgn_m.Size = New System.Drawing.Size(37, 20)
+        Me.ComboBox_stop_pvpgn_m.TabIndex = 11
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(139, 13)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(17, 12)
+        Me.Label34.TabIndex = 10
+        Me.Label34.Text = "时"
+        '
+        'ComboBox_stop_pvpgn_houre
+        '
+        Me.ComboBox_stop_pvpgn_houre.FormattingEnabled = True
+        Me.ComboBox_stop_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.ComboBox_stop_pvpgn_houre.Location = New System.Drawing.Point(95, 9)
+        Me.ComboBox_stop_pvpgn_houre.MaxLength = 2
+        Me.ComboBox_stop_pvpgn_houre.Name = "ComboBox_stop_pvpgn_houre"
+        Me.ComboBox_stop_pvpgn_houre.Size = New System.Drawing.Size(37, 20)
+        Me.ComboBox_stop_pvpgn_houre.TabIndex = 9
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(114, 55)
+        Me.Label35.Location = New System.Drawing.Point(60, 13)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(29, 12)
         Me.Label35.TabIndex = 8
         Me.Label35.Text = "每日"
         '
-        'CheckBox_timer_re_pvpgn
+        'CheckBox_timer_stop_pvpgn
         '
-        Me.CheckBox_timer_re_pvpgn.AutoSize = True
-        Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(60, 51)
-        Me.CheckBox_timer_re_pvpgn.Name = "CheckBox_timer_re_pvpgn"
-        Me.CheckBox_timer_re_pvpgn.Size = New System.Drawing.Size(48, 16)
-        Me.CheckBox_timer_re_pvpgn.TabIndex = 7
-        Me.CheckBox_timer_re_pvpgn.Text = "启用"
-        Me.CheckBox_timer_re_pvpgn.UseVisualStyleBackColor = True
+        Me.CheckBox_timer_stop_pvpgn.AutoSize = True
+        Me.CheckBox_timer_stop_pvpgn.Location = New System.Drawing.Point(6, 11)
+        Me.CheckBox_timer_stop_pvpgn.Name = "CheckBox_timer_stop_pvpgn"
+        Me.CheckBox_timer_stop_pvpgn.Size = New System.Drawing.Size(48, 16)
+        Me.CheckBox_timer_stop_pvpgn.TabIndex = 7
+        Me.CheckBox_timer_stop_pvpgn.Text = "启用"
+        Me.CheckBox_timer_stop_pvpgn.UseVisualStyleBackColor = True
         '
         'CheckBox_timer_backup
         '
         Me.CheckBox_timer_backup.AutoSize = True
-        Me.CheckBox_timer_backup.Location = New System.Drawing.Point(60, 17)
+        Me.CheckBox_timer_backup.Enabled = False
+        Me.CheckBox_timer_backup.Location = New System.Drawing.Point(6, 42)
         Me.CheckBox_timer_backup.Name = "CheckBox_timer_backup"
         Me.CheckBox_timer_backup.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_backup.TabIndex = 6
@@ -408,7 +503,7 @@ Partial Class Form1
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(260, 19)
+        Me.Label32.Location = New System.Drawing.Point(206, 44)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(125, 12)
         Me.Label32.TabIndex = 5
@@ -418,16 +513,16 @@ Partial Class Form1
         '
         Me.ComboBox_backup_m.FormattingEnabled = True
         Me.ComboBox_backup_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_backup_m.Location = New System.Drawing.Point(216, 15)
+        Me.ComboBox_backup_m.Location = New System.Drawing.Point(162, 40)
         Me.ComboBox_backup_m.MaxLength = 2
         Me.ComboBox_backup_m.Name = "ComboBox_backup_m"
-        Me.ComboBox_backup_m.Size = New System.Drawing.Size(38, 20)
+        Me.ComboBox_backup_m.Size = New System.Drawing.Size(37, 20)
         Me.ComboBox_backup_m.TabIndex = 4
         '
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(193, 19)
+        Me.Label31.Location = New System.Drawing.Point(139, 44)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(17, 12)
         Me.Label31.TabIndex = 3
@@ -437,16 +532,16 @@ Partial Class Form1
         '
         Me.ComboBox_backup_h.FormattingEnabled = True
         Me.ComboBox_backup_h.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_backup_h.Location = New System.Drawing.Point(149, 15)
+        Me.ComboBox_backup_h.Location = New System.Drawing.Point(95, 40)
         Me.ComboBox_backup_h.MaxLength = 2
         Me.ComboBox_backup_h.Name = "ComboBox_backup_h"
-        Me.ComboBox_backup_h.Size = New System.Drawing.Size(38, 20)
+        Me.ComboBox_backup_h.Size = New System.Drawing.Size(37, 20)
         Me.ComboBox_backup_h.TabIndex = 2
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(114, 19)
+        Me.Label10.Location = New System.Drawing.Point(60, 44)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(29, 12)
         Me.Label10.TabIndex = 0
@@ -1507,6 +1602,15 @@ Partial Class Form1
         Me.PvpgnDataSetBindingSource.DataSource = Me.PvpgnDataSet
         Me.PvpgnDataSetBindingSource.Position = 0
         '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(4, 177)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(41, 12)
+        Me.Label39.TabIndex = 33
+        Me.Label39.Text = "状态："
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1682,10 +1786,19 @@ Partial Class Form1
     Friend WithEvents CheckBox_timer_backup As System.Windows.Forms.CheckBox
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents Label33 As System.Windows.Forms.Label
-    Friend WithEvents ComboBox_re_pvpgn_m As System.Windows.Forms.ComboBox
+    Friend WithEvents ComboBox_stop_pvpgn_m As System.Windows.Forms.ComboBox
     Friend WithEvents Label34 As System.Windows.Forms.Label
-    Friend WithEvents ComboBox_re_pvpgn_houre As System.Windows.Forms.ComboBox
+    Friend WithEvents ComboBox_stop_pvpgn_houre As System.Windows.Forms.ComboBox
     Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents CheckBox_timer_stop_pvpgn As System.Windows.Forms.CheckBox
+    Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox_re_pvpgn_m As System.Windows.Forms.ComboBox
+    Friend WithEvents Label37 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox_re_pvpgn_houre As System.Windows.Forms.ComboBox
+    Friend WithEvents Label38 As System.Windows.Forms.Label
     Friend WithEvents CheckBox_timer_re_pvpgn As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox_re_jisuanji As System.Windows.Forms.CheckBox
+    Friend WithEvents Label_timer_zhuangtai As System.Windows.Forms.Label
+    Friend WithEvents Label39 As System.Windows.Forms.Label
 
 End Class

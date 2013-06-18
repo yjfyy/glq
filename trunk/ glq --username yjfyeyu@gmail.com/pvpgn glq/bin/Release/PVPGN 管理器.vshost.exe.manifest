@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="129024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="135168">
       <assemblyIdentity name="PVPGN 管理器" version="0.0.0.3" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>l0XuhTrJxxXlH7gSGOyKVw3lCzc=</dsig:DigestValue>
+        <dsig:DigestValue>2IKCL+9WbHI5QTzevreOCJOt0Mc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -120,13 +120,13 @@
       <dsig:DigestValue>RqXN8aRatCgqZT10fe1N8XrRrG0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PvPGN管理器说明.txt" size="1962">
+  <file name="PvPGN管理器说明.txt" size="2293">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>5TJv1Xz152smXcXHOCy+U/AFprQ=</dsig:DigestValue>
+      <dsig:DigestValue>qzpDeiCE6CBhwgw5uyDWFmMZXm0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="sqlbak\1.txt" size="0">
