@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="135168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PVPGN 管理器.exe" size="140800">
       <assemblyIdentity name="PVPGN 管理器" version="0.0.0.3" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>QhRlgfTITfCGk3UZTj81z5R13X4=</dsig:DigestValue>
+        <dsig:DigestValue>xSVDO3o9Vt5khgIm56LkZ02W/H4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -97,6 +97,19 @@ Public Class Form1
                 reg_config.SetValue("CheckBox_re_jisuanji", "0")
             End If
 
+            If CheckBox_timer_autolock.Checked = True Then
+                reg_config.SetValue("CheckBox_timer_autolock", "1")
+            Else
+                reg_config.SetValue("CheckBox_timer_autolock", "0")
+            End If
+
+            If CheckBox_save_password.Checked = True Then
+                reg_config.SetValue("CheckBox_save_password", "1")
+                reg_config.SetValue("TextBox_sql_password", TextBox_sql_password.Text)
+            Else
+                reg_config.SetValue("CheckBox_save_password", "0")
+            End If
+
             reg_config.SetValue("TextBox_d2_path", TextBox_d2_path.Text)
             reg_config.SetValue("TextBox_sqlbak_name", TextBox_sqlbak_name.Text)
             reg_config.SetValue("ComboBox_backup_h", ComboBox_backup_h.Text)
@@ -105,14 +118,12 @@ Public Class Form1
             reg_config.SetValue("ComboBox_stop_pvpgn_m", ComboBox_stop_pvpgn_m.Text)
             reg_config.SetValue("ComboBox_re_pvpgn_houre", ComboBox_re_pvpgn_houre.Text)
             reg_config.SetValue("ComboBox_re_pvpgn_m", ComboBox_re_pvpgn_m.Text)
-
+            reg_config.SetValue("ComboBox_auto_lock_houre", ComboBox_auto_lock_houre.Text)
+            reg_config.SetValue("ComboBox_auto_lock_m", ComboBox_auto_lock_m.Text)
+            reg_config.SetValue("TextBox_auto_lock_day", TextBox_auto_lock_day.Text)
             'regVersion.SetValue("Version", intVersion)
         End If
         reg_config.Close()
-    End Sub
-
-    Private Sub Form1_HandleDestroyed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.HandleDestroyed
-
     End Sub
 
 
@@ -163,7 +174,34 @@ Public Class Form1
         load_config()
         d2gsver()
         shuaxin()
+        '自动连接数据库
+        If CheckBox_save_password.Checked = True Then
+            If Not conn Is Nothing Then conn.Close()
+            Dim connStr As String
+            connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false", _
+        TextBox_sql_serverip.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
+            Try
+                conn = New MySqlConnection(connStr)
+                conn.Open()
+                Button_con_to_sql.Enabled = False
+                '刷新各种按钮状态
+                showbutton()
+                'GetDatabases()
+                'Catch ex As MySqlException
+                '
+            Catch ex As MySql.Data.MySqlClient.MySqlException
+                'Select Case ex.Number
+                ' Case 0
+                ' MessageBox.Show("账号密码不对")
+                ' Case 1042
+                '  MessageBox.Show("找不到服务器")
 
+                ' End Select
+                'MessageBox.Show(ex.Number)
+                'MessageBox.Show(ex.Message)
+            End Try
+        End If
+        '自动连接数据库结束
 
     End Sub
 
@@ -950,6 +988,7 @@ Public Class Form1
             TextBox_sql_root.ReadOnly = True
             TextBox_sql_serverip.ReadOnly = True
             CheckBox_timer_backup.Enabled = True
+            CheckBox_timer_autolock.Enabled = True
         End If
 
         If Button_con_to_sql.Enabled = True Then
@@ -964,6 +1003,7 @@ Public Class Form1
             TextBox_sql_serverip.ReadOnly = False
             Button_create_pvpgn_sql.Enabled = False
             CheckBox_timer_backup.Enabled = False
+            CheckBox_timer_autolock.Enabled = False
 
         End If
         If Button_con_to_sql.Enabled = False And TextBox_database_name.Text = "" Then
@@ -1073,6 +1113,19 @@ Public Class Form1
                 CheckBox_timer_re_pvpgn.Checked = False
             End If
 
+            If reg_config.GetValue("CheckBox_timer_autolock", "0") = "1" Then
+                CheckBox_timer_autolock.Checked = True
+            Else
+                CheckBox_timer_autolock.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_save_password", "0") = "1" Then
+                CheckBox_save_password.Checked = True
+                TextBox_sql_password.Text = reg_config.GetValue("TextBox_sql_password", "")
+            Else
+                CheckBox_save_password.Checked = False
+            End If
+
             TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
             TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
             ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "4")
@@ -1080,7 +1133,10 @@ Public Class Form1
             ComboBox_stop_pvpgn_houre.Text = reg_config.GetValue("ComboBox_stop_pvpgn_houre", "4")
             ComboBox_stop_pvpgn_m.Text = reg_config.GetValue("ComboBox_stop_pvpgn_m", "0")
             ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "4")
-            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "10")
+            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "15")
+            ComboBox_auto_lock_houre.Text = reg_config.GetValue("ComboBox_auto_lock_houre", "4")
+            ComboBox_auto_lock_m.Text = reg_config.GetValue("ComboBox_auto_lock_m", "10")
+            TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
 
 
             'regVersion.SetValue("Version", intVersion)
@@ -1277,7 +1333,36 @@ Public Class Form1
         End If
         '启动服务结束
 
+        '锁定用户
+        If CheckBox_timer_autolock.Checked = True And ComboBox_auto_lock_houre.Text + ComboBox_auto_lock_m.Text = time_hm Then
+            Dim d1970 As New System.DateTime(1970, 1, 1, 0, 0, 0, 0)
+            Dim iSeconds As Long
+            iSeconds = (Now.Ticks - d1970.Ticks) / 10000000
+            Dim lock_day_to_m As Long
+            lock_day_to_m = Val(TextBox_auto_lock_day.Text) * 24 * 60 * 60
+            Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+            Dim set_lockk_str As String
+            set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE ('{0}' - `acct_lastlogin_time` > '{1}') LIMIT 1000", iSeconds, lock_day_to_m)
+            Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
+            selectpvpgn.ExecuteNonQuery()
+            set_lockk.ExecuteNonQuery()
+            Label_timer_zhuangtai.Text = "于" + time_hm + "执行锁定任务。"
+        End If
+
+        '锁定用户停止
+
+
     End Sub
 
-   
+    Private Sub TextBox_auto_lock_day_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox_auto_lock_day.KeyUp
+        aa = TextBox_auto_lock_day.Text
+        If Not IsNumeric(TextBox_auto_lock_day.Text) Then
+            MsgBox("只能输入数字")
+            TextBox_auto_lock_day.Text = ""
+            TextBox_auto_lock_day.Refresh()
+        Else
+            TextBox_auto_lock_day.Text = aa
+        End If
+    End Sub
+
 End Class
