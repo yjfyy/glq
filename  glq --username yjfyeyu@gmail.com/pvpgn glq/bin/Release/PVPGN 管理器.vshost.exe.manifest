@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>xSVDO3o9Vt5khgIm56LkZ02W/H4=</dsig:DigestValue>
+        <dsig:DigestValue>hCnbdhJgaF+y4kuO2tYwcLqKluM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -120,13 +120,13 @@
       <dsig:DigestValue>RqXN8aRatCgqZT10fe1N8XrRrG0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PvPGN管理器说明.txt" size="2370">
+  <file name="PvPGN管理器说明.txt" size="2530">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>KKSfR4lT9ONLAF//u2DGfrAmTg8=</dsig:DigestValue>
+      <dsig:DigestValue>kL1PK5FGrrSidTKRxpU7T60Y1oM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="shutdown.exe" size="33280">
