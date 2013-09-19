@@ -17,6 +17,13 @@ Public Class Form1
     Dim cb As MySqlCommandBuilder
     Dim d2cs_server_string As String
     Dim d2dbs_server_string As String
+    Dim flag1 As String = "0"
+    Dim flag2 As String = "0"
+    Dim flag3 As String = "0"
+    Dim flag4 As String = "0"
+    Dim flag5 As String = "0"
+    Dim flag6 As String = "0"
+    Dim flag7 As String = "0"
 
     Private Sub Form1_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Dim reg_path = "SOFTWARE\\PvPGN GLQ"
@@ -41,13 +48,13 @@ Public Class Form1
             End If
 
             reg_config.SetValue("TextBox_acc_username", TextBox_acc_username.Text)
-            reg_config.SetValue("ComboBox_flags", ComboBox_flags.Text)
+            'reg_config.SetValue("ComboBox_flags", flag_no7.Text)
 
-            If CheckBox_0x20.Checked = True Then
-                reg_config.SetValue("CheckBox_0x20", "1")
-            Else
-                reg_config.SetValue("CheckBox_0x20", "0")
-            End If
+            'If CheckBox_0x20.Checked = True Then
+            'reg_config.SetValue("CheckBox_0x20", "1")
+            ' Else
+            ' reg_config.SetValue("CheckBox_0x20", "0")
+            'End If
 
             If CheckBox_pvpgn.Checked = True Then
                 reg_config.SetValue("CheckBox_pvpgn", "1")
@@ -168,7 +175,7 @@ Public Class Form1
         'End Select
         '     End If
 
-        If DateString > "2013-09-01" Then
+        If DateString > "2014-12-30" Then
             Close()
         End If
         load_config()
@@ -685,7 +692,7 @@ Public Class Form1
 
 
     Private Sub Button_set_to_admin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_to_admin.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim setadminstr As String
         Dim setcommandgroupsstr As String
         Dim setflagsstr As String
@@ -703,13 +710,13 @@ Public Class Form1
     End Sub
 
     Private Sub Button_unset_to_admin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_to_admin.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim unsetadminstr As String
         Dim setcommandgroupsstr As String
         Dim setflagsstr As String
         unsetadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='false' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='NULL' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim unsetadmin As New MySqlCommand(unsetadminstr, conn)
         Dim setcommandgroups As New MySqlCommand(setcommandgroupsstr, conn)
         Dim setflags As New MySqlCommand(setflagsstr, conn)
@@ -765,41 +772,13 @@ Public Class Form1
 
 
     Private Sub Button_set_flags_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_flags.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim setflagsstr As String
-        If CheckBox_0x20.Checked = False Then
-            Select Case ComboBox_flags.Text
-                Case "0x0 职业形象"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x1 暴雪官员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x2 频道管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='2' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x4 公告员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='4' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x8 战网管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case Else
-                    MsgBox("请选择正确代码")
-                    Exit Sub
-            End Select
-        Else
-            Select Case ComboBox_flags.Text
-                Case "0x0 职业形象"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='32' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x1 暴雪官员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='33' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x2 频道管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='34' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x4 公告员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='36' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case "0x8 战网管理员"
-                    setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='40' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-                Case Else
-                    MsgBox("请选择正确代码")
-                    Exit Sub
-            End Select
-        End If
+
+        '转换flag_no.text字符为数字，再视作16进制转换为10进制
+        Dim flagno = (Str("&H" & Val(flag_no.Text)))
+
+        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1",flagno, TextBox_acc_username.Text)
         Dim setflags As New MySqlCommand(setflagsstr, conn)
         selectpvpgn.ExecuteNonQuery()
         Try
@@ -861,7 +840,7 @@ Public Class Form1
 
 
     Private Sub Button_set_to_op_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_to_op.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_op_str As String
         Dim set_commandgroups_str As String
         Dim set_flags_str As String
@@ -879,13 +858,13 @@ Public Class Form1
     End Sub
 
     Private Sub Button_unset_to_op_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_to_op.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim unset_op_str As String
         Dim set_commandgroups_str As String
         Dim set_flags_str As String
         unset_op_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_operator`='false' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         set_commandgroups_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='NULL' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim unset_op As New MySqlCommand(unset_op_str, conn)
         Dim set_commandgroups As New MySqlCommand(set_commandgroups_str, conn)
         Dim set_flags As New MySqlCommand(set_flags_str, conn)
@@ -898,7 +877,7 @@ Public Class Form1
 
 
     Private Sub Button_lockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_lockk.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_lockk_str As String
         set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
@@ -908,7 +887,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button_unlockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_lockk.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_unlockk_str As String
         set_unlockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_unlockk As New MySqlCommand(set_unlockk_str, conn)
@@ -918,7 +897,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button_mute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_mute.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_mute_str As String
         set_mute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_mute As New MySqlCommand(set_mute_str, conn)
@@ -928,7 +907,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button_unmute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_mute.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_unmute_str As String
         set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_unmute As New MySqlCommand(set_unmute_str, conn)
@@ -1058,12 +1037,13 @@ Public Class Form1
                 RadioButton_d2_110.Checked = True
             End If
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
-            ComboBox_flags.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
-            If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
-                CheckBox_0x20.Checked = True
-            Else
-                CheckBox_0x20.Checked = False
-            End If
+
+            'flag_no7.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
+            'If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
+            'CheckBox_0x20.Checked = True
+            'Else
+            'CheckBox_0x20.Checked = False
+            'End If
 
             If reg_config.GetValue("CheckBox_pvpgn", "1") = "1" Then
                 CheckBox_pvpgn.Checked = True
@@ -1340,7 +1320,7 @@ Public Class Form1
             iSeconds = (Now.Ticks - d1970.Ticks) / 10000000
             Dim lock_day_to_m As Long
             lock_day_to_m = Val(TextBox_auto_lock_day.Text) * 24 * 60 * 60
-            Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+            Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
             Dim set_lockk_str As String
             set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE ('{0}' - `acct_lastlogin_time` > '{1}') LIMIT 1000", iSeconds, lock_day_to_m)
             Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
@@ -1365,4 +1345,134 @@ Public Class Form1
         End If
     End Sub
 
+
+    Private Sub TabPage1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabPage1.Click
+
+    End Sub
+
+    Private Sub ComboBox5_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no5.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no1.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub flag_no1_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no1.SelectedValueChanged
+        If flag_no1.Text = "0x200000 PGL玩家" Then
+            flag1 = "2"
+        Else
+            flag1 = "0"
+        End If
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+
+    Private Sub flag_no2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no2.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub flag_no2_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no2.SelectedValueChanged
+        Select Case flag_no2.Text
+            Case "0x0100000 GF官员"
+                flag2 = "1"
+            Case "0x0200000 GF玩家"
+                flag2 = "2"
+            Case Else
+                flag2 = "0"
+        End Select
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+    Private Sub flag_no3_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no3.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub flag_no3_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no3.SelectedValueChanged
+        Select Case flag_no3.Text
+            Case "0x0010000 KBK新手"
+                flag3 = "1"
+            Case "0x0020000 White KBK (1 bar)"
+                flag3 = "2"
+            Case Else
+                flag3 = 0
+        End Select
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+    Private Sub flag_no4_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no4.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub flag_no4_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no4.SelectedValueChanged
+        Select Case flag_no4.Text
+            Case "0x0001000 WCG官员"
+                flag4 = "1"
+            Case "0x0002000 KBK单人"
+                flag4 = "2"
+            Case Else
+                flag4 = "0"
+        End Select
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+    Private Sub flag_no5_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no5.SelectedValueChanged
+        Select Case flag_no5.Text
+            Case "0x0000100 开启警报"
+                flag5 = "1"
+            Case "0x0000200 PGL玩家"
+                flag5 = "2"
+            Case "0x0000400 PGL官员"
+                flag5 = "4"
+            Case "0x0000800 KBK玩家"
+                flag5 = "8"
+            Case Else
+                flag5 = "0"
+        End Select
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+    Private Sub flag_no6_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no6.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub flag_no6_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no6.SelectedValueChanged
+        Select Case flag_no6.Text
+            Case "0x0000010 不支持UDP"
+                flag6 = "1"
+            Case "0x0000020 光环（压制）"
+                flag6 = "2"
+            Case "0x0000040 特别来宾"
+                flag6 = "4"
+            Case "0x0000080 未知（测试）"
+                flag6 = "8"
+            Case Else
+                flag6 = "0"
+        End Select
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+    Private Sub flag_no7_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no7.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub flag_no7_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no7.SelectedValueChanged
+        Select Case flag_no7.Text
+            Case "0x0000001 暴雪代表"
+                flag7 = "1"
+            Case "0x0000002 频道管理员"
+                flag7 = "2"
+            Case "0x0000004 公告员"
+                flag7 = "4"
+            Case "0x0000008 战网管理员"
+                flag7 = "8"
+            Case Else
+                flag7 = "0"
+        End Select
+        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    End Sub
+
+    Private Sub flag_no_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no.Click
+
+    End Sub
 End Class
