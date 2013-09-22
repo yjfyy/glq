@@ -146,6 +146,7 @@ Partial Class Form1
         Me.Button_restart_d2cs = New System.Windows.Forms.Button()
         Me.Button_restart_pvpgn = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBox_guanghuan = New System.Windows.Forms.CheckBox()
         Me.flag_no = New System.Windows.Forms.Label()
         Me.flag_no6 = New System.Windows.Forms.ComboBox()
         Me.flag_no5 = New System.Windows.Forms.ComboBox()
@@ -203,7 +204,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.18 build 32"
+        Me.Label8.Text = "Ver 0.20 build 34"
         '
         'Label9
         '
@@ -1436,6 +1437,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBox_guanghuan)
         Me.TabPage1.Controls.Add(Me.flag_no)
         Me.TabPage1.Controls.Add(Me.flag_no6)
         Me.TabPage1.Controls.Add(Me.flag_no5)
@@ -1465,84 +1467,101 @@ Partial Class Form1
         Me.TabPage1.Text = "用户管理"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CheckBox_guanghuan
+        '
+        Me.CheckBox_guanghuan.AutoSize = True
+        Me.CheckBox_guanghuan.Location = New System.Drawing.Point(197, 117)
+        Me.CheckBox_guanghuan.Name = "CheckBox_guanghuan"
+        Me.CheckBox_guanghuan.Size = New System.Drawing.Size(72, 16)
+        Me.CheckBox_guanghuan.TabIndex = 54
+        Me.CheckBox_guanghuan.Text = "光环特效"
+        Me.CheckBox_guanghuan.UseVisualStyleBackColor = True
+        '
         'flag_no
         '
         Me.flag_no.AutoSize = True
-        Me.flag_no.Location = New System.Drawing.Point(82, 104)
+        Me.flag_no.Location = New System.Drawing.Point(65, 163)
         Me.flag_no.Name = "flag_no"
         Me.flag_no.Size = New System.Drawing.Size(47, 12)
         Me.flag_no.TabIndex = 53
         Me.flag_no.Text = "0000000"
+        Me.flag_no.Visible = False
         '
         'flag_no6
         '
         Me.flag_no6.FormattingEnabled = True
         Me.flag_no6.Items.AddRange(New Object() {"0x0000000 默认", "0x0000010 不支持UDP", "0x0000020 光环（压制）", "0x0000040 特别来宾", "0x0000080 未知（测试）"})
-        Me.flag_no6.Location = New System.Drawing.Point(270, 141)
+        Me.flag_no6.Location = New System.Drawing.Point(397, 160)
         Me.flag_no6.Name = "flag_no6"
-        Me.flag_no6.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no6.Size = New System.Drawing.Size(49, 20)
         Me.flag_no6.TabIndex = 52
         Me.flag_no6.Text = "第六位"
+        Me.flag_no6.Visible = False
         '
         'flag_no5
         '
         Me.flag_no5.FormattingEnabled = True
         Me.flag_no5.Items.AddRange(New Object() {"0x0000000 默认", "0x0000100 开启警报", "0x0000200 PGL玩家", "0x0000400 PGL官员", "0x0000800 KBK玩家"})
-        Me.flag_no5.Location = New System.Drawing.Point(142, 141)
+        Me.flag_no5.Location = New System.Drawing.Point(342, 160)
         Me.flag_no5.Name = "flag_no5"
-        Me.flag_no5.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no5.Size = New System.Drawing.Size(49, 20)
         Me.flag_no5.TabIndex = 51
         Me.flag_no5.Text = "第五位"
+        Me.flag_no5.Visible = False
         '
         'flag_no4
         '
         Me.flag_no4.FormattingEnabled = True
         Me.flag_no4.Items.AddRange(New Object() {"0x0000000 默认", "0x0001000 WCG官员", "0x0002000 KBK单人"})
-        Me.flag_no4.Location = New System.Drawing.Point(14, 141)
+        Me.flag_no4.Location = New System.Drawing.Point(287, 160)
         Me.flag_no4.Name = "flag_no4"
-        Me.flag_no4.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no4.Size = New System.Drawing.Size(49, 20)
         Me.flag_no4.TabIndex = 50
         Me.flag_no4.Text = "第四位"
+        Me.flag_no4.Visible = False
         '
         'flag_no3
         '
         Me.flag_no3.FormattingEnabled = True
         Me.flag_no3.Items.AddRange(New Object() {"0x0000000 默认", "0x0010000 KBK新手", "0x0020000 White KBK (1 bar)"})
-        Me.flag_no3.Location = New System.Drawing.Point(398, 101)
+        Me.flag_no3.Location = New System.Drawing.Point(232, 160)
         Me.flag_no3.Name = "flag_no3"
-        Me.flag_no3.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no3.Size = New System.Drawing.Size(49, 20)
         Me.flag_no3.TabIndex = 49
         Me.flag_no3.Text = "第三位"
+        Me.flag_no3.Visible = False
         '
         'flag_no2
         '
         Me.flag_no2.FormattingEnabled = True
         Me.flag_no2.Items.AddRange(New Object() {"0x0000000 默认", "0x0100000 GF官员", "0x0200000 GF玩家"})
-        Me.flag_no2.Location = New System.Drawing.Point(270, 101)
+        Me.flag_no2.Location = New System.Drawing.Point(173, 160)
         Me.flag_no2.Name = "flag_no2"
-        Me.flag_no2.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no2.Size = New System.Drawing.Size(49, 20)
         Me.flag_no2.TabIndex = 48
         Me.flag_no2.Text = "第二位"
+        Me.flag_no2.Visible = False
         '
         'flag_no1
         '
         Me.flag_no1.FormattingEnabled = True
         Me.flag_no1.Items.AddRange(New Object() {"0x000000 默认", "0x200000 PGL玩家"})
-        Me.flag_no1.Location = New System.Drawing.Point(142, 101)
+        Me.flag_no1.Location = New System.Drawing.Point(118, 160)
         Me.flag_no1.Name = "flag_no1"
-        Me.flag_no1.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no1.Size = New System.Drawing.Size(49, 20)
         Me.flag_no1.TabIndex = 47
         Me.flag_no1.Text = "第一位"
+        Me.flag_no1.Visible = False
         '
         'flag_no7
         '
         Me.flag_no7.FormattingEnabled = True
-        Me.flag_no7.Items.AddRange(New Object() {"0x0000000 职业形象", "0x0000001 暴雪代表", "0x0000002 频道管理员", "0x0000004 公告员", "0x0000008 战网管理员"})
-        Me.flag_no7.Location = New System.Drawing.Point(398, 141)
+        Me.flag_no7.Items.AddRange(New Object() {"默认职业形象", "暴雪代表", "频道管理员", "公告员", "战网管理员", "官员"})
+        Me.flag_no7.Location = New System.Drawing.Point(93, 115)
         Me.flag_no7.Name = "flag_no7"
-        Me.flag_no7.Size = New System.Drawing.Size(122, 20)
+        Me.flag_no7.Size = New System.Drawing.Size(98, 20)
         Me.flag_no7.TabIndex = 45
-        Me.flag_no7.Text = "第七位"
+        Me.flag_no7.Text = "请选择"
         '
         'Button_unset_mute
         '
@@ -1607,11 +1626,11 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 104)
+        Me.Label7.Location = New System.Drawing.Point(22, 118)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(77, 12)
+        Me.Label7.Size = New System.Drawing.Size(65, 12)
         Me.Label7.TabIndex = 37
-        Me.Label7.Text = "形象代码：0x"
+        Me.Label7.Text = "形象代码："
         '
         'TextBox_acc_username
         '
@@ -1623,7 +1642,7 @@ Partial Class Form1
         'Button_set_flags
         '
         Me.Button_set_flags.Enabled = False
-        Me.Button_set_flags.Location = New System.Drawing.Point(416, 167)
+        Me.Button_set_flags.Location = New System.Drawing.Point(287, 113)
         Me.Button_set_flags.Name = "Button_set_flags"
         Me.Button_set_flags.Size = New System.Drawing.Size(75, 23)
         Me.Button_set_flags.TabIndex = 35
@@ -1989,5 +2008,6 @@ Partial Class Form1
     Friend WithEvents flag_no1 As System.Windows.Forms.ComboBox
     Friend WithEvents flag_no6 As System.Windows.Forms.ComboBox
     Friend WithEvents flag_no As System.Windows.Forms.Label
+    Friend WithEvents CheckBox_guanghuan As System.Windows.Forms.CheckBox
 
 End Class

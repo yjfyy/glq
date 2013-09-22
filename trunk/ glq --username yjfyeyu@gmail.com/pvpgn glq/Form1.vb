@@ -775,10 +775,18 @@ Public Class Form1
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim setflagsstr As String
 
+        '计算出形象代码
+        If CheckBox_guanghuan.Checked = True Then
+            flag6 = "2"
+        Else
+            flag6 = "0"
+        End If
+        flag_no.Text = flag5 + flag6 + flag7
+
         '转换flag_no.text字符为数字，再视作16进制转换为10进制
         Dim flagno = (Str("&H" & Val(flag_no.Text)))
 
-        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1",flagno, TextBox_acc_username.Text)
+        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1", flagno, TextBox_acc_username.Text)
         Dim setflags As New MySqlCommand(setflagsstr, conn)
         selectpvpgn.ExecuteNonQuery()
         Try
@@ -1346,133 +1354,120 @@ Public Class Form1
     End Sub
 
 
-    Private Sub TabPage1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabPage1.Click
+    
 
-    End Sub
-
-    Private Sub ComboBox5_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no5.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no1.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub flag_no1_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no1.SelectedValueChanged
-        If flag_no1.Text = "0x200000 PGL玩家" Then
-            flag1 = "2"
-        Else
-            flag1 = "0"
-        End If
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
-    End Sub
+    'Private Sub flag_no1_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no1.SelectedValueChanged
+    '    If flag_no1.Text = "0x200000 PGL玩家" Then
+    '        flag1 = "2"
+    '    Else
+    '        flag1 = "0"
+    '    End If
+    '    flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    'End Sub
 
 
-    Private Sub flag_no2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no2.SelectedIndexChanged
 
-    End Sub
 
-    Private Sub flag_no2_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no2.SelectedValueChanged
-        Select Case flag_no2.Text
-            Case "0x0100000 GF官员"
-                flag2 = "1"
-            Case "0x0200000 GF玩家"
-                flag2 = "2"
-            Case Else
-                flag2 = "0"
-        End Select
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
-    End Sub
+    'Private Sub flag_no2_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no2.SelectedValueChanged
+    '    Select Case flag_no2.Text
+    '        Case "0x0100000 GF官员"
+    '            flag2 = "1"
+    '        Case "0x0200000 GF玩家"
+    '            flag2 = "2"
+    '        Case Else
+    '            flag2 = "0"
+    '    End Select
+    '    flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    'End Sub
 
-    Private Sub flag_no3_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no3.SelectedIndexChanged
 
-    End Sub
 
-    Private Sub flag_no3_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no3.SelectedValueChanged
-        Select Case flag_no3.Text
-            Case "0x0010000 KBK新手"
-                flag3 = "1"
-            Case "0x0020000 White KBK (1 bar)"
-                flag3 = "2"
-            Case Else
-                flag3 = 0
-        End Select
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
-    End Sub
+    'Private Sub flag_no3_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no3.SelectedValueChanged
+    '    Select Case flag_no3.Text
+    '        Case "0x0010000 KBK新手"
+    '            flag3 = "1"
+    '        Case "0x0020000 White KBK (1 bar)"
+    '            flag3 = "2"
+    '        Case Else
+    '            flag3 = 0
+    '    End Select
+    '    flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    'End Sub
 
-    Private Sub flag_no4_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no4.SelectedIndexChanged
 
-    End Sub
 
-    Private Sub flag_no4_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no4.SelectedValueChanged
-        Select Case flag_no4.Text
-            Case "0x0001000 WCG官员"
-                flag4 = "1"
-            Case "0x0002000 KBK单人"
-                flag4 = "2"
-            Case Else
-                flag4 = "0"
-        End Select
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
-    End Sub
+    'Private Sub flag_no4_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no4.SelectedValueChanged
+    '    Select Case flag_no4.Text
+    '        Case "0x0001000 WCG官员"
+    '            flag4 = "1"
+    '        Case "0x0002000 KBK单人"
+    '            flag4 = "2"
+    '        Case Else
+    '            flag4 = "0"
+    '    End Select
+    '    flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    'End Sub
 
-    Private Sub flag_no5_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no5.SelectedValueChanged
-        Select Case flag_no5.Text
-            Case "0x0000100 开启警报"
-                flag5 = "1"
-            Case "0x0000200 PGL玩家"
-                flag5 = "2"
-            Case "0x0000400 PGL官员"
-                flag5 = "4"
-            Case "0x0000800 KBK玩家"
-                flag5 = "8"
-            Case Else
-                flag5 = "0"
-        End Select
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
-    End Sub
+    'Private Sub flag_no5_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no5.SelectedValueChanged
+    '    Select Case flag_no5.Text
+    '        Case "0x0000100 开启警报"
+    '            flag5 = "1"
+    '        Case "0x0000200 PGL玩家"
+    '            flag5 = "2"
+    '        Case "0x0000400 PGL官员"
+    '            flag5 = "4"
+    '        Case "0x0000800 KBK玩家"
+    '            flag5 = "8"
+    '        Case Else
+    '            flag5 = "0"
+    '    End Select
+    '    flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    'End Sub
 
-    Private Sub flag_no6_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no6.SelectedIndexChanged
 
-    End Sub
 
-    Private Sub flag_no6_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no6.SelectedValueChanged
-        Select Case flag_no6.Text
-            Case "0x0000010 不支持UDP"
-                flag6 = "1"
-            Case "0x0000020 光环（压制）"
-                flag6 = "2"
-            Case "0x0000040 特别来宾"
-                flag6 = "4"
-            Case "0x0000080 未知（测试）"
-                flag6 = "8"
-            Case Else
-                flag6 = "0"
-        End Select
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
-    End Sub
+    'Private Sub flag_no6_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no6.SelectedValueChanged
+    '    Select Case flag_no6.Text
+    '        Case "0x0000010 不支持UDP"
+    '            flag6 = "1"
+    '        Case "0x0000020 光环（压制）"
+    '            flag6 = "2"
+    '        Case "0x0000040 特别来宾"
+    '            flag6 = "4"
+    '        Case "0x0000080 未知（测试）"
+    '            flag6 = "8"
+    '        Case Else
+    '            flag6 = "0"
+    '    End Select
+    '    flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+    'End Sub
 
-    Private Sub flag_no7_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no7.SelectedIndexChanged
 
-    End Sub
 
     Private Sub flag_no7_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no7.SelectedValueChanged
         Select Case flag_no7.Text
-            Case "0x0000001 暴雪代表"
+            Case "暴雪代表"
+                flag5 = "0"
                 flag7 = "1"
-            Case "0x0000002 频道管理员"
+            Case "频道管理员"
+                flag5 = "0"
                 flag7 = "2"
-            Case "0x0000004 公告员"
+            Case "公告员"
+                flag5 = "0"
                 flag7 = "4"
-            Case "0x0000008 战网管理员"
+            Case "战网管理员"
+                flag5 = "0"
                 flag7 = "8"
+            Case "官员"
+                flag5 = "4"
+                flag7 = "0"
             Case Else
+                flag5 = "0"
                 flag7 = "0"
         End Select
-        flag_no.Text = flag1 + flag2 + flag3 + flag4 + flag5 + flag6 + flag7
+        
     End Sub
 
-    Private Sub flag_no_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles flag_no.Click
 
-    End Sub
+
 End Class
