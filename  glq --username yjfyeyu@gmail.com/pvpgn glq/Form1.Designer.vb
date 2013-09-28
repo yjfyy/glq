@@ -181,6 +181,7 @@ Partial Class Form1
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.PvpgnDataSet = New WindowsApplication1.pvpgnDataSet()
         Me.PvpgnDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button_fix_pvpgn_server = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.TabPage7.SuspendLayout()
@@ -204,7 +205,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.20 build 34"
+        Me.Label8.Text = "Ver 0.21 build 35"
         '
         'Label9
         '
@@ -1007,6 +1008,7 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Button_fix_pvpgn_server)
         Me.TabPage4.Controls.Add(Me.Button39)
         Me.TabPage4.Controls.Add(Me.Button38)
         Me.TabPage4.Controls.Add(Me.Button37)
@@ -1024,7 +1026,7 @@ Partial Class Form1
         '
         'Button39
         '
-        Me.Button39.Location = New System.Drawing.Point(400, 117)
+        Me.Button39.Location = New System.Drawing.Point(400, 100)
         Me.Button39.Name = "Button39"
         Me.Button39.Size = New System.Drawing.Size(75, 23)
         Me.Button39.TabIndex = 11
@@ -1033,7 +1035,7 @@ Partial Class Form1
         '
         'Button38
         '
-        Me.Button38.Location = New System.Drawing.Point(238, 117)
+        Me.Button38.Location = New System.Drawing.Point(238, 100)
         Me.Button38.Name = "Button38"
         Me.Button38.Size = New System.Drawing.Size(75, 23)
         Me.Button38.TabIndex = 10
@@ -1060,7 +1062,7 @@ Partial Class Form1
         '
         'Button25
         '
-        Me.Button25.Location = New System.Drawing.Point(76, 117)
+        Me.Button25.Location = New System.Drawing.Point(76, 100)
         Me.Button25.Name = "Button25"
         Me.Button25.Size = New System.Drawing.Size(75, 23)
         Me.Button25.TabIndex = 7
@@ -1804,6 +1806,15 @@ Partial Class Form1
         Me.PvpgnDataSetBindingSource.DataSource = Me.PvpgnDataSet
         Me.PvpgnDataSetBindingSource.Position = 0
         '
+        'Button_fix_pvpgn_server
+        '
+        Me.Button_fix_pvpgn_server.Location = New System.Drawing.Point(56, 138)
+        Me.Button_fix_pvpgn_server.Name = "Button_fix_pvpgn_server"
+        Me.Button_fix_pvpgn_server.Size = New System.Drawing.Size(114, 42)
+        Me.Button_fix_pvpgn_server.TabIndex = 12
+        Me.Button_fix_pvpgn_server.Text = " 修正Windows不" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "能启动PvPGN服务"
+        Me.Button_fix_pvpgn_server.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -2009,5 +2020,6 @@ Partial Class Form1
     Friend WithEvents flag_no6 As System.Windows.Forms.ComboBox
     Friend WithEvents flag_no As System.Windows.Forms.Label
     Friend WithEvents CheckBox_guanghuan As System.Windows.Forms.CheckBox
+    Friend WithEvents Button_fix_pvpgn_server As System.Windows.Forms.Button
 
 End Class

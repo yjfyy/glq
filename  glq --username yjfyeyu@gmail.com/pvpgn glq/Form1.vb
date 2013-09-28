@@ -1470,4 +1470,9 @@ Public Class Form1
 
 
 
+    Private Sub Button_fix_pvpgn_server_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_fix_pvpgn_server.Click
+        Dim pvpgn_reg_fix As String = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pvpgn"
+        Microsoft.Win32.Registry.SetValue(pvpgn_reg_fix, "DependOnService", "MySQL55", Microsoft.Win32.RegistryValueKind.MultiString)
+        MsgBox("修正成功")
+    End Sub
 End Class
