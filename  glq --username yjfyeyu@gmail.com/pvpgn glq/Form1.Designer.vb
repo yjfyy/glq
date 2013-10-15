@@ -71,8 +71,11 @@ Partial Class Form1
         Me.ComboBox_backup_h = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.Button_add_unset_mute_exp_date = New System.Windows.Forms.Button()
+        Me.Button_add_unset_lock_exp_date = New System.Windows.Forms.Button()
+        Me.Button_add_flags_exp_date = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button_path_bnetd_sql = New System.Windows.Forms.Button()
+        Me.Button_add_flags = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TextBox_sqlbak_name = New System.Windows.Forms.TextBox()
@@ -105,6 +108,7 @@ Partial Class Form1
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Button_fix_pvpgn_server = New System.Windows.Forms.Button()
         Me.Button39 = New System.Windows.Forms.Button()
         Me.Button38 = New System.Windows.Forms.Button()
         Me.Button37 = New System.Windows.Forms.Button()
@@ -146,6 +150,12 @@ Partial Class Form1
         Me.Button_restart_d2cs = New System.Windows.Forms.Button()
         Me.Button_restart_pvpgn = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.DateTimePicker_xingxiang = New System.Windows.Forms.DateTimePicker()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.DateTimePicker_suoding = New System.Windows.Forms.DateTimePicker()
+        Me.DateTimePicker_jinyan = New System.Windows.Forms.DateTimePicker()
         Me.CheckBox_guanghuan = New System.Windows.Forms.CheckBox()
         Me.flag_no = New System.Windows.Forms.Label()
         Me.flag_no6 = New System.Windows.Forms.ComboBox()
@@ -181,7 +191,6 @@ Partial Class Form1
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.PvpgnDataSet = New WindowsApplication1.pvpgnDataSet()
         Me.PvpgnDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Button_fix_pvpgn_server = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.TabPage7.SuspendLayout()
@@ -201,16 +210,16 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(435, 421)
+        Me.Label8.Location = New System.Drawing.Point(435, 446)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.21 build 35"
+        Me.Label8.Text = "Ver 0.22 build 36"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(50, 421)
+        Me.Label9.Location = New System.Drawing.Point(50, 446)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(23, 12)
         Me.Label9.TabIndex = 23
@@ -336,7 +345,7 @@ Partial Class Form1
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(262, 421)
+        Me.LinkLabel1.Location = New System.Drawing.Point(262, 446)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(107, 12)
         Me.LinkLabel1.TabIndex = 27
@@ -346,7 +355,7 @@ Partial Class Form1
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(79, 421)
+        Me.LinkLabel2.Location = New System.Drawing.Point(79, 446)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(155, 12)
         Me.LinkLabel2.TabIndex = 28
@@ -387,7 +396,7 @@ Partial Class Form1
         Me.TabPage8.Location = New System.Drawing.Point(4, 22)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage8.Size = New System.Drawing.Size(551, 228)
         Me.TabPage8.TabIndex = 7
         Me.TabPage8.Text = "定时任务"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -669,8 +678,11 @@ Partial Class Form1
         '
         'TabPage7
         '
+        Me.TabPage7.Controls.Add(Me.Button_add_unset_mute_exp_date)
+        Me.TabPage7.Controls.Add(Me.Button_add_unset_lock_exp_date)
+        Me.TabPage7.Controls.Add(Me.Button_add_flags_exp_date)
         Me.TabPage7.Controls.Add(Me.Button2)
-        Me.TabPage7.Controls.Add(Me.Button_path_bnetd_sql)
+        Me.TabPage7.Controls.Add(Me.Button_add_flags)
         Me.TabPage7.Controls.Add(Me.Label26)
         Me.TabPage7.Controls.Add(Me.Label25)
         Me.TabPage7.Controls.Add(Me.TextBox_sqlbak_name)
@@ -683,34 +695,64 @@ Partial Class Form1
         Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage7.Size = New System.Drawing.Size(551, 228)
         Me.TabPage7.TabIndex = 6
         Me.TabPage7.Text = "数据库管理"
         Me.TabPage7.UseVisualStyleBackColor = True
         '
+        'Button_add_unset_mute_exp_date
+        '
+        Me.Button_add_unset_mute_exp_date.Enabled = False
+        Me.Button_add_unset_mute_exp_date.Location = New System.Drawing.Point(375, 73)
+        Me.Button_add_unset_mute_exp_date.Name = "Button_add_unset_mute_exp_date"
+        Me.Button_add_unset_mute_exp_date.Size = New System.Drawing.Size(116, 23)
+        Me.Button_add_unset_mute_exp_date.TabIndex = 39
+        Me.Button_add_unset_mute_exp_date.Text = "添加禁言定时功能"
+        Me.Button_add_unset_mute_exp_date.UseVisualStyleBackColor = True
+        '
+        'Button_add_unset_lock_exp_date
+        '
+        Me.Button_add_unset_lock_exp_date.Enabled = False
+        Me.Button_add_unset_lock_exp_date.Location = New System.Drawing.Point(251, 73)
+        Me.Button_add_unset_lock_exp_date.Name = "Button_add_unset_lock_exp_date"
+        Me.Button_add_unset_lock_exp_date.Size = New System.Drawing.Size(118, 23)
+        Me.Button_add_unset_lock_exp_date.TabIndex = 38
+        Me.Button_add_unset_lock_exp_date.Text = "添加锁定定时功能"
+        Me.Button_add_unset_lock_exp_date.UseVisualStyleBackColor = True
+        '
+        'Button_add_flags_exp_date
+        '
+        Me.Button_add_flags_exp_date.Enabled = False
+        Me.Button_add_flags_exp_date.Location = New System.Drawing.Point(131, 73)
+        Me.Button_add_flags_exp_date.Name = "Button_add_flags_exp_date"
+        Me.Button_add_flags_exp_date.Size = New System.Drawing.Size(114, 23)
+        Me.Button_add_flags_exp_date.TabIndex = 37
+        Me.Button_add_flags_exp_date.Text = "添加形象定时功能"
+        Me.Button_add_flags_exp_date.UseVisualStyleBackColor = True
+        '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(371, 166)
+        Me.Button2.Location = New System.Drawing.Point(282, 190)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 36
         Me.Button2.Text = "浏览"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button_path_bnetd_sql
+        'Button_add_flags
         '
-        Me.Button_path_bnetd_sql.Enabled = False
-        Me.Button_path_bnetd_sql.Location = New System.Drawing.Point(246, 76)
-        Me.Button_path_bnetd_sql.Name = "Button_path_bnetd_sql"
-        Me.Button_path_bnetd_sql.Size = New System.Drawing.Size(75, 23)
-        Me.Button_path_bnetd_sql.TabIndex = 35
-        Me.Button_path_bnetd_sql.Text = "修正数据库"
-        Me.Button_path_bnetd_sql.UseVisualStyleBackColor = True
+        Me.Button_add_flags.Enabled = False
+        Me.Button_add_flags.Location = New System.Drawing.Point(31, 73)
+        Me.Button_add_flags.Name = "Button_add_flags"
+        Me.Button_add_flags.Size = New System.Drawing.Size(94, 23)
+        Me.Button_add_flags.TabIndex = 35
+        Me.Button_add_flags.Text = "添加形象功能"
+        Me.Button_add_flags.UseVisualStyleBackColor = True
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(8, 100)
+        Me.Label26.Location = New System.Drawing.Point(34, 116)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(419, 60)
         Me.Label26.TabIndex = 14
@@ -720,7 +762,7 @@ Partial Class Form1
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(118, 171)
+        Me.Label25.Location = New System.Drawing.Point(29, 195)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(89, 12)
         Me.Label25.TabIndex = 13
@@ -728,7 +770,7 @@ Partial Class Form1
         '
         'TextBox_sqlbak_name
         '
-        Me.TextBox_sqlbak_name.Location = New System.Drawing.Point(213, 168)
+        Me.TextBox_sqlbak_name.Location = New System.Drawing.Point(124, 192)
         Me.TextBox_sqlbak_name.Name = "TextBox_sqlbak_name"
         Me.TextBox_sqlbak_name.Size = New System.Drawing.Size(135, 21)
         Me.TextBox_sqlbak_name.TabIndex = 12
@@ -736,7 +778,7 @@ Partial Class Form1
         'Button_res_pvpgn_sql
         '
         Me.Button_res_pvpgn_sql.Enabled = False
-        Me.Button_res_pvpgn_sql.Location = New System.Drawing.Point(466, 166)
+        Me.Button_res_pvpgn_sql.Location = New System.Drawing.Point(371, 190)
         Me.Button_res_pvpgn_sql.Name = "Button_res_pvpgn_sql"
         Me.Button_res_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
         Me.Button_res_pvpgn_sql.TabIndex = 11
@@ -746,7 +788,7 @@ Partial Class Form1
         'Button_bak_pvpgn_sql
         '
         Me.Button_bak_pvpgn_sql.Enabled = False
-        Me.Button_bak_pvpgn_sql.Location = New System.Drawing.Point(466, 135)
+        Me.Button_bak_pvpgn_sql.Location = New System.Drawing.Point(458, 190)
         Me.Button_bak_pvpgn_sql.Name = "Button_bak_pvpgn_sql"
         Me.Button_bak_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
         Me.Button_bak_pvpgn_sql.TabIndex = 10
@@ -756,11 +798,12 @@ Partial Class Form1
         'Button_del_pvpgn_sql
         '
         Me.Button_del_pvpgn_sql.Enabled = False
-        Me.Button_del_pvpgn_sql.Location = New System.Drawing.Point(397, 75)
+        Me.Button_del_pvpgn_sql.ForeColor = System.Drawing.Color.Red
+        Me.Button_del_pvpgn_sql.Location = New System.Drawing.Point(393, 19)
         Me.Button_del_pvpgn_sql.Name = "Button_del_pvpgn_sql"
-        Me.Button_del_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
+        Me.Button_del_pvpgn_sql.Size = New System.Drawing.Size(146, 43)
         Me.Button_del_pvpgn_sql.TabIndex = 9
-        Me.Button_del_pvpgn_sql.Text = "清空PvPGN数据"
+        Me.Button_del_pvpgn_sql.Text = "清空PvPGN数据（将删除所有用户数据，慎用）"
         Me.Button_del_pvpgn_sql.UseVisualStyleBackColor = True
         '
         'Label24
@@ -774,7 +817,7 @@ Partial Class Form1
         'Button_create_pvpgn_sql
         '
         Me.Button_create_pvpgn_sql.Enabled = False
-        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(79, 76)
+        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(31, 29)
         Me.Button_create_pvpgn_sql.Name = "Button_create_pvpgn_sql"
         Me.Button_create_pvpgn_sql.Size = New System.Drawing.Size(91, 23)
         Me.Button_create_pvpgn_sql.TabIndex = 4
@@ -784,13 +827,12 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(8, 5)
+        Me.Label11.ForeColor = System.Drawing.Color.Red
+        Me.Label11.Location = New System.Drawing.Point(34, 9)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(521, 60)
+        Me.Label11.Size = New System.Drawing.Size(353, 12)
         Me.Label11.TabIndex = 5
-        Me.Label11.Text = "数据库初始化步骤：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "    1、安装完Mysql后，清空数据库信息中""PvPGN数据库名称：""，点连接。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "    2、连接后，点初始化数据库，然后安装配置Pv" & _
-            "PGN，确定客户端可以正常登陆。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "    3、输入数据库信息中""PvPGN数据库名称：""并连接，如以连接，请关闭管理器再次运行，点修" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "正数据库。至此数据库初" & _
-            "始工作完成，如有需要可以清空数据库后重新按照以上步骤执行。"
+        Me.Label11.Text = "数据库初始化步骤，需要严格按照说明中数据库初始化步骤进行。"
         '
         'TabPage5
         '
@@ -805,7 +847,7 @@ Partial Class Form1
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage5.Size = New System.Drawing.Size(551, 228)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "安装D2GS"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -898,7 +940,7 @@ Partial Class Form1
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage6.Size = New System.Drawing.Size(551, 228)
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "配置D2GS"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1019,10 +1061,19 @@ Partial Class Form1
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage4.Size = New System.Drawing.Size(551, 228)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "PVPGN安装"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Button_fix_pvpgn_server
+        '
+        Me.Button_fix_pvpgn_server.Location = New System.Drawing.Point(56, 138)
+        Me.Button_fix_pvpgn_server.Name = "Button_fix_pvpgn_server"
+        Me.Button_fix_pvpgn_server.Size = New System.Drawing.Size(114, 42)
+        Me.Button_fix_pvpgn_server.TabIndex = 12
+        Me.Button_fix_pvpgn_server.Text = " 修正Windows不" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "能启动PvPGN服务"
+        Me.Button_fix_pvpgn_server.UseVisualStyleBackColor = True
         '
         'Button39
         '
@@ -1100,7 +1151,7 @@ Partial Class Form1
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage3.Size = New System.Drawing.Size(551, 228)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "PVPGN配置"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1212,7 +1263,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage2.Size = New System.Drawing.Size(551, 228)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "战网服务管理"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1439,6 +1490,12 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label46)
+        Me.TabPage1.Controls.Add(Me.DateTimePicker_xingxiang)
+        Me.TabPage1.Controls.Add(Me.Label45)
+        Me.TabPage1.Controls.Add(Me.Label44)
+        Me.TabPage1.Controls.Add(Me.DateTimePicker_suoding)
+        Me.TabPage1.Controls.Add(Me.DateTimePicker_jinyan)
         Me.TabPage1.Controls.Add(Me.CheckBox_guanghuan)
         Me.TabPage1.Controls.Add(Me.flag_no)
         Me.TabPage1.Controls.Add(Me.flag_no6)
@@ -1464,15 +1521,63 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(551, 198)
+        Me.TabPage1.Size = New System.Drawing.Size(551, 228)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "用户管理"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(376, 137)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(17, 12)
+        Me.Label46.TabIndex = 60
+        Me.Label46.Text = "到"
+        '
+        'DateTimePicker_xingxiang
+        '
+        Me.DateTimePicker_xingxiang.Location = New System.Drawing.Point(394, 133)
+        Me.DateTimePicker_xingxiang.Name = "DateTimePicker_xingxiang"
+        Me.DateTimePicker_xingxiang.Size = New System.Drawing.Size(113, 21)
+        Me.DateTimePicker_xingxiang.TabIndex = 59
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(250, 72)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(17, 12)
+        Me.Label45.TabIndex = 58
+        Me.Label45.Text = "到"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(250, 43)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(17, 12)
+        Me.Label44.TabIndex = 57
+        Me.Label44.Text = "到"
+        '
+        'DateTimePicker_suoding
+        '
+        Me.DateTimePicker_suoding.Location = New System.Drawing.Point(268, 68)
+        Me.DateTimePicker_suoding.Name = "DateTimePicker_suoding"
+        Me.DateTimePicker_suoding.Size = New System.Drawing.Size(113, 21)
+        Me.DateTimePicker_suoding.TabIndex = 56
+        '
+        'DateTimePicker_jinyan
+        '
+        Me.DateTimePicker_jinyan.Location = New System.Drawing.Point(268, 39)
+        Me.DateTimePicker_jinyan.Name = "DateTimePicker_jinyan"
+        Me.DateTimePicker_jinyan.Size = New System.Drawing.Size(113, 21)
+        Me.DateTimePicker_jinyan.TabIndex = 55
+        '
         'CheckBox_guanghuan
         '
         Me.CheckBox_guanghuan.AutoSize = True
-        Me.CheckBox_guanghuan.Location = New System.Drawing.Point(197, 117)
+        Me.CheckBox_guanghuan.Location = New System.Drawing.Point(197, 135)
         Me.CheckBox_guanghuan.Name = "CheckBox_guanghuan"
         Me.CheckBox_guanghuan.Size = New System.Drawing.Size(72, 16)
         Me.CheckBox_guanghuan.TabIndex = 54
@@ -1482,6 +1587,7 @@ Partial Class Form1
         'flag_no
         '
         Me.flag_no.AutoSize = True
+        Me.flag_no.Enabled = False
         Me.flag_no.Location = New System.Drawing.Point(65, 163)
         Me.flag_no.Name = "flag_no"
         Me.flag_no.Size = New System.Drawing.Size(47, 12)
@@ -1491,6 +1597,7 @@ Partial Class Form1
         '
         'flag_no6
         '
+        Me.flag_no6.Enabled = False
         Me.flag_no6.FormattingEnabled = True
         Me.flag_no6.Items.AddRange(New Object() {"0x0000000 默认", "0x0000010 不支持UDP", "0x0000020 光环（压制）", "0x0000040 特别来宾", "0x0000080 未知（测试）"})
         Me.flag_no6.Location = New System.Drawing.Point(397, 160)
@@ -1502,6 +1609,7 @@ Partial Class Form1
         '
         'flag_no5
         '
+        Me.flag_no5.Enabled = False
         Me.flag_no5.FormattingEnabled = True
         Me.flag_no5.Items.AddRange(New Object() {"0x0000000 默认", "0x0000100 开启警报", "0x0000200 PGL玩家", "0x0000400 PGL官员", "0x0000800 KBK玩家"})
         Me.flag_no5.Location = New System.Drawing.Point(342, 160)
@@ -1513,6 +1621,7 @@ Partial Class Form1
         '
         'flag_no4
         '
+        Me.flag_no4.Enabled = False
         Me.flag_no4.FormattingEnabled = True
         Me.flag_no4.Items.AddRange(New Object() {"0x0000000 默认", "0x0001000 WCG官员", "0x0002000 KBK单人"})
         Me.flag_no4.Location = New System.Drawing.Point(287, 160)
@@ -1524,6 +1633,7 @@ Partial Class Form1
         '
         'flag_no3
         '
+        Me.flag_no3.Enabled = False
         Me.flag_no3.FormattingEnabled = True
         Me.flag_no3.Items.AddRange(New Object() {"0x0000000 默认", "0x0010000 KBK新手", "0x0020000 White KBK (1 bar)"})
         Me.flag_no3.Location = New System.Drawing.Point(232, 160)
@@ -1535,6 +1645,7 @@ Partial Class Form1
         '
         'flag_no2
         '
+        Me.flag_no2.Enabled = False
         Me.flag_no2.FormattingEnabled = True
         Me.flag_no2.Items.AddRange(New Object() {"0x0000000 默认", "0x0100000 GF官员", "0x0200000 GF玩家"})
         Me.flag_no2.Location = New System.Drawing.Point(173, 160)
@@ -1546,6 +1657,7 @@ Partial Class Form1
         '
         'flag_no1
         '
+        Me.flag_no1.Enabled = False
         Me.flag_no1.FormattingEnabled = True
         Me.flag_no1.Items.AddRange(New Object() {"0x000000 默认", "0x200000 PGL玩家"})
         Me.flag_no1.Location = New System.Drawing.Point(118, 160)
@@ -1559,7 +1671,7 @@ Partial Class Form1
         '
         Me.flag_no7.FormattingEnabled = True
         Me.flag_no7.Items.AddRange(New Object() {"默认职业形象", "暴雪代表", "频道管理员", "公告员", "战网管理员", "官员"})
-        Me.flag_no7.Location = New System.Drawing.Point(93, 115)
+        Me.flag_no7.Location = New System.Drawing.Point(93, 133)
         Me.flag_no7.Name = "flag_no7"
         Me.flag_no7.Size = New System.Drawing.Size(98, 20)
         Me.flag_no7.TabIndex = 45
@@ -1578,7 +1690,7 @@ Partial Class Form1
         'Button_set_mute
         '
         Me.Button_set_mute.Enabled = False
-        Me.Button_set_mute.Location = New System.Drawing.Point(331, 38)
+        Me.Button_set_mute.Location = New System.Drawing.Point(169, 38)
         Me.Button_set_mute.Name = "Button_set_mute"
         Me.Button_set_mute.Size = New System.Drawing.Size(75, 23)
         Me.Button_set_mute.TabIndex = 43
@@ -1588,7 +1700,7 @@ Partial Class Form1
         'Button_unset_lockk
         '
         Me.Button_unset_lockk.Enabled = False
-        Me.Button_unset_lockk.Location = New System.Drawing.Point(250, 38)
+        Me.Button_unset_lockk.Location = New System.Drawing.Point(412, 67)
         Me.Button_unset_lockk.Name = "Button_unset_lockk"
         Me.Button_unset_lockk.Size = New System.Drawing.Size(75, 23)
         Me.Button_unset_lockk.TabIndex = 42
@@ -1598,7 +1710,7 @@ Partial Class Form1
         'Button_set_lockk
         '
         Me.Button_set_lockk.Enabled = False
-        Me.Button_set_lockk.Location = New System.Drawing.Point(169, 38)
+        Me.Button_set_lockk.Location = New System.Drawing.Point(169, 67)
         Me.Button_set_lockk.Name = "Button_set_lockk"
         Me.Button_set_lockk.Size = New System.Drawing.Size(75, 23)
         Me.Button_set_lockk.TabIndex = 41
@@ -1628,7 +1740,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(22, 118)
+        Me.Label7.Location = New System.Drawing.Point(22, 136)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(65, 12)
         Me.Label7.TabIndex = 37
@@ -1644,7 +1756,7 @@ Partial Class Form1
         'Button_set_flags
         '
         Me.Button_set_flags.Enabled = False
-        Me.Button_set_flags.Location = New System.Drawing.Point(287, 113)
+        Me.Button_set_flags.Location = New System.Drawing.Point(287, 131)
         Me.Button_set_flags.Name = "Button_set_flags"
         Me.Button_set_flags.Size = New System.Drawing.Size(75, 23)
         Me.Button_set_flags.TabIndex = 35
@@ -1654,12 +1766,13 @@ Partial Class Form1
         'Button_del_user
         '
         Me.Button_del_user.Enabled = False
-        Me.Button_del_user.Location = New System.Drawing.Point(169, 67)
+        Me.Button_del_user.Location = New System.Drawing.Point(3, 110)
         Me.Button_del_user.Name = "Button_del_user"
         Me.Button_del_user.Size = New System.Drawing.Size(75, 23)
         Me.Button_del_user.TabIndex = 32
         Me.Button_del_user.Text = "删除"
         Me.Button_del_user.UseVisualStyleBackColor = True
+        Me.Button_del_user.Visible = False
         '
         'Button_unset_to_admin
         '
@@ -1704,7 +1817,7 @@ Partial Class Form1
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(559, 224)
+        Me.TabControl1.Size = New System.Drawing.Size(559, 254)
         Me.TabControl1.TabIndex = 29
         '
         'GroupBox2
@@ -1806,22 +1919,13 @@ Partial Class Form1
         Me.PvpgnDataSetBindingSource.DataSource = Me.PvpgnDataSet
         Me.PvpgnDataSetBindingSource.Position = 0
         '
-        'Button_fix_pvpgn_server
-        '
-        Me.Button_fix_pvpgn_server.Location = New System.Drawing.Point(56, 138)
-        Me.Button_fix_pvpgn_server.Name = "Button_fix_pvpgn_server"
-        Me.Button_fix_pvpgn_server.Size = New System.Drawing.Size(114, 42)
-        Me.Button_fix_pvpgn_server.TabIndex = 12
-        Me.Button_fix_pvpgn_server.Text = " 修正Windows不" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "能启动PvPGN服务"
-        Me.Button_fix_pvpgn_server.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(583, 439)
+        Me.ClientSize = New System.Drawing.Size(583, 464)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
@@ -1947,7 +2051,7 @@ Partial Class Form1
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents Label27 As System.Windows.Forms.Label
-    Friend WithEvents Button_path_bnetd_sql As System.Windows.Forms.Button
+    Friend WithEvents Button_add_flags As System.Windows.Forms.Button
     Friend WithEvents Label26 As System.Windows.Forms.Label
     Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents TextBox_sqlbak_name As System.Windows.Forms.TextBox
@@ -2021,5 +2125,14 @@ Partial Class Form1
     Friend WithEvents flag_no As System.Windows.Forms.Label
     Friend WithEvents CheckBox_guanghuan As System.Windows.Forms.CheckBox
     Friend WithEvents Button_fix_pvpgn_server As System.Windows.Forms.Button
+    Friend WithEvents Label45 As System.Windows.Forms.Label
+    Friend WithEvents Label44 As System.Windows.Forms.Label
+    Friend WithEvents DateTimePicker_suoding As System.Windows.Forms.DateTimePicker
+    Friend WithEvents DateTimePicker_jinyan As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label46 As System.Windows.Forms.Label
+    Friend WithEvents DateTimePicker_xingxiang As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Button_add_unset_mute_exp_date As System.Windows.Forms.Button
+    Friend WithEvents Button_add_unset_lock_exp_date As System.Windows.Forms.Button
+    Friend WithEvents Button_add_flags_exp_date As System.Windows.Forms.Button
 
 End Class
