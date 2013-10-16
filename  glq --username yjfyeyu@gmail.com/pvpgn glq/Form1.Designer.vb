@@ -188,9 +188,10 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.timer_dingshirenwu = New System.Windows.Forms.Timer(Me.components)
         Me.PvpgnDataSet = New WindowsApplication1.pvpgnDataSet()
         Me.PvpgnDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Timer_exp_date = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.TabPage7.SuspendLayout()
@@ -214,7 +215,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.22 build 36"
+        Me.Label8.Text = "Ver 0.23 build 37"
         '
         'Label9
         '
@@ -1588,9 +1589,10 @@ Partial Class Form1
         '
         Me.flag_no.AutoSize = True
         Me.flag_no.Enabled = False
-        Me.flag_no.Location = New System.Drawing.Point(65, 163)
+        Me.flag_no.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.flag_no.Location = New System.Drawing.Point(140, 193)
         Me.flag_no.Name = "flag_no"
-        Me.flag_no.Size = New System.Drawing.Size(47, 12)
+        Me.flag_no.Size = New System.Drawing.Size(54, 12)
         Me.flag_no.TabIndex = 53
         Me.flag_no.Text = "0000000"
         Me.flag_no.Visible = False
@@ -1598,9 +1600,10 @@ Partial Class Form1
         'flag_no6
         '
         Me.flag_no6.Enabled = False
+        Me.flag_no6.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.flag_no6.FormattingEnabled = True
         Me.flag_no6.Items.AddRange(New Object() {"0x0000000 默认", "0x0000010 不支持UDP", "0x0000020 光环（压制）", "0x0000040 特别来宾", "0x0000080 未知（测试）"})
-        Me.flag_no6.Location = New System.Drawing.Point(397, 160)
+        Me.flag_no6.Location = New System.Drawing.Point(472, 190)
         Me.flag_no6.Name = "flag_no6"
         Me.flag_no6.Size = New System.Drawing.Size(49, 20)
         Me.flag_no6.TabIndex = 52
@@ -1610,9 +1613,10 @@ Partial Class Form1
         'flag_no5
         '
         Me.flag_no5.Enabled = False
+        Me.flag_no5.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.flag_no5.FormattingEnabled = True
         Me.flag_no5.Items.AddRange(New Object() {"0x0000000 默认", "0x0000100 开启警报", "0x0000200 PGL玩家", "0x0000400 PGL官员", "0x0000800 KBK玩家"})
-        Me.flag_no5.Location = New System.Drawing.Point(342, 160)
+        Me.flag_no5.Location = New System.Drawing.Point(417, 190)
         Me.flag_no5.Name = "flag_no5"
         Me.flag_no5.Size = New System.Drawing.Size(49, 20)
         Me.flag_no5.TabIndex = 51
@@ -1622,9 +1626,10 @@ Partial Class Form1
         'flag_no4
         '
         Me.flag_no4.Enabled = False
+        Me.flag_no4.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.flag_no4.FormattingEnabled = True
         Me.flag_no4.Items.AddRange(New Object() {"0x0000000 默认", "0x0001000 WCG官员", "0x0002000 KBK单人"})
-        Me.flag_no4.Location = New System.Drawing.Point(287, 160)
+        Me.flag_no4.Location = New System.Drawing.Point(362, 190)
         Me.flag_no4.Name = "flag_no4"
         Me.flag_no4.Size = New System.Drawing.Size(49, 20)
         Me.flag_no4.TabIndex = 50
@@ -1634,9 +1639,10 @@ Partial Class Form1
         'flag_no3
         '
         Me.flag_no3.Enabled = False
+        Me.flag_no3.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.flag_no3.FormattingEnabled = True
         Me.flag_no3.Items.AddRange(New Object() {"0x0000000 默认", "0x0010000 KBK新手", "0x0020000 White KBK (1 bar)"})
-        Me.flag_no3.Location = New System.Drawing.Point(232, 160)
+        Me.flag_no3.Location = New System.Drawing.Point(307, 190)
         Me.flag_no3.Name = "flag_no3"
         Me.flag_no3.Size = New System.Drawing.Size(49, 20)
         Me.flag_no3.TabIndex = 49
@@ -1646,9 +1652,10 @@ Partial Class Form1
         'flag_no2
         '
         Me.flag_no2.Enabled = False
+        Me.flag_no2.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.flag_no2.FormattingEnabled = True
         Me.flag_no2.Items.AddRange(New Object() {"0x0000000 默认", "0x0100000 GF官员", "0x0200000 GF玩家"})
-        Me.flag_no2.Location = New System.Drawing.Point(173, 160)
+        Me.flag_no2.Location = New System.Drawing.Point(248, 190)
         Me.flag_no2.Name = "flag_no2"
         Me.flag_no2.Size = New System.Drawing.Size(49, 20)
         Me.flag_no2.TabIndex = 48
@@ -1658,9 +1665,10 @@ Partial Class Form1
         'flag_no1
         '
         Me.flag_no1.Enabled = False
+        Me.flag_no1.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.flag_no1.FormattingEnabled = True
         Me.flag_no1.Items.AddRange(New Object() {"0x000000 默认", "0x200000 PGL玩家"})
-        Me.flag_no1.Location = New System.Drawing.Point(118, 160)
+        Me.flag_no1.Location = New System.Drawing.Point(193, 190)
         Me.flag_no1.Name = "flag_no1"
         Me.flag_no1.Size = New System.Drawing.Size(49, 20)
         Me.flag_no1.TabIndex = 47
@@ -1766,7 +1774,8 @@ Partial Class Form1
         'Button_del_user
         '
         Me.Button_del_user.Enabled = False
-        Me.Button_del_user.Location = New System.Drawing.Point(3, 110)
+        Me.Button_del_user.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button_del_user.Location = New System.Drawing.Point(31, 188)
         Me.Button_del_user.Name = "Button_del_user"
         Me.Button_del_user.Size = New System.Drawing.Size(75, 23)
         Me.Button_del_user.TabIndex = 32
@@ -1904,10 +1913,10 @@ Partial Class Form1
         Me.Button3.Text = "恢复默认设置"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Timer1
+        'timer_dingshirenwu
         '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 35000
+        Me.timer_dingshirenwu.Enabled = True
+        Me.timer_dingshirenwu.Interval = 35000
         '
         'PvpgnDataSet
         '
@@ -1918,6 +1927,11 @@ Partial Class Form1
         '
         Me.PvpgnDataSetBindingSource.DataSource = Me.PvpgnDataSet
         Me.PvpgnDataSetBindingSource.Position = 0
+        '
+        'Timer_exp_date
+        '
+        Me.Timer_exp_date.Enabled = True
+        Me.Timer_exp_date.Interval = 10800000
         '
         'Form1
         '
@@ -2084,7 +2098,7 @@ Partial Class Form1
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents timer_dingshirenwu As System.Windows.Forms.Timer
     Friend WithEvents ComboBox_backup_h As System.Windows.Forms.ComboBox
     Friend WithEvents PvpgnDataSet As WindowsApplication1.pvpgnDataSet
     Friend WithEvents PvpgnDataSetBindingSource As System.Windows.Forms.BindingSource
@@ -2134,5 +2148,6 @@ Partial Class Form1
     Friend WithEvents Button_add_unset_mute_exp_date As System.Windows.Forms.Button
     Friend WithEvents Button_add_unset_lock_exp_date As System.Windows.Forms.Button
     Friend WithEvents Button_add_flags_exp_date As System.Windows.Forms.Button
+    Friend WithEvents Timer_exp_date As System.Windows.Forms.Timer
 
 End Class
