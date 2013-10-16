@@ -132,10 +132,6 @@ Public Class Form1
 
         End If
 
-       
-
-      
-
     End Sub
 
     Private Sub Form1_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -288,12 +284,12 @@ Public Class Form1
         'End Select
         '     End If
 
-        If DateString > "2014-12-30" Then
+        If DateString > "2014-3-30" Then
             Close()
         End If
         load_config()
-        d2gsver()
         shuaxin()
+        d2gsver()
         '自动连接数据库
         If CheckBox_save_password.Checked = True Then
             If Not conn Is Nothing Then conn.Close()
@@ -913,7 +909,8 @@ Public Class Form1
 
     Private Sub Button_set_flags_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_flags.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
-        Dim setflagsstr As String
+        Dim set_flags_str As String
+        Dim set_flags_exp_date_str As String
 
         '计算出形象代码
         If CheckBox_guanghuan.Checked = True Then
@@ -926,15 +923,22 @@ Public Class Form1
         '转换flag_no.text字符为数字，再视作16进制转换为10进制
         Dim flagno = (Str("&H" & Val(flag_no.Text)))
 
-        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1", flagno, TextBox_acc_username.Text)
-        Dim setflags As New MySqlCommand(setflagsstr, conn)
+        set_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='{0}' WHERE (`username`='{1}') LIMIT 1", flagno, TextBox_acc_username.Text)
+        set_flags_exp_date_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_exp_date`='{0}' WHERE (`username`='{1}') LIMIT 1", DateTimePicker_xingxiang.Value, TextBox_acc_username.Text)
+        Dim set_flags As New MySqlCommand(set_flags_str, conn)
+        Dim set_flags_exp_date As New MySqlCommand(set_flags_exp_date_str, conn)
         selectpvpgn.ExecuteNonQuery()
         Try
-            setflags.ExecuteNonQuery()
-            MsgBox("设置成功")
-        Catch ex As Exception
+            set_flags.ExecuteNonQuery()
+            set_flags_exp_date.ExecuteNonQuery()
+            MsgBox("设置成功，" + TextBox_acc_username.Text + "的形象将于" + DateTimePicker_xingxiang.Value.Date + "失效")
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            MessageBox.Show(ex.Number)
+            MessageBox.Show(ex.Message)
             MsgBox("设置失败，请确认已修正数据库、用户名填写正确")
         End Try
+
+
     End Sub
     Private Sub shuaxin()
         Dim sspvpgn As New ServiceController("pvpgn")
@@ -1027,11 +1031,22 @@ Public Class Form1
     Private Sub Button_lockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_lockk.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_lockk_str As String
+        Dim set_lockk_exp_date_str As String
         set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_lockk_exp_date_str = String.Format("UPDATE `pvpgn_bnet` SET `lockk_exp_date`='{0}' WHERE (`username`='{1}') LIMIT 1", DateTimePicker_suoding.Value, TextBox_acc_username.Text)
         Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
+        Dim set_lockk_exp_date As New MySqlCommand(set_lockk_exp_date_str, conn)
         selectpvpgn.ExecuteNonQuery()
-        set_lockk.ExecuteNonQuery()
-        MsgBox("设置成功")
+        Try
+            set_lockk.ExecuteNonQuery()
+            set_lockk_exp_date.ExecuteNonQuery()
+            MsgBox("设置成功，" + TextBox_acc_username.Text + "将于" + DateTimePicker_suoding.Value.Date + "解除锁定")
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            MessageBox.Show(ex.Number)
+            MessageBox.Show(ex.Message)
+            MsgBox("设置失败，请确认已修正数据库、用户名填写正确")
+        End Try
+        
     End Sub
 
     Private Sub Button_unlockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_lockk.Click
@@ -1047,11 +1062,23 @@ Public Class Form1
     Private Sub Button_mute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_mute.Click
         Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
         Dim set_mute_str As String
+        Dim set_mute_exp_date_str As String
         set_mute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        set_mute_exp_date_str = String.Format("UPDATE `pvpgn_bnet` SET `mute_exp_date`='{0}' WHERE (`username`='{1}') LIMIT 1", DateTimePicker_jinyan.Value, TextBox_acc_username.Text)
         Dim set_mute As New MySqlCommand(set_mute_str, conn)
+        Dim set_mute_exp_date As New MySqlCommand(set_mute_exp_date_str, conn)
         selectpvpgn.ExecuteNonQuery()
-        set_mute.ExecuteNonQuery()
-        MsgBox("设置成功")
+        Try
+            set_mute.ExecuteNonQuery()
+            set_mute_exp_date.ExecuteNonQuery()
+            MsgBox("设置成功，" + TextBox_acc_username.Text + "将于" + DateTimePicker_jinyan.Value.Date + "解除禁言")
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            MessageBox.Show(ex.Number)
+            MessageBox.Show(ex.Message)
+            MsgBox("设置失败，请确认已修正数据库、用户名填写正确")
+        End Try
+        
+
     End Sub
 
     Private Sub Button_unmute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_mute.Click
@@ -1201,13 +1228,6 @@ Public Class Form1
             TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
             'regVersion.SetValue("Version", intVersion)
 
-            If reg_config.GetValue("初始化数据库", "0") = "1" Then
-                Button_create_pvpgn_sql.Enabled = False
-            End If
-
-            If reg_config.GetValue("添加形象功能", "0") = "1" Then
-                Button_fix_pvpgn_server.Enabled = False
-            End If
         End If
         reg_config.Close()
         DateTimePicker_jinyan.Value = DateAdd("m", 1, Date.Now)
@@ -1254,12 +1274,12 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timer_dingshirenwu.Tick
         Dim time_hm As String
         time_hm = Now.Hour.ToString + Now.Minute.ToString
 
         '备份数据库
-        If CheckBox_timer_backup.Checked = True And ComboBox_backup_h.Text + ComboBox_backup_m.Text = time_hm Then
+        If CheckBox_timer_backup.Checked = True And CheckBox_timer_backup.Enabled = True And ComboBox_backup_h.Text + ComboBox_backup_m.Text = time_hm Then
 
             Dim bakdatestr As String
             bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
@@ -1360,7 +1380,7 @@ Public Class Form1
             End If
 
             If CheckBox_d2cs.Checked = True Then
-               Dim ssd2cs As New ServiceController(d2cs_server_string)
+                Dim ssd2cs As New ServiceController(d2cs_server_string)
                 Try
                     ssd2cs.Start()
                     ssd2cs.WaitForStatus(ServiceControllerStatus.Running, outtime)
@@ -1405,7 +1425,7 @@ Public Class Form1
         '启动服务结束
 
         '锁定用户
-        If CheckBox_timer_autolock.Checked = True And ComboBox_auto_lock_houre.Text + ComboBox_auto_lock_m.Text = time_hm Then
+        If CheckBox_timer_autolock.Checked = True And CheckBox_timer_autolock.Enabled = True And ComboBox_auto_lock_houre.Text + ComboBox_auto_lock_m.Text = time_hm Then
             Dim d1970 As New System.DateTime(1970, 1, 1, 0, 0, 0, 0)
             Dim iSeconds As Long
             iSeconds = (Now.Ticks - d1970.Ticks) / 10000000
@@ -1581,7 +1601,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button_add_unset_lock_exp_date_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_add_unset_lock_exp_date.Click
-        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `lock_exp_date` date NULL;", conn)
+        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `lockk_exp_date` date NULL;", conn)
         pathbnet.ExecuteNonQuery()
         MsgBox("数据库已添加锁定定时功能。")
 
@@ -1615,5 +1635,52 @@ Public Class Form1
 
     Private Sub Button_con_to_sql_EnabledChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.EnabledChanged
         showbutton()
+    End Sub
+
+    Private Sub Timer_exp_date_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer_exp_date.Tick
+        '自动断开，再重连数据库，避免mysql判断超时断开连接。
+        conn.Close()
+        If Not conn Is Nothing Then conn.Close()
+        Dim connStr As String
+        connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false", _
+    TextBox_sql_serverip.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
+        Try
+            conn = New MySqlConnection(connStr)
+            conn.Open()
+            Button_con_to_sql.Enabled = False
+            'GetDatabases()
+            'Catch ex As MySqlException
+            '
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            'Select Case ex.Number
+            ' Case 0
+            ' MessageBox.Show("账号密码不对")
+            ' Case 1042
+            '  MessageBox.Show("找不到服务器")
+
+            ' End Select
+            'MessageBox.Show(ex.Number)
+            'MessageBox.Show(ex.Message)
+        End Try
+        '自动断开再重连结束
+
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        '解除禁言
+        Dim set_unmute_str As String
+        set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`mute_exp_date` <= '{0}') LIMIT 3000", Date.Now)
+        Dim set_unmute As New MySqlCommand(set_unmute_str, conn)
+        '解除锁定
+        Dim set_unlock_str As String
+        set_unlock_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='0' WHERE (`lockk_exp_date` <= '{0}') LIMIT 3000", Date.Now)
+        Dim set_unlock As New MySqlCommand(set_unlock_str, conn)
+        '去除形象
+        Dim set_del_flags_str As String
+        set_del_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`flags_exp_date` <= '{0}') LIMIT 3000", Date.Now)
+        Dim set_del_flags As New MySqlCommand(set_del_flags_str, conn)
+        '执行
+        selectpvpgn.ExecuteNonQuery()
+        set_unmute.ExecuteNonQuery()
+        set_unlock.ExecuteNonQuery()
+        set_del_flags.ExecuteNonQuery()
     End Sub
 End Class
