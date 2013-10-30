@@ -288,8 +288,8 @@ Public Class Form1
             Close()
         End If
         load_config()
-        shuaxin()
         d2gsver()
+        shuaxin()
         '自动连接数据库
         If CheckBox_save_password.Checked = True Then
             If Not conn Is Nothing Then conn.Close()
@@ -1549,26 +1549,25 @@ Public Class Form1
 
     Private Sub flag_no7_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles flag_no7.SelectedValueChanged
         Select Case flag_no7.Text
-            Case "暴雪代表"
+            Case "暴雪代表(admin)"
                 flag5 = "0"
                 flag7 = "1"
-            Case "频道管理员"
+            Case "频道管理员(锤子)"
                 flag5 = "0"
                 flag7 = "2"
-            Case "公告员"
+            Case "公告员(铃铛)"
                 flag5 = "0"
                 flag7 = "4"
-            Case "战网管理员"
+            Case "战网管理员(书生)"
                 flag5 = "0"
                 flag7 = "8"
-            Case "官员"
+            Case "官员(红袍)"
                 flag5 = "4"
                 flag7 = "0"
             Case Else
                 flag5 = "0"
                 flag7 = "0"
         End Select
-        
     End Sub
 
 
@@ -1683,4 +1682,6 @@ Public Class Form1
         set_unlock.ExecuteNonQuery()
         set_del_flags.ExecuteNonQuery()
     End Sub
+
+
 End Class

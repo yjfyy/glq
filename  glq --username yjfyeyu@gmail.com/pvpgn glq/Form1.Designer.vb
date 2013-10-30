@@ -41,6 +41,7 @@ Partial Class Form1
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TextBox_auto_lock_day = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.CheckBox_timer_autolock = New System.Windows.Forms.CheckBox()
@@ -215,7 +216,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(107, 12)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Ver 0.23 build 37"
+        Me.Label8.Text = "Ver 0.24 build 38"
         '
         'Label9
         '
@@ -365,6 +366,7 @@ Partial Class Form1
         '
         'TabPage8
         '
+        Me.TabPage8.Controls.Add(Me.CheckBox1)
         Me.TabPage8.Controls.Add(Me.TextBox_auto_lock_day)
         Me.TabPage8.Controls.Add(Me.Label43)
         Me.TabPage8.Controls.Add(Me.CheckBox_timer_autolock)
@@ -402,9 +404,19 @@ Partial Class Form1
         Me.TabPage8.Text = "定时任务"
         Me.TabPage8.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(36, 42)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(180, 16)
+        Me.CheckBox1.TabIndex = 43
+        Me.CheckBox1.Text = "停止服务前，发出系统提示。"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'TextBox_auto_lock_day
         '
-        Me.TextBox_auto_lock_day.Location = New System.Drawing.Point(296, 76)
+        Me.TextBox_auto_lock_day.Location = New System.Drawing.Point(296, 123)
         Me.TextBox_auto_lock_day.Name = "TextBox_auto_lock_day"
         Me.TextBox_auto_lock_day.Size = New System.Drawing.Size(25, 21)
         Me.TextBox_auto_lock_day.TabIndex = 42
@@ -413,7 +425,7 @@ Partial Class Form1
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(327, 80)
+        Me.Label43.Location = New System.Drawing.Point(327, 127)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(89, 12)
         Me.Label43.TabIndex = 41
@@ -423,7 +435,7 @@ Partial Class Form1
         '
         Me.CheckBox_timer_autolock.AutoSize = True
         Me.CheckBox_timer_autolock.Enabled = False
-        Me.CheckBox_timer_autolock.Location = New System.Drawing.Point(13, 78)
+        Me.CheckBox_timer_autolock.Location = New System.Drawing.Point(13, 125)
         Me.CheckBox_timer_autolock.Name = "CheckBox_timer_autolock"
         Me.CheckBox_timer_autolock.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_autolock.TabIndex = 39
@@ -433,7 +445,7 @@ Partial Class Form1
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(213, 80)
+        Me.Label40.Location = New System.Drawing.Point(213, 127)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(77, 12)
         Me.Label40.TabIndex = 38
@@ -443,7 +455,7 @@ Partial Class Form1
         '
         Me.ComboBox_auto_lock_m.FormattingEnabled = True
         Me.ComboBox_auto_lock_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_auto_lock_m.Location = New System.Drawing.Point(169, 76)
+        Me.ComboBox_auto_lock_m.Location = New System.Drawing.Point(169, 123)
         Me.ComboBox_auto_lock_m.MaxLength = 2
         Me.ComboBox_auto_lock_m.Name = "ComboBox_auto_lock_m"
         Me.ComboBox_auto_lock_m.Size = New System.Drawing.Size(37, 20)
@@ -452,7 +464,7 @@ Partial Class Form1
         'Label41
         '
         Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(146, 80)
+        Me.Label41.Location = New System.Drawing.Point(146, 127)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(17, 12)
         Me.Label41.TabIndex = 36
@@ -462,7 +474,7 @@ Partial Class Form1
         '
         Me.ComboBox_auto_lock_houre.FormattingEnabled = True
         Me.ComboBox_auto_lock_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_auto_lock_houre.Location = New System.Drawing.Point(102, 76)
+        Me.ComboBox_auto_lock_houre.Location = New System.Drawing.Point(102, 123)
         Me.ComboBox_auto_lock_houre.MaxLength = 2
         Me.ComboBox_auto_lock_houre.Name = "ComboBox_auto_lock_houre"
         Me.ComboBox_auto_lock_houre.Size = New System.Drawing.Size(37, 20)
@@ -471,7 +483,7 @@ Partial Class Form1
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(67, 80)
+        Me.Label42.Location = New System.Drawing.Point(67, 127)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(29, 12)
         Me.Label42.TabIndex = 34
@@ -480,7 +492,7 @@ Partial Class Form1
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(4, 177)
+        Me.Label39.Location = New System.Drawing.Point(11, 213)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(41, 12)
         Me.Label39.TabIndex = 33
@@ -489,7 +501,7 @@ Partial Class Form1
         'Label_timer_zhuangtai
         '
         Me.Label_timer_zhuangtai.AutoSize = True
-        Me.Label_timer_zhuangtai.Location = New System.Drawing.Point(51, 177)
+        Me.Label_timer_zhuangtai.Location = New System.Drawing.Point(58, 213)
         Me.Label_timer_zhuangtai.Name = "Label_timer_zhuangtai"
         Me.Label_timer_zhuangtai.Size = New System.Drawing.Size(29, 12)
         Me.Label_timer_zhuangtai.TabIndex = 32
@@ -498,7 +510,7 @@ Partial Class Form1
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(213, 110)
+        Me.Label36.Location = New System.Drawing.Point(213, 157)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(161, 12)
         Me.Label36.TabIndex = 19
@@ -508,7 +520,7 @@ Partial Class Form1
         '
         Me.ComboBox_re_pvpgn_m.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(169, 106)
+        Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(169, 153)
         Me.ComboBox_re_pvpgn_m.MaxLength = 2
         Me.ComboBox_re_pvpgn_m.Name = "ComboBox_re_pvpgn_m"
         Me.ComboBox_re_pvpgn_m.Size = New System.Drawing.Size(37, 20)
@@ -517,7 +529,7 @@ Partial Class Form1
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(146, 110)
+        Me.Label37.Location = New System.Drawing.Point(146, 157)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(17, 12)
         Me.Label37.TabIndex = 17
@@ -527,7 +539,7 @@ Partial Class Form1
         '
         Me.ComboBox_re_pvpgn_houre.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(102, 106)
+        Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(102, 153)
         Me.ComboBox_re_pvpgn_houre.MaxLength = 2
         Me.ComboBox_re_pvpgn_houre.Name = "ComboBox_re_pvpgn_houre"
         Me.ComboBox_re_pvpgn_houre.Size = New System.Drawing.Size(37, 20)
@@ -536,7 +548,7 @@ Partial Class Form1
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(67, 110)
+        Me.Label38.Location = New System.Drawing.Point(67, 157)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(29, 12)
         Me.Label38.TabIndex = 15
@@ -545,7 +557,7 @@ Partial Class Form1
         'CheckBox_timer_re_pvpgn
         '
         Me.CheckBox_timer_re_pvpgn.AutoSize = True
-        Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(13, 108)
+        Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(13, 155)
         Me.CheckBox_timer_re_pvpgn.Name = "CheckBox_timer_re_pvpgn"
         Me.CheckBox_timer_re_pvpgn.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_re_pvpgn.TabIndex = 14
@@ -555,11 +567,11 @@ Partial Class Form1
         'CheckBox_re_jisuanji
         '
         Me.CheckBox_re_jisuanji.AutoSize = True
-        Me.CheckBox_re_jisuanji.Location = New System.Drawing.Point(384, 18)
+        Me.CheckBox_re_jisuanji.Location = New System.Drawing.Point(36, 63)
         Me.CheckBox_re_jisuanji.Name = "CheckBox_re_jisuanji"
-        Me.CheckBox_re_jisuanji.Size = New System.Drawing.Size(144, 16)
+        Me.CheckBox_re_jisuanji.Size = New System.Drawing.Size(168, 16)
         Me.CheckBox_re_jisuanji.TabIndex = 13
-        Me.CheckBox_re_jisuanji.Text = "停止服务后重启计算机"
+        Me.CheckBox_re_jisuanji.Text = "停止服务后，重启计算机。"
         Me.CheckBox_re_jisuanji.UseVisualStyleBackColor = True
         '
         'Label33
@@ -623,7 +635,7 @@ Partial Class Form1
         '
         Me.CheckBox_timer_backup.AutoSize = True
         Me.CheckBox_timer_backup.Enabled = False
-        Me.CheckBox_timer_backup.Location = New System.Drawing.Point(13, 48)
+        Me.CheckBox_timer_backup.Location = New System.Drawing.Point(13, 95)
         Me.CheckBox_timer_backup.Name = "CheckBox_timer_backup"
         Me.CheckBox_timer_backup.Size = New System.Drawing.Size(48, 16)
         Me.CheckBox_timer_backup.TabIndex = 6
@@ -633,7 +645,7 @@ Partial Class Form1
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(213, 50)
+        Me.Label32.Location = New System.Drawing.Point(213, 97)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(125, 12)
         Me.Label32.TabIndex = 5
@@ -643,7 +655,7 @@ Partial Class Form1
         '
         Me.ComboBox_backup_m.FormattingEnabled = True
         Me.ComboBox_backup_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.ComboBox_backup_m.Location = New System.Drawing.Point(169, 46)
+        Me.ComboBox_backup_m.Location = New System.Drawing.Point(169, 93)
         Me.ComboBox_backup_m.MaxLength = 2
         Me.ComboBox_backup_m.Name = "ComboBox_backup_m"
         Me.ComboBox_backup_m.Size = New System.Drawing.Size(37, 20)
@@ -652,7 +664,7 @@ Partial Class Form1
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(146, 50)
+        Me.Label31.Location = New System.Drawing.Point(146, 97)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(17, 12)
         Me.Label31.TabIndex = 3
@@ -662,7 +674,7 @@ Partial Class Form1
         '
         Me.ComboBox_backup_h.FormattingEnabled = True
         Me.ComboBox_backup_h.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.ComboBox_backup_h.Location = New System.Drawing.Point(102, 46)
+        Me.ComboBox_backup_h.Location = New System.Drawing.Point(102, 93)
         Me.ComboBox_backup_h.MaxLength = 2
         Me.ComboBox_backup_h.Name = "ComboBox_backup_h"
         Me.ComboBox_backup_h.Size = New System.Drawing.Size(37, 20)
@@ -671,7 +683,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(67, 50)
+        Me.Label10.Location = New System.Drawing.Point(67, 97)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(29, 12)
         Me.Label10.TabIndex = 0
@@ -1578,7 +1590,7 @@ Partial Class Form1
         'CheckBox_guanghuan
         '
         Me.CheckBox_guanghuan.AutoSize = True
-        Me.CheckBox_guanghuan.Location = New System.Drawing.Point(197, 135)
+        Me.CheckBox_guanghuan.Location = New System.Drawing.Point(209, 135)
         Me.CheckBox_guanghuan.Name = "CheckBox_guanghuan"
         Me.CheckBox_guanghuan.Size = New System.Drawing.Size(72, 16)
         Me.CheckBox_guanghuan.TabIndex = 54
@@ -1590,7 +1602,7 @@ Partial Class Form1
         Me.flag_no.AutoSize = True
         Me.flag_no.Enabled = False
         Me.flag_no.Font = New System.Drawing.Font("宋体", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.flag_no.Location = New System.Drawing.Point(140, 193)
+        Me.flag_no.Location = New System.Drawing.Point(133, 193)
         Me.flag_no.Name = "flag_no"
         Me.flag_no.Size = New System.Drawing.Size(54, 12)
         Me.flag_no.TabIndex = 53
@@ -1678,10 +1690,10 @@ Partial Class Form1
         'flag_no7
         '
         Me.flag_no7.FormattingEnabled = True
-        Me.flag_no7.Items.AddRange(New Object() {"默认职业形象", "暴雪代表", "频道管理员", "公告员", "战网管理员", "官员"})
+        Me.flag_no7.Items.AddRange(New Object() {"默认职业形象", "暴雪代表(admin)", "频道管理员(锤子)", "公告员(铃铛)", "战网管理员(书生)", "官员(红袍)"})
         Me.flag_no7.Location = New System.Drawing.Point(93, 133)
         Me.flag_no7.Name = "flag_no7"
-        Me.flag_no7.Size = New System.Drawing.Size(98, 20)
+        Me.flag_no7.Size = New System.Drawing.Size(110, 20)
         Me.flag_no7.TabIndex = 45
         Me.flag_no7.Text = "请选择"
         '
@@ -2149,5 +2161,6 @@ Partial Class Form1
     Friend WithEvents Button_add_unset_lock_exp_date As System.Windows.Forms.Button
     Friend WithEvents Button_add_flags_exp_date As System.Windows.Forms.Button
     Friend WithEvents Timer_exp_date As System.Windows.Forms.Timer
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 
 End Class
