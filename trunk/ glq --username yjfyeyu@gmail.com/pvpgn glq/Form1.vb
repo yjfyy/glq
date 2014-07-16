@@ -144,7 +144,7 @@ Public Class Form1
             reg_config.SetValue("TextBox_sql_serverip", TextBox_sql_serverip.Text)
             reg_config.SetValue("TextBox_sql_root", TextBox_sql_root.Text)
             reg_config.SetValue("TextBox_database_name.Text", TextBox_database_name.Text)
-            If RadioButton_d2_110.Checked = True Then
+            If RadioButton_system_x64.Checked = True Then
                 reg_config.SetValue("RadioButton_system_x64", "1")
             Else
                 reg_config.SetValue("RadioButton_system_x64", "0")
@@ -284,7 +284,7 @@ Public Class Form1
         'End Select
         '     End If
 
-        If DateString > "2014-3-30" Then
+        If DateString > "2016-3-30" Then
             Close()
         End If
         load_config()
