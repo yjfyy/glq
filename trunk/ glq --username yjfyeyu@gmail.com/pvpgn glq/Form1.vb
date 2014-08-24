@@ -799,13 +799,13 @@ Public Class Form1
 
 
     Private Sub Button_set_to_admin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_to_admin.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim setadminstr As String
         Dim setcommandgroupsstr As String
         Dim setflagsstr As String
         setadminstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_admin`='true' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         setcommandgroupsstr = String.Format("UPDATE `pvpgn_bnet` SET `auth_command_groups`='255' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
-        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='8' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
+        setflagsstr = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim setadmin As New MySqlCommand(setadminstr, conn)
         Dim setcommandgroups As New MySqlCommand(setcommandgroupsstr, conn)
         Dim setflags As New MySqlCommand(setflagsstr, conn)
@@ -908,7 +908,7 @@ Public Class Form1
 
 
     Private Sub Button_set_flags_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_flags.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim set_flags_str As String
         Dim set_flags_exp_date_str As String
 
@@ -1573,8 +1573,7 @@ Public Class Form1
 
 
     Private Sub Button_fix_pvpgn_server_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_fix_pvpgn_server.Click
-        Dim pvpgn_reg_fix As String = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pvpgn"
-        Microsoft.Win32.Registry.SetValue(pvpgn_reg_fix, "DependOnService", "MySQL55", Microsoft.Win32.RegistryValueKind.MultiString)
+        Microsoft.Win32.Registry.SetValue("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pvpgn", "DependOnService", New String() {"MySQL56"}, Microsoft.Win32.RegistryValueKind.MultiString)
         MsgBox("修正成功")
     End Sub
 
@@ -1684,4 +1683,7 @@ Public Class Form1
     End Sub
 
 
+    Private Sub Label8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label8.Click
+
+    End Sub
 End Class
